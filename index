@@ -731,7 +731,41 @@
             .predefined-colors {
                 grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
             }
-        }
+       /* Amélioration du sélecteur de couleur */
+.color-wheel {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    overflow: hidden;
+    background-image: conic-gradient(
+        red, orange, yellow, green, blue, indigo, violet, red
+    );
+    appearance: none;
+    -webkit-appearance: none;
+    transition: transform 0.3s ease;
+}
+
+.color-wheel:hover {
+    transform: scale(1.1);
+}
+
+.color-wheel-wrapper {
+    position: relative;
+}
+
+.color-wheel-wrapper::after {
+    content: "Cliquez pour choisir";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    opacity: 0.7;
+    white-space: nowrap;
+} }
     </style>
 </head>
 <body>
