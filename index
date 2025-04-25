@@ -83,7 +83,7 @@
     color: var(--text);
     opacity: 0.7;
 }
-        }
+    
         
         .form-container {
             width: 100%;
@@ -1346,6 +1346,15 @@
                 setupAutosave();
                 initColorSelector();
                 setupAssistant();
+otherObjective.addEventListener('change', function() {
+                        otherObjectiveField.style.display = this.checked ? 'block' : 'none';
+// Submit button click
+document.getElementById('submitBtn').addEventListener('click', function() {
+    if (validateScreen(currentScreen)) {
+        saveScreenData(currentScreen);
+        submitForm();
+    }
+});
             }
             
             // Setup conditional fields
@@ -1355,15 +1364,7 @@
                 const otherObjectiveField = document.getElementById('otherObjectiveField');
                 
                 if (otherObjective && otherObjectiveField) {
-                    otherObjective.addEventListener('change', function() {
-                        otherObjectiveField.style.display = this.checked ? 'block' : 'none';
-// Submit button click
-document.getElementById('submitBtn').addEventListener('click', function() {
-    if (validateScreen(currentScreen)) {
-        saveScreenData(currentScreen);
-        submitForm();
-    }
-});
+                    
 
 // Function to handle form submission
 function submitForm() {
@@ -1682,7 +1683,28 @@ formData.fonts.forEach(font => {
                 
                 return isValid;
             }
-            
+           // Submit button click
+document.getElementById('submitBtn').addEventListener('click', function() {
+    if (validateScreen(currentScreen)) {
+        saveScreenData(currentScreen);
+        submitForm();
+    }
+});
+
+// Function to handle form submission
+function submitForm() {
+    // Get the email for confirmation
+    const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
+    
+    // Update the confirmation email in the success screen
+    document.getElementById('confirmationEmail').textContent = clientEmail;
+    
+    // Go to the confirmation screen
+    goToScreen(12);
+    
+    // Optional: Simulate sending data to a server
+    console.log('Form data submitted:', formData);
+} 
             // Initialize color selector
             function initColorSelector() {
                 // Éléments du DOM
