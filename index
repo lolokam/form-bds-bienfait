@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire Site Bien Fait</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -301,7 +309,35 @@
             height: 18px;
             accent-color: var(--secondary);
         }
-        
+        /* Styles pour les catégories de polices */
+.font-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.font-category {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.category-title {
+    font-size: 1rem;
+    color: var(--secondary);
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.selected-fonts-display {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
         .font-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -946,31 +982,77 @@
                 <textarea id="logoInspirationURLs" class="form-textarea" placeholder="https://exemple.com/logo.jpg, https://pinterest.com/pin/123456..."></textarea>
             </div>
             
-            <div class="form-field">
-                <label class="form-label">Polices d'écriture préférées pour votre logo/site</label>
-                
-                <div class="font-options">
-                    <div class="font-option" data-font="poppins" style="font-family: 'Poppins', sans-serif;">
-                        Poppins - Aa Bb Cc 123
-                    </div>
-                    <div class="font-option" data-font="roboto" style="font-family: 'Roboto', sans-serif;">
-                        Roboto - Aa Bb Cc 123
-                    </div>
-                    <div class="font-option" data-font="montserrat" style="font-family: 'Montserrat', sans-serif;">
-                        Montserrat - Aa Bb Cc 123
-                    </div>
-                    <div class="font-option" data-font="playfair" style="font-family: 'Playfair Display', serif;">
-                        Playfair - Aa Bb Cc 123
-                    </div>
-                    <div class="font-option" data-font="opensans" style="font-family: 'Open Sans', sans-serif;">
-                        Open Sans - Aa Bb Cc 123
-                    </div>
-                    <div class="font-option" data-font="lato" style="font-family: 'Lato', sans-serif;">
-                        Lato - Aa Bb Cc 123
-                    </div>
+           <div class="form-field">
+    <label class="form-label">Polices d'écriture préférées pour votre logo/site (max 3)</label>
+    
+    <div class="font-categories">
+        <div class="font-category">
+            <h4 class="category-title">Sans-serif (modernes)</h4>
+            <div class="font-options">
+                <div class="font-option" data-font="poppins" style="font-family: 'Poppins', sans-serif;">
+                    Poppins - Aa Bb Cc 123
                 </div>
-                <input type="hidden" id="selectedFonts" value="">
+                <div class="font-option" data-font="roboto" style="font-family: 'Roboto', sans-serif;">
+                    Roboto - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="montserrat" style="font-family: 'Montserrat', sans-serif;">
+                    Montserrat - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="opensans" style="font-family: 'Open Sans', sans-serif;">
+                    Open Sans - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="lato" style="font-family: 'Lato', sans-serif;">
+                    Lato - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="sourcesans" style="font-family: 'Source Sans Pro', sans-serif;">
+                    Source Sans - Aa Bb Cc 123
+                </div>
             </div>
+        </div>
+        
+        <div class="font-category">
+            <h4 class="category-title">Serif (classiques)</h4>
+            <div class="font-options">
+                <div class="font-option" data-font="playfair" style="font-family: 'Playfair Display', serif;">
+                    Playfair - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="merriweather" style="font-family: 'Merriweather', serif;">
+                    Merriweather - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="lora" style="font-family: 'Lora', serif;">
+                    Lora - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="cormorant" style="font-family: 'Cormorant Garamond', serif;">
+                    Cormorant - Aa Bb Cc 123
+                </div>
+            </div>
+        </div>
+        
+        <div class="font-category">
+            <h4 class="category-title">Display (créatives)</h4>
+            <div class="font-options">
+                <div class="font-option" data-font="pacifico" style="font-family: 'Pacifico', cursive;">
+                    Pacifico - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="comfortaa" style="font-family: 'Comfortaa', cursive;">
+                    Comfortaa - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="righteous" style="font-family: 'Righteous', cursive;">
+                    Righteous - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="lobster" style="font-family: 'Lobster', cursive;">
+                    Lobster - Aa Bb Cc 123
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="selected-fonts-display">
+        <p>Polices sélectionnées: <span id="selectedFontsDisplay">Aucune</span></p>
+    </div>
+    
+    <input type="hidden" id="selectedFonts" value="">
+</div>
             
             <div class="form-field">
                 <label class="form-label">Avez-vous une charte graphique ?</label>
@@ -1431,29 +1513,62 @@
     </div>
     
     <div class="form-field">
-        <label class="form-label">Préférence de contact</label>
-        
-        <div class="radio-group">
-            <label class="radio-label">
-                <input type="radio" name="contactPreference" value="email" class="radio-input" checked>
-                Email
-            </label>
+      <div class="form-field">
+    <label class="form-label">Préférence de contact</label>
+    
+    <div class="radio-group">
+        <label class="radio-label">
+            <input type="radio" name="contactPreference" value="email" class="radio-input">
+            Email
+        </label>
+    </div>
+    
+    <div class="radio-group">
+        <label class="radio-label">
+            <input type="radio" name="contactPreference" value="phone" class="radio-input">
+            Téléphone
+        </label>
+    </div>
+    
+    <div class="radio-group recommended-option">
+        <label class="radio-label">
+            <input type="radio" name="contactPreference" value="visio" class="radio-input" id="visioPreference" checked>
+            Visio (recommandé) <span class="star-icon">★</span>
+        </label>
+    </div>
+</div>
+
+<div class="form-field" id="appointmentField">
+    <label class="form-label">Choisissez une date et une heure pour le rendez-vous</label>
+    
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button type="button" id="prevMonth" class="calendar-nav">&lt;</button>
+            <div id="currentMonth" class="current-month"></div>
+            <button type="button" id="nextMonth" class="calendar-nav">&gt;</button>
         </div>
         
-        <div class="radio-group">
-            <label class="radio-label">
-                <input type="radio" name="contactPreference" value="phone" class="radio-input">
-                Téléphone
-            </label>
+        <div class="weekdays">
+            <div>Lun</div>
+            <div>Mar</div>
+            <div>Mer</div>
+            <div>Jeu</div>
+            <div>Ven</div>
+            <div>Sam</div>
+            <div>Dim</div>
         </div>
         
-        <div class="radio-group">
-            <label class="radio-label">
-                <input type="radio" name="contactPreference" value="visio" class="radio-input" id="visioPreference">
-                Visio
-            </label>
+        <div id="calendarDays" class="calendar-days"></div>
+        
+        <div id="timeSlots" class="time-slots">
+            <!-- Les créneaux seront générés dynamiquement ici -->
         </div>
     </div>
+    
+    <div id="selectedDatetime" class="selected-datetime">
+        Aucune date sélectionnée
+    </div>
+</div>
     
     <div class="form-field">
         <label class="checkbox-label">
@@ -1683,40 +1798,53 @@ if (hasLogoYes && existingLogoField && newLogoField) {
     }
     
     // Setup font options
-    function setupFontOptions() {
-        const fontOptions = document.querySelectorAll('.font-option');
-        const selectedFontsInput = document.getElementById('selectedFonts');
-        const selectedFonts = [];
-        
-        fontOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const font = this.getAttribute('data-font');
-                const maxFonts = 3;
-                
-                if (this.classList.contains('selected')) {
-                    // Remove selection
-                    this.classList.remove('selected');
-                    const index = selectedFonts.indexOf(font);
-                    if (index > -1) {
-                        selectedFonts.splice(index, 1);
-                    }
+   function setupFontOptions() {
+    const fontOptions = document.querySelectorAll('.font-option');
+    const selectedFontsInput = document.getElementById('selectedFonts');
+    const selectedFontsDisplay = document.getElementById('selectedFontsDisplay');
+    const selectedFonts = [];
+    
+    fontOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const font = this.getAttribute('data-font');
+            const fontDisplay = this.textContent.trim();
+            const maxFonts = 3;
+            
+            if (this.classList.contains('selected')) {
+                // Remove selection
+                this.classList.remove('selected');
+                const index = selectedFonts.indexOf(font);
+                if (index > -1) {
+                    selectedFonts.splice(index, 1);
+                }
+            } else {
+                // Add selection (max 3)
+                if (selectedFonts.length < maxFonts) {
+                    this.classList.add('selected');
+                    selectedFonts.push(font);
                 } else {
-                    // Add selection (max 3)
-                    if (selectedFonts.length < maxFonts) {
-                        this.classList.add('selected');
-                        selectedFonts.push(font);
-                    } else {
-                        alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
-                    }
+                    alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
                 }
-                
-                // Update hidden input
-                if (selectedFontsInput) {
-                    selectedFontsInput.value = selectedFonts.join(',');
+            }
+            
+            // Update hidden input
+            if (selectedFontsInput) {
+                selectedFontsInput.value = selectedFonts.join(',');
+            }
+            
+            // Update display
+            if (selectedFontsDisplay) {
+                if (selectedFonts.length === 0) {
+                    selectedFontsDisplay.textContent = "Aucune";
+                } else {
+                    const selectedElements = document.querySelectorAll('.font-option.selected');
+                    const fontNames = Array.from(selectedElements).map(el => el.textContent.trim());
+                    selectedFontsDisplay.textContent = fontNames.join(', ');
                 }
-            });
+            }
         });
-    }
+    });
+}
     
     // Setup navigation
     function setupNavigation() {
