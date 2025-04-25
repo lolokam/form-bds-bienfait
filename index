@@ -68,7 +68,144 @@
     overflow: hidden;
     margin-bottom: 30px;
 }
+.progress-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
 
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--secondary);
+    transition: width 0.5s ease;
+    border-radius: 3px;
+}
+
+/* Amélioration de la mise en page générale */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.screen-title {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.form-field {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.form-input, 
+.form-select, 
+.form-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus, 
+.form-select:focus, 
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--secondary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.btn-next {
+    background-color: var(--secondary);
+    color: var(--primary);
+    box-shadow: 0 4px 15px rgba(243, 168, 132, 0.3);
+}
+
+.btn-prev {
+    background-color: transparent;
+    border: 1px solid var(--secondary);
+    color: var(--text);
+}
+
+.btn-next:hover {
+    background-color: var(--secondary);
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(243, 168, 132, 0.4);
+}
+
+.btn-prev:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.radio-label,
+.checkbox-label {
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.radio-label:hover,
+.checkbox-label:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Pour les champs conditionnels */
+.conditional-field {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border-left: 3px solid var(--secondary);
+}
 .progress-bar {
     height: 100%;
     background-color: var(--secondary);
@@ -601,11 +738,10 @@
     <h1>Site Bien Fait</h1>
     <p class="subtitle">Formulaire de collecte d'informations pour votre site vitrine professionnel</p>
     
-  <div class="progress-container">
+  html<div class="progress-container">
     <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar" style="width: 0%"></div>
     </div>
-    <div class="progress-text" id="progressText">Étape 1 sur 12</div>
 </div>
     
     <div class="form-container">
@@ -1312,605 +1448,600 @@
     </div>
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Variables
-            const screens = document.querySelectorAll('.form-screen');
-            const progressDots = document.getElementById('progressDots');
-            const saveDraftBtn = document.getElementById('saveDraft');
-            const saveStatus = document.getElementById('saveStatus');
-            const assistantBtn = document.getElementById('assistantBtn');
-            const assistantChat = document.getElementById('assistantChat');
-            const assistantInput = document.getElementById('assistantInput');
-            const assistantSend = document.getElementById('assistantSend');
-            const assistantMessages = document.getElementById('assistantMessages');
-            
-            // Form data object
-            let formData = {
-                uploadedFiles: {}
-            };
-            
-            // Current screen
-            let currentScreen = 1;
-            const totalScreens = 12; // Nombre total d'écrans du formulaire
-    
-            
-            // Initialize functionality
-            initFunctionality();
-            
-            // Function to initialize all functionality
-            function initFunctionality() {
-                setupConditionalFields();
-                setupFileUploads();
-                setupFontOptions();
-                setupNavigation();
-                setupAutosave();
-                initColorSelector();
-                setupAssistant();
-otherObjective.addEventListener('change', function() {
-                        otherObjectiveField.style.display = this.checked ? 'block' : 'none';
-// Submit button click
-document.getElementById('submitBtn').addEventListener('click', function() {
-    if (validateScreen(currentScreen)) {
-        saveScreenData(currentScreen);
-        submitForm();
-    }
-});
-            }
-            
-            // Setup conditional fields
-            function setupConditionalFields() {
-                // Other objective
-                const otherObjective = document.getElementById('otherObjective');
-                const otherObjectiveField = document.getElementById('otherObjectiveField');
-                
-                if (otherObjective && otherObjectiveField) {
-                    
-
-// Function to handle form submission
-function submitForm() {
-    // Get the email for confirmation
-    const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
-    
-    // Update the confirmation email in the success screen
-    document.getElementById('confirmationEmail').textContent = clientEmail;
-    
-    // Go to the confirmation screen
-    goToScreen(12);
-    
-    // Optional: Simulate sending data to a server
-    console.log('Form data submitted:', formData);
-    
-    // In a real implementation, you would send the data to a server here
-    // For example:
-    // fetch('https://api.lebureaudessites.com/submit-form', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData)
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log('Success:', data);
-    // })
-    // .catch((error) => {
-    //     console.error('Error:', error);
-    //     alert('Une erreur est survenue. Veuillez réessayer.');
-    // });
-}
-                    });
-                }
-                
-                // Other service option
-                const otherServiceOption = document.getElementById('otherServiceOption');
-                const otherServiceField = document.getElementById('otherServiceField');
-                
-                if (otherServiceOption && otherServiceField) {
-                    otherServiceOption.addEventListener('change', function() {
-                        otherServiceField.style.display = this.checked ? 'block' : 'none';
-                    });
-                }
-                
-                // Has charte
-                const hasCharteYes = document.getElementById('hasCharteYes');
-                const charteUploadField = document.getElementById('charteUploadField');
-                
-                if (hasCharteYes && charteUploadField) {
-                    document.querySelectorAll('input[name="hasCharte"]').forEach(radio => {
-                        radio.addEventListener('change', function() {
-                            charteUploadField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
-                        });
-                    });
-                }
-            }
-            
-            // Setup file uploads
-            function setupFileUploads() {
-                document.querySelectorAll('input[type="file"]').forEach(input => {
-                    input.addEventListener('change', function() {
-                        if (this.files.length > 0) {
-                            const fileNameElement = document.getElementById(this.id + 'Name');
-                            if (fileNameElement) {
-                                if (this.files.length === 1) {
-                                    fileNameElement.textContent = this.files[0].name;
-                                } else {
-                                    fileNameElement.textContent = `${this.files.length} fichiers sélectionnés`;
-                                }
-                            }
-                            
-                            // Store files in formData
-                            if (!formData.uploadedFiles[this.id]) {
-                                formData.uploadedFiles[this.id] = [];
-                            }
-                            
-                            Array.from(this.files).forEach(file => {
-                                formData.uploadedFiles[this.id].push(file.name);
-                            });
-                        }
-                    });
-                });
-                
-                // Make file upload buttons work
-                document.querySelectorAll('.file-upload-button').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const input = this.querySelector('input[type="file"]');
-                        if (input) {
-                            input.click();
-                        }
-                    });
-                });
-            }
-            
-            // Setup font options
-            function setupFontOptions() {
-                const fontOptions = document.querySelectorAll('.font-option');
-                const selectedFontsInput = document.getElementById('selectedFonts');
-                const selectedFonts = [];
-                
-                fontOptions.forEach(option => {
-                    option.addEventListener('click', function() {
-                        const font = this.getAttribute('data-font');
-                        const maxFonts = 3;
-                        
-                        if (this.classList.contains('selected')) {
-                            // Remove selection
-                            this.classList.remove('selected');
-                            const index = selectedFonts.indexOf(font);
-                            if (index > -1) {
-                                selectedFonts.splice(index, 1);
-                            }
-                        } else {
-                            // Add selection (max 3)
-                            if (selectedFonts.length < maxFonts) {
-                                this.classList.add('selected');
-                                selectedFonts.push(font);
-                            } else {
-                                alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
-                            }
-                        }
-                        
-                        // Update hidden input
-                        if (selectedFontsInput) {
-                            selectedFontsInput.value = selectedFonts.join(',');
-                        }
-                    });
-                });
-            }
-            
-            // Setup navigation
-            function setupNavigation() {
-                // Next button click
-                document.querySelectorAll('.btn-next').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const nextScreen = parseInt(this.getAttribute('data-next'));
-                        
-                        if (nextScreen && validateScreen(currentScreen)) {
-                            saveScreenData(currentScreen);
-                            goToScreen(nextScreen);
-                        }
-                    });
-                });
-                
-                // Previous button click
-                document.querySelectorAll('.btn-prev').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const prevScreen = parseInt(this.getAttribute('data-prev'));
-                        
-                        if (prevScreen) {
-                            saveScreenData(currentScreen);
-                            goToScreen(prevScreen);
-                        }
-                    });
-                });
-            }
-            
-            // Go to screen
-            function goToScreen(screenNumber) {
-    // Convertir en nombre si c'est une chaîne
-    screenNumber = parseInt(screenNumber);
-    
-    // Masquer tous les écrans et afficher celui demandé
-    document.querySelectorAll('.form-screen').forEach((screen, index) => {
-        if (index + 1 === screenNumber) {
-            screen.classList.add('active');
-        } else {
-            screen.classList.remove('active');
-        }
-    });
-    
-    // Mettre à jour la barre de progression
+      document.addEventListener('DOMContentLoaded', function() {
+    // Variables
+    const screens = document.querySelectorAll('.form-screen');
+    const saveDraftBtn = document.getElementById('saveDraft');
+    const saveStatus = document.getElementById('saveStatus');
+    const assistantBtn = document.getElementById('assistantBtn');
+    const assistantChat = document.getElementById('assistantChat');
+    const assistantInput = document.getElementById('assistantInput');
+    const assistantSend = document.getElementById('assistantSend');
+    const assistantMessages = document.getElementById('assistantMessages');
     const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
     
-    progressBar.style.width = progressPercentage + '%';
-    progressText.textContent = `Étape ${screenNumber} sur ${totalScreens}`;
+    // Form data object
+    let formData = {
+        uploadedFiles: {}
+    };
     
-    // Mettre à jour la variable currentScreen
-    currentScreen = screenNumber;
-    
-    // Faire défiler vers le haut
-    window.scrollTo(0, 0);
-}
-            
-            // Setup autosave
-            function setupAutosave() {
-                // Save on draft button click
-                saveDraftBtn.addEventListener('click', function() {
-                    saveFormData();
-                    saveStatus.textContent = 'Sauvegardé à ' + new Date().toLocaleTimeString();
-                    setTimeout(() => {
-                        saveStatus.textContent = '';
-                    }, 3000);
-                });
-                
-                // Auto save every 30 seconds
-                setInterval(function() {
-                    saveFormData();
-                }, 30000);
-                
-                // Load saved data on page load
-                const savedData = localStorage.getItem('siteBienFait_form');
-                if (savedData) {
-                    formData = JSON.parse(savedData);
-                    loadFormData();
-                }
-            }
-            
-            // Save all form data
-            function saveFormData() {
-                saveScreenData(currentScreen);
-                localStorage.setItem('siteBienFait_form', JSON.stringify(formData));
-            }
-            
-            // Save current screen data
-            function saveScreenData(screenNum) {
-                const screen = document.getElementById(`screen${screenNum}`);
-                if (!screen) return;
-                
-                // Save all inputs, selects, textareas
-                screen.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
-                    if (element.type === 'checkbox' || element.type === 'radio') {
-                        if (element.checked) {
-                            formData[element.name] = element.value;
-                        }
-                    } else {
-                        formData[element.id] = element.value;
-                    }
-                });
-                
-                // Save font selections
-                if (screenNum === 2) {
-                    const selectedFonts = [];
-                    screen.querySelectorAll('.font-option.selected').forEach(option => {
-                        selectedFonts.push(option.getAttribute('data-font'));
-                    });
-                    formData.fonts = selectedFonts;
-                    
-                    // Save color selections
-                    const selectedColors = [];
-                    screen.querySelectorAll('.color-chip-value').forEach(chip => {
-                        selectedColors.push(chip.textContent);
-                    });
-                    formData.colors = selectedColors;
-                }
-            }
-            
-            // Load form data
-            function loadFormData() {
-                // Load all inputs, selects, textareas
-                document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
-                    if (element.id && formData[element.id]) {
-                        element.value = formData[element.id];
-                    } else if (element.name && formData[element.name] === element.value) {
-                        element.checked = true;
-                    }
-                });
-                
-                // Load font selections
-                if (formData.fonts) {
-                    formData.fonts
-formData.fonts.forEach(font => {
-                        const option = document.querySelector(`.font-option[data-font="${font}"]`);
-                        if (option) option.classList.add('selected');
-                    });
-                }
-                
-                // Load color selections
-                if (formData.colors) {
-                    formData.colors.forEach(color => {
-                        addColor(color);
-                    });
-                }
-                
-                // Refresh conditional fields
-                setupConditionalFields();
-            }
-            
-            // Validate current screen
-            function validateScreen(screenNum) {
-                const screen = document.getElementById(`screen${screenNum}`);
-                if (!screen) return true;
-                
-                let isValid = true;
-                
-                // Check required fields
-                screen.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
-                    if (!field.value.trim()) {
-                        const formField = field.closest('.form-field');
-                        if (formField) {
-                            formField.classList.add('error');
-                            isValid = false;
-                        }
-                    } else {
-                        const formField = field.closest('.form-field');
-                        if (formField) {
-                            formField.classList.remove('error');
-                        }
-                    }
-                });
-                
-                // Validate email fields
-                screen.querySelectorAll('input[type="email"]').forEach(field => {
-                    if (field.value.trim() && !isValidEmail(field.value)) {
-                        const formField = field.closest('.form-field');
-                        if (formField) {
-                            formField.classList.add('error');
-                            isValid = false;
-                        }
-                    }
-                });
-                
-                return isValid;
-            }
-           // Submit button click
-document.getElementById('submitBtn').addEventListener('click', function() {
-    if (validateScreen(currentScreen)) {
-        saveScreenData(currentScreen);
-        submitForm();
-    }
-});
+    // Current screen
+    let currentScreen = 1;
+    const totalScreens = 12; // Nombre total d'écrans du formulaire
 
-// Function to handle form submission
-function submitForm() {
-    // Get the email for confirmation
-    const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
+    // Initialize functionality
+    initFunctionality();
     
-    // Update the confirmation email in the success screen
-    document.getElementById('confirmationEmail').textContent = clientEmail;
-    
-    // Go to the confirmation screen
-    goToScreen(12);
-    
-    // Optional: Simulate sending data to a server
-    console.log('Form data submitted:', formData);
-} 
-            // Initialize color selector
-            function initColorSelector() {
-                // Éléments du DOM
-                const colorWheel = document.getElementById('colorWheel');
-                const colorInput = document.getElementById('colorInput');
-                const colorPreview = document.getElementById('colorPreview');
-                const addColorBtn = document.getElementById('addColorBtn');
-                const selectedColors = document.getElementById('selectedColors');
-                const predefinedColors = document.getElementById('predefinedColors');
-                const selectedColorsInput = document.getElementById('selectedColorsInput');
-                
-                if (!colorWheel || !colorInput || !colorPreview || !addColorBtn || !selectedColors || !predefinedColors) {
-                    return; // Éléments manquants, on sort de la fonction
-                }
-                
-                // Limite de couleurs sélectionnables
-                const MAX_COLORS = 3;
-                
-                // Liste de couleurs prédéfinies
-                const colorList = [
-                    '#503D59', '#F3A884', '#AE5753', // Les couleurs de ta charte
-                    '#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE', 
-                    '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE', 
-                    '#B2FF59', '#EEFF41', '#FFEB3B', '#FFD740', '#FFAB40', 
-                    '#FF6E40', '#FFFFFF', '#EEEEEE', '#BDBDBD', '#757575'
-                ];
-                
-                // Générer les couleurs prédéfinies
-                colorList.forEach(color => {
-                    const colorSwatch = document.createElement('div');
-                    colorSwatch.className = 'color-swatch';
-                    colorSwatch.style.backgroundColor = color;
-                    colorSwatch.setAttribute('data-color', color);
-                    colorSwatch.title = color;
-                    
-                    colorSwatch.addEventListener('click', function() {
-                        addColor(color);
-                    });
-                    
-                    predefinedColors.appendChild(colorSwatch);
-                });
-                
-                // Synchroniser la roue de couleur et le champ de texte
-                colorWheel.addEventListener('input', function() {
-                    colorInput.value = this.value;
-                    colorPreview.style.backgroundColor = this.value;
-                });
-                
-                colorInput.addEventListener('input', function() {
-                    if (isValidColor(this.value)) {
-                        colorPreview.style.backgroundColor = this.value;
-                        colorWheel.value = this.value;
-                    }
-                });
-                
-                // Ajouter une couleur via le bouton
-                addColorBtn.addEventListener('click', function() {
-                    const color = colorInput.value.trim();
-                    if (isValidColor(color)) {
-                        addColor(color);
-                    } else {
-                        alert('Veuillez entrer une couleur valide (ex: #FF5500)');
-                    }
-                });
-                
-                // Fonction pour ajouter une couleur à la sélection
-                window.addColor = function(color) {
-                    // Vérifier si la couleur existe déjà
-                    const existingChips = selectedColors.querySelectorAll('.color-chip');
-                    for (let chip of existingChips) {
-                        const chipColor = chip.querySelector('.color-chip-remove').getAttribute('data-color');
-                        if (chipColor.toLowerCase() === color.toLowerCase()) {
-                            return; // La couleur existe déjà
-                        }
-                    }
-                    
-                    // Vérifier la limite de couleurs
-                    if (existingChips.length >= MAX_COLORS) {
-                        alert(`Vous pouvez sélectionner au maximum ${MAX_COLORS} couleurs. Supprimez une couleur existante pour en ajouter une nouvelle.`);
-                        return;
-                    }
-                    
-                    // Créer la puce de couleur
-                    const colorChip = document.createElement('div');
-                    colorChip.className = 'color-chip';
-                    colorChip.innerHTML = `
-                        <div class="color-chip-preview" style="background-color: ${color};"></div>
-                        <div class="color-chip-value">${color}</div>
-                        <button class="color-chip-remove" data-color="${color}">×</button>
-                    `;
-                    
-                    // Ajouter la puce au conteneur
-                    selectedColors.appendChild(colorChip);
-                    
-                    // Ajouter l'événement de suppression
-                    const removeBtn = colorChip.querySelector('.color-chip-remove');
-                    removeBtn.addEventListener('click', function() {
-                        colorChip.remove();
-                        updateSelectedColorsInput();
-                    });
-                    
-                    // Mettre à jour l'input caché
-                    updateSelectedColorsInput();
-                }
-                
-                // Fonction pour mettre à jour l'input caché avec les couleurs sélectionnées
-                function updateSelectedColorsInput() {
-                    const colors = [];
-                    document.querySelectorAll('.color-chip-value').forEach(chip => {
-                        colors.push(chip.textContent);
-                    });
-                    selectedColorsInput.value = colors.join(',');
-                }
-                
-                // Vérifier si la couleur est valide
-                function isValidColor(color) {
-                    const s = new Option().style;
-                    s.color = color;
-                    return s.color !== '';
-                }
-            }
-            
-            // Setup assistant chat
-            function setupAssistant() {
-                // Toggle assistant chat
-                assistantBtn.addEventListener('click', function() {
-                    assistantChat.style.display = assistantChat.style.display === 'flex' ? 'none' : 'flex';
-                });
-                
-                // Send message on button click
-                assistantSend.addEventListener('click', sendAssistantMessage);
-                
-                // Send message on Enter key
-                assistantInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        sendAssistantMessage();
-                    }
-                });
-                
-                // Function to send message
-                function sendAssistantMessage() {
-                    const message = assistantInput.value.trim();
-                    
-                    if (message) {
-                        // Add user message
-                        const userMessage = document.createElement('div');
-                        userMessage.classList.add('message', 'user');
-                        userMessage.textContent = message;
-                        assistantMessages.appendChild(userMessage);
-                        
-                        // Clear input
-                        assistantInput.value = '';
-                        
-                        // Scroll to bottom
-                        assistantMessages.scrollTop = assistantMessages.scrollHeight;
-                        
-                        // Simulate response
-                        setTimeout(() => {
-                            const response = getAssistantResponse(message);
-                            
-                            const assistantMessage = document.createElement('div');
-                            assistantMessage.classList.add('message', 'assistant');
-                            assistantMessage.textContent = response;
-                            assistantMessages.appendChild(assistantMessage);
-                            
-                            // Scroll to bottom
-                            assistantMessages.scrollTop = assistantMessages.scrollHeight;
-                        }, 1000);
-                    }
-                }
-                
-                // Get assistant response based on message
-                function getAssistantResponse(message) {
-                    message = message.toLowerCase();
-                    
-                    // Check for specific keywords
-                    if (message.includes('logo')) {
-                        return "Pour votre logo, vous pouvez soit choisir un type de logo (lettrage, pictogramme, abstrait), soit nous laisser vous faire des propositions. Vous pouvez également nous partager des exemples de logos qui vous plaisent pour nous guider.";
-                    } else if (message.includes('police') || message.includes('font')) {
-                        return "Vous pouvez sélectionner jusqu'à 3 polices qui vous plaisent. Ces polices seront utilisées pour votre site web et votre identité visuelle. Cliquez simplement sur les options qui vous plaisent.";
-                    } else if (message.includes('couleur')) {
-                        return "Vous pouvez choisir jusqu'à 3 couleurs pour votre identité visuelle. Utilisez soit la roue de couleur, soit les couleurs prédéfinies en cliquant dessus. Ces couleurs seront utilisées pour votre site web et votre logo.";
-                    } else if (message.includes('délai') || message.includes('temps')) {
-                        return "La création de votre site prendra environ 15 jours ouvrés après validation de votre brief et l'entretien d'onboarding avec votre chargé de projet.";
-                    } else if (message.includes('prix') || message.includes('coût') || message.includes('tarif')) {
-                        return "Le Site Bien Fait est disponible à partir de 45€ HT/mois sur 48 mois. Ce tarif inclut la création du site, l'hébergement, le nom de domaine et les mises à jour.";
-                    } else if (message.includes('sauvegarde')) {
-                        return "Vos réponses sont automatiquement sauvegardées. Vous pouvez également cliquer sur 'Sauvegarder le brouillon' en haut du formulaire pour enregistrer manuellement vos données.";
-                    }
-                    
-                    // Default responses
-                    const defaultResponses = [
-                        "Je suis là pour vous aider à remplir ce formulaire. Que souhaitez-vous savoir ?",
-                        "N'hésitez pas à prendre votre temps pour remplir ce formulaire. Toutes ces informations nous aideront à créer un site qui vous ressemble.",
-                        "Vous pouvez naviguer entre les différentes sections à l'aide des boutons 'Précédent' et 'Suivant', ou en cliquant sur les points en haut du formulaire.",
-                        "Plus vous donnez de détails sur votre entreprise et vos besoins, plus votre site sera adapté à vos attentes."
-                    ];
-                    
-                    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-                }
-            }
-            
-            // Helper: Valid email check
-            function isValidEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
+    // Function to initialize all functionality
+    function initFunctionality() {
+        setupConditionalFields();
+        setupFileUploads();
+        setupFontOptions();
+        setupNavigation();
+        setupAutosave();
+        initColorSelector();
+        setupAssistant();
+        
+        // Mise à jour initiale de la progression
+        updateProgress(currentScreen);
+        
+        // Setup Submit Button
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            if (validateScreen(currentScreen)) {
+                saveScreenData(currentScreen);
+                submitForm();
             }
         });
+    }
+    
+    // Setup conditional fields
+    function setupConditionalFields() {
+        // Other objective
+        const otherObjective = document.getElementById('otherObjective');
+        const otherObjectiveField = document.getElementById('otherObjectiveField');
+        
+        if (otherObjective && otherObjectiveField) {
+            otherObjective.addEventListener('change', function() {
+                otherObjectiveField.style.display = this.checked ? 'block' : 'none';
+            });
+        }
+        
+        // Other service option
+        const otherServiceOption = document.getElementById('otherServiceOption');
+        const otherServiceField = document.getElementById('otherServiceField');
+        
+        if (otherServiceOption && otherServiceField) {
+            otherServiceOption.addEventListener('change', function() {
+                otherServiceField.style.display = this.checked ? 'block' : 'none';
+            });
+        }
+        
+        // Has charte
+        const hasCharteYes = document.getElementById('hasCharteYes');
+        const charteUploadField = document.getElementById('charteUploadField');
+        
+        if (hasCharteYes && charteUploadField) {
+            document.querySelectorAll('input[name="hasCharte"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    charteUploadField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
+                });
+            });
+        }
+        
+        // Other tone
+        const otherTone = document.getElementById('otherTone');
+        const otherToneField = document.getElementById('otherToneField');
+        
+        if (otherTone && otherToneField) {
+            otherTone.addEventListener('change', function() {
+                otherToneField.style.display = this.checked ? 'block' : 'none';
+            });
+        }
+        
+        // Custom page
+        const customPage = document.getElementById('customPage');
+        const customPageField = document.getElementById('customPageField');
+        
+        if (customPage && customPageField) {
+            customPage.addEventListener('change', function() {
+                customPageField.style.display = this.checked ? 'block' : 'none';
+            });
+        }
+        
+        // Has website
+        const hasWebsiteYes = document.getElementById('hasWebsiteYes');
+        const websiteUrlField = document.getElementById('websiteUrlField');
+        
+        if (hasWebsiteYes && websiteUrlField) {
+            document.querySelectorAll('input[name="hasWebsite"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    websiteUrlField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
+                });
+            });
+        }
+    }
+    
+    // Setup file uploads
+    function setupFileUploads() {
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    const fileNameElement = document.getElementById(this.id + 'Name');
+                    if (fileNameElement) {
+                        if (this.files.length === 1) {
+                            fileNameElement.textContent = this.files[0].name;
+                        } else {
+                            fileNameElement.textContent = `${this.files.length} fichiers sélectionnés`;
+                        }
+                    }
+                    
+                    // Store files in formData
+                    if (!formData.uploadedFiles[this.id]) {
+                        formData.uploadedFiles[this.id] = [];
+                    }
+                    
+                    Array.from(this.files).forEach(file => {
+                        formData.uploadedFiles[this.id].push(file.name);
+                    });
+                }
+            });
+        });
+        
+        // Make file upload buttons work
+        document.querySelectorAll('.file-upload-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.querySelector('input[type="file"]');
+                if (input) {
+                    input.click();
+                }
+            });
+        });
+    }
+    
+    // Setup font options
+    function setupFontOptions() {
+        const fontOptions = document.querySelectorAll('.font-option');
+        const selectedFontsInput = document.getElementById('selectedFonts');
+        const selectedFonts = [];
+        
+        fontOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const font = this.getAttribute('data-font');
+                const maxFonts = 3;
+                
+                if (this.classList.contains('selected')) {
+                    // Remove selection
+                    this.classList.remove('selected');
+                    const index = selectedFonts.indexOf(font);
+                    if (index > -1) {
+                        selectedFonts.splice(index, 1);
+                    }
+                } else {
+                    // Add selection (max 3)
+                    if (selectedFonts.length < maxFonts) {
+                        this.classList.add('selected');
+                        selectedFonts.push(font);
+                    } else {
+                        alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
+                    }
+                }
+                
+                // Update hidden input
+                if (selectedFontsInput) {
+                    selectedFontsInput.value = selectedFonts.join(',');
+                }
+            });
+        });
+    }
+    
+    // Setup navigation
+    function setupNavigation() {
+        // Next button click
+        document.querySelectorAll('.btn-next').forEach(button => {
+            button.addEventListener('click', function() {
+                const nextScreen = parseInt(this.getAttribute('data-next'));
+                
+                if (nextScreen && validateScreen(currentScreen)) {
+                    saveScreenData(currentScreen);
+                    goToScreen(nextScreen);
+                }
+            });
+        });
+        
+        // Previous button click
+        document.querySelectorAll('.btn-prev').forEach(button => {
+            button.addEventListener('click', function() {
+                const prevScreen = parseInt(this.getAttribute('data-prev'));
+                
+                if (prevScreen) {
+                    saveScreenData(currentScreen);
+                    goToScreen(prevScreen);
+                }
+            });
+        });
+    }
+    
+    // Update progress bar
+    function updateProgress(screenNumber) {
+        const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
+        progressBar.style.width = progressPercentage + '%';
+    }
+    
+    // Go to screen
+    function goToScreen(screenNumber) {
+        // Convertir en nombre si c'est une chaîne
+        screenNumber = parseInt(screenNumber);
+        
+        // Masquer tous les écrans et afficher celui demandé
+        document.querySelectorAll('.form-screen').forEach((screen, index) => {
+            if (index + 1 === screenNumber) {
+                screen.classList.add('active');
+            } else {
+                screen.classList.remove('active');
+            }
+        });
+        
+        // Mettre à jour la barre de progression
+        updateProgress(screenNumber);
+        
+        // Mettre à jour la variable currentScreen
+        currentScreen = screenNumber;
+        
+        // Faire défiler vers le haut
+        window.scrollTo(0, 0);
+    }
+    
+    // Setup autosave
+    function setupAutosave() {
+        // Save on draft button click
+        saveDraftBtn.addEventListener('click', function() {
+            saveFormData();
+            saveStatus.textContent = 'Sauvegardé à ' + new Date().toLocaleTimeString();
+            setTimeout(() => {
+                saveStatus.textContent = '';
+            }, 3000);
+        });
+        
+        // Auto save every 30 seconds
+        setInterval(function() {
+            saveFormData();
+        }, 30000);
+        
+        // Load saved data on page load
+        const savedData = localStorage.getItem('siteBienFait_form');
+        if (savedData) {
+            formData = JSON.parse(savedData);
+            loadFormData();
+        }
+    }
+    
+    // Save all form data
+    function saveFormData() {
+        saveScreenData(currentScreen);
+        localStorage.setItem('siteBienFait_form', JSON.stringify(formData));
+    }
+    
+    // Save current screen data
+    function saveScreenData(screenNum) {
+        const screen = document.getElementById(`screen${screenNum}`);
+        if (!screen) return;
+        
+        // Save all inputs, selects, textareas
+        screen.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                if (element.checked) {
+                    formData[element.name] = element.value;
+                }
+            } else {
+                formData[element.id] = element.value;
+            }
+        });
+        
+        // Save font selections
+        if (screenNum === 2) {
+            const selectedFonts = [];
+            screen.querySelectorAll('.font-option.selected').forEach(option => {
+                selectedFonts.push(option.getAttribute('data-font'));
+            });
+            formData.fonts = selectedFonts;
+            
+            // Save color selections
+            const selectedColors = [];
+            screen.querySelectorAll('.color-chip-value').forEach(chip => {
+                selectedColors.push(chip.textContent);
+            });
+            formData.colors = selectedColors;
+        }
+    }
+    
+    // Load form data
+    function loadFormData() {
+        // Load all inputs, selects, textareas
+        document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
+            if (element.id && formData[element.id]) {
+                element.value = formData[element.id];
+            } else if (element.name && formData[element.name] === element.value) {
+                element.checked = true;
+            }
+        });
+        
+        // Load font selections
+        if (formData.fonts) {
+            formData.fonts.forEach(font => {
+                const option = document.querySelector(`.font-option[data-font="${font}"]`);
+                if (option) option.classList.add('selected');
+            });
+        }
+        
+        // Load color selections
+        if (formData.colors) {
+            formData.colors.forEach(color => {
+                addColor(color);
+            });
+        }
+        
+        // Refresh conditional fields
+        setupConditionalFields();
+    }
+    
+    // Validate current screen
+    function validateScreen(screenNum) {
+        const screen = document.getElementById(`screen${screenNum}`);
+        if (!screen) return true;
+        
+        let isValid = true;
+        
+        // Check required fields
+        screen.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+            if (!field.value.trim()) {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.add('error');
+                    isValid = false;
+                }
+            } else {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.remove('error');
+                }
+            }
+        });
+        
+        // Validate email fields
+        screen.querySelectorAll('input[type="email"]').forEach(field => {
+            if (field.value.trim() && !isValidEmail(field.value)) {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.add('error');
+                    isValid = false;
+                }
+            }
+        });
+        
+        return isValid;
+    }
+    
+    // Function to handle form submission
+    function submitForm() {
+        // Get the email for confirmation
+        const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
+        
+        // Update the confirmation email in the success screen
+        document.getElementById('confirmationEmail').textContent = clientEmail;
+        
+        // Go to the confirmation screen
+        goToScreen(12);
+        
+        // Optional: Simulate sending data to a server
+        console.log('Form data submitted:', formData);
+    }
+    
+    // Initialize color selector
+    function initColorSelector() {
+        // Éléments du DOM
+        const colorWheel = document.getElementById('colorWheel');
+        const colorInput = document.getElementById('colorInput');
+        const colorPreview = document.getElementById('colorPreview');
+        const addColorBtn = document.getElementById('addColorBtn');
+        const selectedColors = document.getElementById('selectedColors');
+        const predefinedColors = document.getElementById('predefinedColors');
+        const selectedColorsInput = document.getElementById('selectedColorsInput');
+        
+        if (!colorWheel || !colorInput || !colorPreview || !addColorBtn || !selectedColors || !predefinedColors) {
+            return; // Éléments manquants, on sort de la fonction
+        }
+        
+        // Limite de couleurs sélectionnables
+        const MAX_COLORS = 3;
+        
+        // Liste de couleurs prédéfinies
+        const colorList = [
+            '#503D59', '#F3A884', '#AE5753', // Les couleurs de ta charte
+            '#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE', 
+            '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE', 
+            '#B2FF59', '#EEFF41', '#FFEB3B', '#FFD740', '#FFAB40', 
+            '#FF6E40', '#FFFFFF', '#EEEEEE', '#BDBDBD', '#757575'
+        ];
+        
+        // Générer les couleurs prédéfinies
+        colorList.forEach(color => {
+            const colorSwatch = document.createElement('div');
+            colorSwatch.className = 'color-swatch';
+            colorSwatch.style.backgroundColor = color;
+            colorSwatch.setAttribute('data-color', color);
+            colorSwatch.title = color;
+            
+            colorSwatch.addEventListener('click', function() {
+                addColor(color);
+            });
+            
+            predefinedColors.appendChild(colorSwatch);
+        });
+        
+        // Synchroniser la roue de couleur et le champ de texte
+        colorWheel.addEventListener('input', function() {
+            colorInput.value = this.value;
+            colorPreview.style.backgroundColor = this.value;
+        });
+        
+        colorInput.addEventListener('input', function() {
+            if (isValidColor(this.value)) {
+                colorPreview.style.backgroundColor = this.value;
+                colorWheel.value = this.value;
+            }
+        });
+        
+        // Ajouter une couleur via le bouton
+        addColorBtn.addEventListener('click', function() {
+            const color = colorInput.value.trim();
+            if (isValidColor(color)) {
+                addColor(color);
+            } else {
+                alert('Veuillez entrer une couleur valide (ex: #FF5500)');
+            }
+        });
+        
+        // Fonction pour ajouter une couleur à la sélection
+        window.addColor = function(color) {
+            // Vérifier si la couleur existe déjà
+            const existingChips = selectedColors.querySelectorAll('.color-chip');
+            for (let chip of existingChips) {
+                const chipColor = chip.querySelector('.color-chip-remove').getAttribute('data-color');
+                if (chipColor.toLowerCase() === color.toLowerCase()) {
+                    return; // La couleur existe déjà
+                }
+            }
+            
+            // Vérifier la limite de couleurs
+            if (existingChips.length >= MAX_COLORS) {
+                alert(`Vous pouvez sélectionner au maximum ${MAX_COLORS} couleurs. Supprimez une couleur existante pour en ajouter une nouvelle.`);
+                return;
+            }
+            
+            // Créer la puce de couleur
+            const colorChip = document.createElement('div');
+            colorChip.className = 'color-chip';
+            colorChip.innerHTML = `
+                <div class="color-chip-preview" style="background-color: ${color};"></div>
+                <div class="color-chip-value">${color}</div>
+                <button class="color-chip-remove" data-color="${color}">×</button>
+            `;
+            
+            // Ajouter la puce au conteneur
+            selectedColors.appendChild(colorChip);
+            
+            // Ajouter l'événement de suppression
+            const removeBtn = colorChip.querySelector('.color-chip-remove');
+            removeBtn.addEventListener('click', function() {
+                colorChip.remove();
+                updateSelectedColorsInput();
+            });
+            
+            // Mettre à jour l'input caché
+            updateSelectedColorsInput();
+        }
+        
+        // Fonction pour mettre à jour l'input caché avec les couleurs sélectionnées
+        function updateSelectedColorsInput() {
+            const colors = [];
+            document.querySelectorAll('.color-chip-value').forEach(chip => {
+                colors.push(chip.textContent);
+            });
+            selectedColorsInput.value = colors.join(',');
+        }
+        
+        // Vérifier si la couleur est valide
+        function isValidColor(color) {
+            const s = new Option().style;
+            s.color = color;
+            return s.color !== '';
+        }
+    }
+    
+    // Setup assistant chat
+    function setupAssistant() {
+        // Toggle assistant chat
+        assistantBtn.addEventListener('click', function() {
+            assistantChat.style.display = assistantChat.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Send message on button click
+        assistantSend.addEventListener('click', sendAssistantMessage);
+        
+        // Send message on Enter key
+        assistantInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendAssistantMessage();
+            }
+        });
+        
+        // Function to send message
+        function sendAssistantMessage() {
+            const message = assistantInput.value.trim();
+            
+            if (message) {
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('message', 'user');
+                userMessage.textContent = message;
+                assistantMessages.appendChild(userMessage);
+                
+                // Clear input
+                assistantInput.value = '';
+                
+                // Scroll to bottom
+                assistantMessages.scrollTop = assistantMessages.scrollHeight;
+                
+                // Simulate response
+                setTimeout(() => {
+                    const response = getAssistantResponse(message);
+                    
+                    const assistantMessage = document.createElement('div');
+                    assistantMessage.classList.add('message', 'assistant');
+                    assistantMessage.textContent = response;
+                    assistantMessages.appendChild(assistantMessage);
+                    
+                    // Scroll to bottom
+                    assistantMessages.scrollTop = assistantMessages.scrollHeight;
+                }, 1000);
+            }
+        }
+        
+        // Get assistant response based on message
+        function getAssistantResponse(message) {
+            message = message.toLowerCase();
+            
+            // Check for specific keywords
+            if (message.includes('logo')) {
+                return "Pour votre logo, vous pouvez soit choisir un type de logo (lettrage, pictogramme, abstrait), soit nous laisser vous faire des propositions. Vous pouvez également nous partager des exemples de logos qui vous plaisent pour nous guider.";
+            } else if (message.includes('police') || message.includes('font')) {
+                return "Vous pouvez sélectionner jusqu'à 3 polices qui vous plaisent. Ces polices seront utilisées pour votre site web et votre identité visuelle. Cliquez simplement sur les options qui vous plaisent.";
+            } else if (message.includes('couleur')) {
+                return "Vous pouvez choisir jusqu'à 3 couleurs pour votre identité visuelle. Utilisez soit la roue de couleur, soit les couleurs prédéfinies en cliquant dessus. Ces couleurs seront utilisées pour votre site web et votre logo.";
+            } else if (message.includes('délai') || message.includes('temps')) {
+                return "La création de votre site prendra environ 15 jours ouvrés après validation de votre brief et l'entretien d'onboarding avec votre chargé de projet.";
+            } else if (message.includes('prix') || message.includes('coût') || message.includes('tarif')) {
+                return "Le Site Bien Fait est disponible à partir de 45€ HT/mois sur 48 mois. Ce tarif inclut la création du site, l'hébergement, le nom de domaine et les mises à jour.";
+            } else if (message.includes('sauvegarde')) {
+                return "Vos réponses sont automatiquement sauvegardées. Vous pouvez également cliquer sur 'Sauvegarder le brouillon' en haut du formulaire pour enregistrer manuellement vos données.";
+            }
+            
+            // Default responses
+            const defaultResponses = [
+                "Je suis là pour vous aider à remplir ce formulaire. Que souhaitez-vous savoir ?",
+                "N'hésitez pas à prendre votre temps pour remplir ce formulaire. Toutes ces informations nous aideront à créer un site qui vous ressemble.",
+                "Vous pouvez naviguer entre les différentes sections à l'aide des boutons 'Précédent' et 'Suivant'.",
+                "Plus vous donnez de détails sur votre entreprise et vos besoins, plus votre site sera adapté à vos attentes."
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+    }
+    
+    // Helper: Valid email check
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+});
     </script>
