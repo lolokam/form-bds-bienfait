@@ -800,37 +800,70 @@
         <div class="form-screen" id="screen2">
             <h2 class="screen-title">2. Logo et identité visuelle</h2>
             
-            <div class="form-field">
-                <label class="form-label">Que souhaiteriez-vous comme type de logo ?</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="logoType" value="lettrage" class="radio-input">
-                        Lettrage (texte stylisé)
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="logoType" value="pictogramme" class="radio-input">
-                        Pictogramme avec lettrage
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="logoType" value="abstrait" class="radio-input">
-                        Logo abstrait
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="logoType" value="none" class="radio-input">
-                        Pas de préférence
-                    </label>
-                </div>
+           <div class="form-field">
+    <label class="form-label">Avez-vous déjà un logo ?</label>
+    
+    <div class="radio-group">
+        <label class="radio-label">
+            <input type="radio" name="hasLogo" value="yes" class="radio-input" id="hasLogoYes">
+            Oui
+        </label>
+    </div>
+    
+    <div class="radio-group">
+        <label class="radio-label">
+            <input type="radio" name="hasLogo" value="no" class="radio-input" checked>
+            Non, j'en ai besoin d'un
+        </label>
+    </div>
+    
+    <div class="conditional-field" id="existingLogoField">
+        <div class="file-upload">
+            <label class="file-upload-button">
+                <span class="file-upload-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                </span>
+                Télécharger votre logo existant
+                <input type="file" id="logoUpload" accept=".jpg,.png,.svg,.pdf" style="display: none;">
+            </label>
+        </div>
+        <div id="logoUploadName" class="mt-2 text-sm"></div>
+    </div>
+    
+    <div class="conditional-field" id="newLogoField">
+        <div class="logo-type-question">
+            <label class="form-label">Que souhaiteriez-vous comme type de logo ?</label>
+            
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="logoType" value="lettrage" class="radio-input">
+                    Lettrage (texte stylisé)
+                </label>
             </div>
+            
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="logoType" value="pictogramme" class="radio-input">
+                    Pictogramme avec lettrage
+                </label>
+            </div>
+            
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="logoType" value="abstrait" class="radio-input">
+                    Logo abstrait
+                </label>
+            </div>
+            
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="logoType" value="none" class="radio-input" checked>
+                    Pas de préférence
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
             
             <div class="form-field">
                 <label class="form-label">Choisissez les couleurs pour votre site/logo (max 3)</label>
@@ -1471,7 +1504,24 @@
 
     // Initialize functionality
     initFunctionality();
+
+    // Gestion des champs conditionnels pour le logo
+const hasLogoYes = document.getElementById('hasLogoYes');
+const existingLogoField = document.getElementById('existingLogoField');
+const newLogoField = document.getElementById('newLogoField');
+
+if (hasLogoYes && existingLogoField && newLogoField) {
+    document.querySelectorAll('input[name="hasLogo"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            existingLogoField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
+            newLogoField.style.display = this.value === 'no' && this.checked ? 'block' : 'none';
+        });
+    });
     
+    // Initialiser l'affichage
+    newLogoField.style.display = 'block';
+    existingLogoField.style.display = 'none';
+}
     // Function to initialize all functionality
     function initFunctionality() {
         setupConditionalFields();
