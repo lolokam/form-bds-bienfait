@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire Site Bien Fait</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Ajout de liens vers plus de polices pour la section typographie -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Ubuntu:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #503D59;
@@ -156,16 +159,9 @@
             accent-color: var(--secondary);
         }
         
-        .font-container {
-            max-height: 400px;
-            overflow-y: auto;
-            padding-right: 10px;
-            margin-bottom: 20px;
-        }
-        
         .font-options {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 10px;
         }
         
@@ -175,67 +171,11 @@
             background-color: rgba(255, 255, 255, 0.1);
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
         
         .font-option.selected {
             background-color: rgba(243, 168, 132, 0.3);
             border: 1px solid var(--secondary);
-        }
-        
-        /* Styles pour la pagination des fonts */
-        .font-pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .font-pagination button {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--text);
-            padding: 5px 10px;
-            margin: 0 5px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .font-pagination button.active {
-            background-color: var(--secondary);
-            color: var(--primary);
-        }
-        
-        .font-search {
-            margin-bottom: 10px;
-        }
-        
-        .font-search input {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text);
-        }
-        
-        .font-category-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-            gap: 5px;
-        }
-        
-        .font-category-tab {
-            padding: 5px 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .font-category-tab.active {
-            background-color: var(--secondary);
-            color: var(--primary);
         }
         
         .file-upload {
@@ -261,22 +201,6 @@
         .conditional-field {
             display: none;
             margin-top: 10px;
-        }
-        
-        .conditional-field.visible {
-            display: block;
-        }
-        
-        .page-details {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            display: none;
-        }
-        
-        .page-details.visible {
-            display: block;
         }
         
         .navigation-buttons {
@@ -350,161 +274,6 @@
         .form-field.error .form-select,
         .form-field.error .form-textarea {
             border-color: #ff6b6b;
-        }
-        
-        /* Styles pour le calendrier */
-        .calendar-container {
-            margin-top: 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 15px;
-        }
-        
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .calendar-nav {
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            font-size: 20px;
-        }
-        
-        .calendar-month {
-            font-weight: 500;
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-        }
-        
-        .calendar-day-header {
-            text-align: center;
-            font-weight: 500;
-            font-size: 12px;
-            padding-bottom: 10px;
-        }
-        
-        .calendar-day {
-            text-align: center;
-            padding: 10px 5px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .calendar-day:hover:not(.disabled):not(.empty) {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .calendar-day.selected {
-            background-color: var(--secondary);
-            color: var(--primary);
-            font-weight: 500;
-        }
-        
-        .calendar-day.disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-        
-        .calendar-day.empty {
-            visibility: hidden;
-        }
-        
-        .time-slots {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 15px;
-        }
-        
-        .time-slot {
-            text-align: center;
-            padding: 8px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .time-slot:hover:not(.disabled) {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .time-slot.selected {
-            background-color: var(--secondary);
-            color: var(--primary);
-            font-weight: 500;
-        }
-        
-        .time-slot.disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-        
-        /* Styles pour le récapitulatif */
-        .recap-section {
-            margin-bottom: 25px;
-        }
-        
-        .recap-section-title {
-            font-size: 1.1rem;
-            color: var(--secondary);
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .recap-edit-btn {
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            font-size: 14px;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-        .recap-edit-btn:hover {
-            opacity: 1;
-        }
-        
-        .recap-content {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 15px;
-        }
-        
-        .recap-item {
-            margin-bottom: 8px;
-        }
-        
-        .recap-label {
-            font-weight: 500;
-            margin-bottom: 3px;
-        }
-        
-        .recap-value {
-            opacity: 0.9;
-        }
-        
-        /* Recommended choice styling */
-        .recommended-choice {
-            display: inline-block;
-            font-style: italic;
-            color: var(--secondary);
-            margin-left: 5px;
-        }
-        
-        .recommended-choice::before {
-            content: "★ ";
         }
         
         /* Assistant IA (plus discret) */
@@ -590,7 +359,6 @@
         
         .message.assistant {
             background-color: #f0f0f0;
-            color: #333;
             align-self: flex-start;
         }
         
@@ -601,32 +369,171 @@
             margin-left: auto;
         }
         
-        /* Color picker styles */
-        .color-picker-container {
+        /* Styles pour le sélecteur de couleur */
+        .selected-colors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            min-height: 50px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        
+        .color-chip {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .color-chip-preview {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .color-chip-value {
+            font-size: 0.9rem;
+            margin-right: 8px;
+        }
+        
+        .color-chip-remove {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+        
+        .color-chip-remove:hover {
+            opacity: 1;
+        }
+        
+        .color-selector-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .color-wheel-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .color-wheel-wrapper {
+            position: relative;
+        }
+        
+        .color-wheel {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            overflow: hidden;
+            background-image: conic-gradient(
+                red, orange, yellow, green, blue, indigo, violet, red
+            );
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        
+        .color-wheel::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        
+        .color-wheel::-webkit-color-swatch {
+            border: none;
+            border-radius: 50%;
+        }
+        
+        .color-wheel-value {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+        }
+        
+        .color-preview {
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .color-input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .add-color-btn {
+            padding: 8px 12px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+        
+        .add-color-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .predefined-colors {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
             gap: 10px;
             margin-top: 10px;
         }
         
         .color-swatch {
-            height: 40px;
-            border-radius: 4px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
             cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.2s ease;
+            position: relative;
         }
         
         .color-swatch:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
-        .color-swatch.selected {
-            box-shadow: 0 0 0 2px white, 0 0 0 4px var(--secondary);
+        .color-swatch::after {
+            content: "+";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text);
+            font-size: 16px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
         }
         
-        .custom-color-input {
-            grid-column: span 3;
-            margin-top: 10px;
+        .color-swatch:hover::after {
+            opacity: 1;
         }
         
         /* Responsive adaptations */
@@ -636,11 +543,7 @@
             }
             
             .font-options {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            
-            .time-slots {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
             
             .navigation-buttons {
@@ -670,10 +573,6 @@
                 height: 8px;
             }
             
-            .time-slots {
-                grid-template-columns: 1fr;
-            }
-            
             .assistant-chat {
                 width: 90%;
                 right: 5%;
@@ -681,8 +580,13 @@
                 bottom: 70px;
             }
             
-            .font-options {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            .color-wheel-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .predefined-colors {
+                grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
             }
         }
     </style>
@@ -710,7 +614,7 @@
             
             <div class="form-field">
                 <label class="form-label" for="companyName">Nom de l'entreprise</label>
-                <input type="text" id="companyName" class="form-input" required placeholder="Ex: Dupont Consulting" autocomplete="organization">
+                <input type="text" id="companyName" class="form-input" required placeholder="Ex: Dupont Consulting">
                 <div class="error-message">Veuillez renseigner le nom de votre entreprise</div>
             </div>
             
@@ -749,199 +653,143 @@
             </div>
         </div>
         
-        <!-- Screen 2: Logo et charte graphique -->
+        <!-- Screen 2: Logo et identité visuelle -->
         <div class="form-screen" id="screen2">
-            <h2 class="screen-title">2. Logo et charte graphique</h2>
+            <h2 class="screen-title">2. Logo et identité visuelle</h2>
             
-            <!-- Question sur le logo existant -->
             <div class="form-field">
-                <label class="form-label">Avez-vous un logo ?</label>
+                <label class="form-label">Que souhaiteriez-vous comme type de logo ?</label>
                 
                 <div class="radio-group">
                     <label class="radio-label">
-                        <input type="radio" name="hasLogo" value="yes" class="radio-input" id="hasLogoYes">
+                        <input type="radio" name="logoType" value="lettrage" class="radio-input">
+                        Lettrage (texte stylisé)
+                    </label>
+                </div>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="logoType" value="pictogramme" class="radio-input">
+                        Pictogramme avec lettrage
+                    </label>
+                </div>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="logoType" value="abstrait" class="radio-input">
+                        Logo abstrait
+                    </label>
+                </div>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="logoType" value="none" class="radio-input">
+                        Pas de préférence
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-field">
+                <label class="form-label">Choisissez les couleurs pour votre site/logo (max 3)</label>
+                
+                <div class="selected-colors" id="selectedColors">
+                    <!-- Les puces de couleurs sélectionnées apparaîtront ici -->
+                </div>
+                
+                <div class="color-selector-container">
+                    <div class="color-wheel-container">
+                        <div class="color-wheel-wrapper">
+                            <input type="color" id="colorWheel" class="color-wheel" value="#503D59">
+                        </div>
+                        
+                        <div class="color-wheel-value">
+                            <div class="color-preview" id="colorPreview" style="background-color: #503D59;"></div>
+                            <input type="text" id="colorInput" class="color-input" value="#503D59" placeholder="Ex: #503D59">
+                        </div>
+                        
+                        <button id="addColorBtn" class="add-color-btn">Ajouter</button>
+                    </div>
+                    
+                    <div class="predefined-colors" id="predefinedColors">
+                        <!-- Les couleurs prédéfinies seront générées par JavaScript -->
+                    </div>
+                </div>
+                <input type="hidden" id="selectedColorsInput" name="selectedColors" value="">
+            </div>
+            
+            <div class="form-field">
+                <label class="form-label">Inspirations pour votre logo (optionnel)</label>
+                <div class="file-upload">
+                    <label class="file-upload-button">
+                        <span class="file-upload-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        </span>
+                        Télécharger des exemples de logos qui vous plaisent
+                        <input type="file" id="logoInspiration" accept=".jpg,.png,.svg,.pdf" multiple style="display: none;">
+                    </label>
+                </div>
+                <div id="logoInspirationName" class="mt-2 text-sm"></div>
+            </div>
+            
+            <div class="form-field">
+                <label class="form-label" for="logoInspirationURLs">URLs d'exemples de logos que vous aimez (optionnel)</label>
+                <textarea id="logoInspirationURLs" class="form-textarea" placeholder="https://exemple.com/logo.jpg, https://pinterest.com/pin/123456..."></textarea>
+            </div>
+            
+            <div class="form-field">
+                <label class="form-label">Polices d'écriture préférées pour votre logo/site</label>
+                
+                <div class="font-options">
+                    <div class="font-option" data-font="poppins" style="font-family: 'Poppins', sans-serif;">
+                        Poppins - Aa Bb Cc 123
+                    </div>
+                    <div class="font-option" data-font="roboto" style="font-family: 'Roboto', sans-serif;">
+                        Roboto - Aa Bb Cc 123
+                    </div>
+                    <div class="font-option" data-font="montserrat" style="font-family: 'Montserrat', sans-serif;">
+                        Montserrat - Aa Bb Cc 123
+                    </div>
+                    <div class="font-option" data-font="playfair" style="font-family: 'Playfair Display', serif;">
+                        Playfair - Aa Bb Cc 123
+                    </div>
+                    <div class="font-option" data-font="opensans" style="font-family: 'Open Sans', sans-serif;">
+                        Open Sans - Aa Bb Cc 123
+                    </div>
+                    <div class="font-option" data-font="lato" style="font-family: 'Lato', sans-serif;">
+                        Lato - Aa Bb Cc 123
+                    </div>
+                </div>
+                <input type="hidden" id="selectedFonts" value="">
+            </div>
+            
+            <div class="form-field">
+                <label class="form-label">Avez-vous une charte graphique ?</label>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="hasCharte" value="yes" class="radio-input" id="hasCharteYes">
                         Oui
                     </label>
                 </div>
                 
                 <div class="radio-group">
                     <label class="radio-label">
-                        <input type="radio" name="hasLogo" value="no" class="radio-input" id="hasLogoNo" checked>
+                        <input type="radio" name="hasCharte" value="no" class="radio-input" checked>
                         Non
                     </label>
                 </div>
-            </div>
-            
-            <!-- Champ d'upload de logo (si oui) -->
-            <div class="conditional-field" id="logoUploadField">
-                <div class="form-field">
-                    <label class="form-label">Télécharger votre logo</label>
+                
+                <div class="conditional-field" id="charteUploadField">
                     <div class="file-upload">
                         <label class="file-upload-button">
                             <span class="file-upload-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                             </span>
-                            Cliquez pour télécharger votre logo
-                            <input type="file" id="logoFile" accept=".jpg,.png,.svg,.pdf" style="display: none;">
-                        </label>
-                    </div>
-                    <div id="logoFileName" class="mt-2 text-sm"></div>
-                </div>
-                
-                <!-- Question charte graphique (si logo oui) -->
-                <div class="form-field">
-                    <label class="form-label">Avez-vous une charte graphique ?</label>
-                    
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="hasCharte" value="yes" class="radio-input" id="hasCharteYes">
-                            Oui
-                        </label>
-                    </div>
-                    
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="hasCharte" value="no" class="radio-input" id="hasCharteNo" checked>
-                            Non
+                            Télécharger votre charte graphique
+                            <input type="file" id="charteUpload" accept=".pdf,.jpg,.png" style="display: none;">
                         </label>
                     </div>
                 </div>
-                
-                <!-- Si a une charte graphique -->
-                <div class="conditional-field" id="charteDetailsField">
-                    <div class="form-field">
-                        <label class="form-label">Télécharger votre charte graphique</label>
-                        <div class="file-upload">
-                            <label class="file-upload-button">
-                                <span class="file-upload-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                                </span>
-                                Cliquez pour télécharger votre charte graphique
-                                <input type="file" id="charteFile" accept=".pdf,.jpg,.png" style="display: none;">
-                            </label>
-                        </div>
-                        <div id="charteFileName" class="mt-2 text-sm"></div>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label class="form-label" for="charteTypography">Polices utilisées dans votre charte</label>
-                        <input type="text" id="charteTypography" class="form-input" placeholder="Ex: Montserrat, Open Sans">
-                    </div>
-                    
-                    <div class="form-field">
-                        <label class="form-label" for="charteColors">Couleurs principales (codes hex si possible)</label>
-                        <input type="text" id="charteColors" class="form-input" placeholder="Ex: #3366CC, #FF9900">
-                    </div>
-                    
-                    <div class="form-field">
-                        <label class="form-label" for="charteDetails">Indications particulières</label>
-                        <textarea id="charteDetails" class="form-textarea" placeholder="Précisez toutes informations utiles sur votre charte graphique"></textarea>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Si pas de logo, questions sur les préférences -->
-            <div class="conditional-field" id="logoPreferencesField">
-                <div class="form-field">
-                    <label class="form-label">Quel type de logo souhaiteriez-vous ?</label>
-                    
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="logoType" value="lettrage" class="radio-input">
-                            Lettrage (texte stylisé)
-                        </label>
-                    </div>
-                    
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="logoType" value="pictogramme" class="radio-input">
-                            Pictogramme avec lettrage
-                        </label>
-                    </div>
-                    
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="logoType" value="abstrait" class="radio-input">
-                            Logo abstrait
-                        </label>
-                    </div>
-                    
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="logoType" value="none" class="radio-input" checked>
-                            Pas de préférence
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="form-field">
-                    <label class="form-label">Inspirations pour votre logo (optionnel)</label>
-                    <div class="file-upload">
-                        <label class="file-upload-button">
-                            <span class="file-upload-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                            </span>
-                            Télécharger des exemples de logos qui vous plaisent
-                            <input type="file" id="logoInspiration" accept=".jpg,.png,.svg,.pdf" multiple style="display: none;">
-                        </label>
-                    </div>
-                    <div id="logoInspirationName" class="mt-2 text-sm"></div>
-                </div>
-                
-                <div class="form-field">
-                    <label class="form-label" for="logoInspirationURLs">URLs d'exemples de logos que vous aimez (optionnel)</label>
-                    <textarea id="logoInspirationURLs" class="form-textarea" placeholder="https://exemple.com/logo.jpg, https://pinterest.com/pin/123456..."></textarea>
-                </div>
-                
-                <!-- Sélecteur de couleurs -->
-                <div class="form-field">
-                    <label class="form-label">Quelles couleurs préférez-vous pour votre site/logo ?</label>
-                    <p style="margin-bottom: 10px; opacity: 0.8;">Sélectionnez jusqu'à 3 couleurs</p>
-                    
-                    <div class="color-picker-container" id="colorPicker">
-                        <!-- Les couleurs seront générées dynamiquement -->
-                    </div>
-                    
-                    <div class="custom-color-input">
-                        <label class="form-label" for="customColor">Ajouter une couleur personnalisée</label>
-                        <input type="text" id="customColor" class="form-input" placeholder="Ex: #FF5500">
-                        <button type="button" id="addCustomColor" style="background-color: var(--secondary); color: var(--primary); border: none; padding: 8px 12px; border-radius: 4px; margin-top: 8px; cursor: pointer;">Ajouter</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Polices d'écriture (pour tous) -->
-            <div class="form-field" id="typographyField">
-                <label class="form-label">Polices d'écriture préférées pour votre site</label>
-                <p style="margin-bottom: 10px; opacity: 0.8;">Sélectionnez jusqu'à 3 polices qui vous plaisent</p>
-                
-                <!-- Onglets de catégories de polices -->
-                <div class="font-category-tabs" id="fontCategoryTabs">
-                    <div class="font-category-tab active" data-category="all">Toutes</div>
-                    <div class="font-category-tab" data-category="serif">Serif</div>
-                    <div class="font-category-tab" data-category="sans-serif">Sans Serif</div>
-                    <div class="font-category-tab" data-category="display">Display</div>
-                    <div class="font-category-tab" data-category="handwriting">Manuscrites</div>
-                </div>
-                
-                <!-- Barre de recherche de police -->
-                <div class="font-search">
-                    <input type="text" id="fontSearch" placeholder="Rechercher une police...">
-                </div>
-                
-                <!-- Conteneur avec scroll pour les polices -->
-                <div class="font-container">
-                    <div class="font-options" id="fontOptions">
-                        <!-- Les polices seront générées dynamiquement -->
-                    </div>
-                </div>
-                
-                <!-- Pagination pour les polices -->
-                <div class="font-pagination" id="fontPagination">
-                    <!-- Les boutons de page seront générés dynamiquement -->
-                </div>
-                
-                <input type="hidden" id="selectedFonts" value="">
             </div>
             
             <div class="navigation-buttons">
@@ -1003,27 +851,16 @@
             </div>
         </div>
         
-        <!-- Screen 4: Vos offres / produits / services -->
+        <!-- Ajoutez le reste des écrans ici -->
+        <!-- Screen 4, 5, etc. -->
+        
+        <!-- Par exemple, Screen 4: Vos offres / produits / services -->
         <div class="form-screen" id="screen4">
             <h2 class="screen-title">4. Vos offres / produits / services</h2>
             
             <div class="form-field">
                 <label class="form-label" for="services">Listez les prestations / produits que vous proposez</label>
                 <textarea id="services" class="form-textarea" placeholder="Décrivez vos prestations ou produits en détail..."></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Documents existants</label>
-                <div class="file-upload">
-                    <label class="file-upload-button">
-                        <span class="file-upload-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                        </span>
-                        Télécharger une plaquette ou site existant
-                        <input type="file" id="documentUpload" accept=".pdf,.doc,.docx,.jpg,.png" style="display: none;">
-                    </label>
-                </div>
-                <div id="documentName" class="mt-2 text-sm"></div>
             </div>
             
             <div class="form-field">
@@ -1068,955 +905,7 @@
             </div>
         </div>
         
-        <!-- Screen 5: Informations pratiques -->
-        <div class="form-screen" id="screen5">
-            <h2 class="screen-title">5. Informations pratiques à afficher</h2>
-            
-            <div class="form-field">
-                <label class="form-label" for="address">Adresse (facultatif)</label>
-                <input type="text" id="address" class="form-input" placeholder="Votre adresse professionnelle" autocomplete="street-address">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="phone">Téléphone</label>
-                <input type="tel" id="phone" class="form-input" required placeholder="Ex: 06 12 34 56 78" autocomplete="tel">
-                <div class="error-message">Veuillez renseigner un numéro de téléphone valide</div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="email">Email</label>
-                <input type="email" id="email" class="form-input" required placeholder="Ex: contact@votre-entreprise.fr" autocomplete="email">
-                <div class="error-message">Veuillez renseigner une adresse email valide</div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="hours">Horaires</label>
-                <textarea id="hours" class="form-textarea" placeholder="Ex: Lundi-Vendredi: 9h-18h, Samedi: 9h-12h"></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="area">Zone d'intervention</label>
-                <input type="text" id="area" class="form-input" placeholder="Ex: Paris et petite couronne">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Moyens de contact préférés</label>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="contactMethods" value="phone" checked>
-                        Téléphone
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="contactMethods" value="email" checked>
-                        Email
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="contactMethods" value="form">
-                        Formulaire de contact
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="contactMethods" value="social">
-                        Réseaux sociaux
-                    </label>
-                </div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="4">Précédent</button>
-                <button class="btn btn-next" data-next="6">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 6: Points différenciants -->
-        <div class="form-screen" id="screen6">
-            <h2 class="screen-title">6. Points différenciants</h2>
-            
-            <div class="form-field">
-                <label class="form-label">Pourquoi vous choisir ? (sélectionnez vos atouts)</label>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="differentiators" value="speed">
-                        Rapidité
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="differentiators" value="price">
-                        Prix compétitifs
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="differentiators" value="experience">
-                        Expérience
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="differentiators" value="service">
-                        Service après-vente
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="differentiators" value="local">
-                        Entreprise locale
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="differentiators" value="ethical">
-                        Démarche éthique/écologique
-                    </label>
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="otherDifferentiators">Autres points forts (précisez)</label>
-                <textarea id="otherDifferentiators" class="form-textarea" placeholder="Décrivez vos autres avantages concurrentiels..."></textarea>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="5">Précédent</button>
-                <button class="btn btn-next" data-next="7">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 7: Ton à adopter -->
-        <div class="form-screen" id="screen7">
-            <h2 class="screen-title">7. Ton à adopter sur le site</h2>
-            
-            <div class="form-field">
-                <label class="form-label">Quel ton souhaitez-vous pour votre site ?</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="tone" value="professional" class="radio-input" checked>
-                        Sérieux et professionnel
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="tone" value="reassuring" class="radio-input">
-                        Rassurant et humain
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="tone" value="dynamic" class="radio-input">
-                        Dynamique et moderne
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="tone" value="minimalist" class="radio-input">
-                        Minimaliste
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="tone" value="other" class="radio-input" id="otherTone">
-                        Autre
-                    </label>
-                </div>
-                
-                <div class="conditional-field" id="otherToneField">
-                    <input type="text" class="form-input" placeholder="Précisez le ton souhaité">
-                </div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="6">Précédent</button>
-                <button class="btn btn-next" data-next="8">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 8: Pages souhaitées -->
-        <div class="form-screen" id="screen8">
-            <h2 class="screen-title">8. Pages souhaitées (4 à 5 max)</h2>
-            
-            <div class="form-field">
-                <p style="margin-bottom: 10px; opacity: 0.8;">Choisissez les pages que vous souhaitez avoir sur votre site. Vous pourrez détailler chaque page à l'étape suivante.</p>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input page-checkbox" name="pages" value="home" checked data-detail="homeDetail">
-                        Accueil
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input page-checkbox" name="pages" value="services" checked data-detail="servicesDetail">
-                        Prestations / Services
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input page-checkbox" name="pages" value="about" checked data-detail="aboutDetail">
-                        À propos
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input page-checkbox" name="pages" value="contact" checked data-detail="contactDetail">
-                        Contact
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input page-checkbox" name="pages" value="testimonials" data-detail="testimonialsDetail">
-                        Témoignages / Avis
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input page-checkbox" name="pages" value="custom" id="customPage" data-detail="customDetail">
-                        Autre page
-                    </label>
-                </div>
-                
-                <div class="conditional-field" id="customPageField">
-                    <input type="text" class="form-input" placeholder="Nom de la page personnalisée">
-                </div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="7">Précédent</button>
-                <button class="btn btn-next" data-next="9">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 9: Détail page Accueil -->
-        <div class="form-screen" id="screen9">
-            <h2 class="screen-title">9. Détail Page d'accueil</h2>
-            
-            <div class="form-field">
-                <label class="form-label" for="homeTagline">Phrase d'accroche souhaitée</label>
-                <input type="text" id="homeTagline" class="form-input" placeholder="Ex: Votre expert en développement personnel à Lyon">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Élément de mise en valeur principale</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="homeHighlight" value="strengths" class="radio-input" checked>
-                        Vos points forts
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="homeHighlight" value="services" class="radio-input">
-                        Vos services
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="homeHighlight" value="slogan" class="radio-input">
-                        Un slogan
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="homeHighlight" value="intro" class="radio-input">
-                        Une phrase d'intro ou mission
-                    </label>
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Appel à l'action principal</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="homeCTA" value="contact" class="radio-input" checked>
-                        Me contacter
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="homeCTA" value="discover" class="radio-input">
-                        Découvrir mes offres
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="homeCTA" value="other" class="radio-input" id="otherCTA">
-                        Autre
-                    </label>
-                </div>
-                
-                <div class="conditional-field" id="otherCTAField">
-                    <input type="text" class="form-input" placeholder="Précisez votre appel à l'action">
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="homeIntro">Introduction / Présentation courte</label>
-                <textarea id="homeIntro" class="form-textarea" placeholder="Présentez brièvement votre activité pour la page d'accueil..."></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Éléments visuels souhaités sur la page d'accueil</label>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="homeVisuals" value="photo" checked>
-                        Photo principale
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="homeVisuals" value="icons">
-                        Icônes pour illustrer les services
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="homeVisuals" value="testimonial">
-                        Témoignage client
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="homeVisuals" value="other" id="otherHomeVisual">
-                        Autre
-                    </label>
-                </div>
-                
-                <div class="conditional-field" id="otherHomeVisualField">
-                    <input type="text" class="form-input" placeholder="Précisez l'élément visuel souhaité">
-                </div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="8">Précédent</button>
-                <button class="btn btn-next" data-next="10">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 10: Détail page Services -->
-        <div class="form-screen" id="screen10">
-            <h2 class="screen-title">10. Détail Page Services / Prestations</h2>
-            
-            <div class="form-field">
-                <label class="form-label" for="servicesList">Liste des prestations à présenter</label>
-                <textarea id="servicesList" class="form-textarea" placeholder="Listez vos prestations (une par ligne)"></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Souhaitez-vous préciser les tarifs ?</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="showPrices" value="yes" class="radio-input">
-                        Oui
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="showPrices" value="no" class="radio-input" checked>
-                        Non
-                    </label>
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Type d'organisation souhaitée</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="servicesOrganization" value="category" class="radio-input" checked>
-                        Par rubrique
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="servicesOrganization" value="list" class="radio-input">
-                        En liste simple
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="servicesOrganization" value="icons" class="radio-input">
-                        Avec icônes ou visuels
-                    </label>
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="servicesIntro">Introduction de la page services</label>
-                <textarea id="servicesIntro" class="form-textarea" placeholder="Texte d'introduction pour présenter vos services..."></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Éléments à inclure</label>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="servicesElements" value="faq">
-                        FAQ
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="servicesElements" value="process">
-                        Process de travail
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="servicesElements" value="guarantees">
-                        Garanties
-                    </label>
-                </div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="9">Précédent</button>
-                <button class="btn btn-next" data-next="11">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 11: Détail page À propos -->
-        <div class="form-screen" id="screen11">
-            <h2 class="screen-title">11. Détail Page À propos</h2>
-            
-            <div class="form-field">
-                <label class="form-label" for="aboutPresentation">Présentation personnelle / entreprise</label>
-                <textarea id="aboutPresentation" class="form-textarea" placeholder="Présentez-vous ou votre entreprise..."></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="aboutValues">Valeurs / histoire / motivations</label>
-                <textarea id="aboutValues" class="form-textarea" placeholder="Partagez vos valeurs, votre histoire..."></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Photo</label>
-                <div class="file-upload">
-                    <label class="file-upload-button">
-                        <span class="file-upload-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                        </span>
-                        Télécharger une photo (facultatif)
-                        <input type="file" id="aboutPhotoUpload" accept=".jpg,.png" style="display: none;">
-                    </label>
-                </div>
-                <div id="aboutPhotoName" class="mt-2 text-sm"></div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="aboutSkills">Compétences / certifications (si pertinent)</label>
-                <textarea id="aboutSkills" class="form-textarea" placeholder="Listez vos compétences, diplômes, certifications..."></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Éléments à inclure</label>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="aboutElements" value="team">
-                        Présentation de l'équipe
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="aboutElements" value="clients">
-                        Clients notables
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="aboutElements" value="vision">
-                        Vision / mission
-                    </label>
-                </div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="10">Précédent</button>
-                <button class="btn btn-next" data-next="12">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 12: Détail page Contact -->
-        <div class="form-screen" id="screen12">
-            <h2 class="screen-title">12. Détail Page Contact</h2>
-            
-            <div class="form-field">
-                <label class="form-label">Type de formulaire souhaité</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="formType" value="basic" class="radio-input" checked>
-                        Basique (nom, mail, message)
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="formType" value="detailed" class="radio-input">
-                        Détaillé (avec téléphone, sujet, etc.)
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="formType" value="quote" class="radio-input">
-                        Demande de devis
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="formType" value="custom" class="radio-input" id="customForm">
-                        Personnalisé
-                    </label>
-                </div>
-                
-                <div class="conditional-field" id="customFormField">
-                    <textarea class="form-textarea" placeholder="Précisez les champs souhaités pour votre formulaire"></textarea>
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Souhaitez-vous une carte Google Maps ?</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="showMap" value="yes" class="radio-input">
-                        Oui
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="showMap" value="no" class="radio-input" checked>
-                        Non
-                    </label>
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="contactClosing">Phrase de clôture</label>
-                <input type="text" id="contactClosing" class="form-input" placeholder="Ex: À très vite !">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="contactInfo">Informations complémentaires</label>
-                <textarea id="contactInfo" class="form-textarea" placeholder="Ex: délai de réponse, informations supplémentaires..."></textarea>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="11">Précédent</button>
-                <button class="btn btn-next" data-next="13">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 13: Détail page Témoignages (si sélectionnée) -->
-        <div class="form-screen" id="screen13">
-            <h2 class="screen-title">13. Détail Page Témoignages / Avis</h2>
-            
-            <div class="form-field">
-                <label class="form-label">Avez-vous des avis à afficher ?</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="hasTestimonials" value="yes" class="radio-input" id="hasTestimonialsYes">
-                        Oui
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="hasTestimonials" value="no" class="radio-input" checked>
-                        Non
-                    </label>
-                </div>
-            </div>
-            
-            <div class="conditional-field" id="testimonialsField">
-                <div class="form-field">
-                    <label class="form-label" for="testimonialsList">Témoignages (un par bloc)</label>
-                    <textarea id="testimonialsList" class="form-textarea" placeholder="Nom du client: Témoignage"></textarea>
-                </div>
-                
-                <div class="form-field">
-                    <label class="form-label">Captures d'avis Google ou autres</label>
-                    <div class="file-upload">
-                        <label class="file-upload-button">
-                            <span class="file-upload-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                            </span>
-                            Télécharger des captures d'avis
-                            <input type="file" id="reviewsUpload" accept=".jpg,.png" multiple style="display: none;">
-                        </label>
-                    </div>
-                    <div id="reviewsName" class="mt-2 text-sm"></div>
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="testimonialsIntro">Introduction de la page témoignages</label>
-                <textarea id="testimonialsIntro" class="form-textarea" placeholder="Texte d'introduction pour présenter vos témoignages..."></textarea>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="12">Précédent</button>
-                <button class="btn btn-next" data-next="14">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 14: Détail page personnalisée (si sélectionnée) -->
-        <div class="form-screen" id="screen14">
-            <h2 class="screen-title">14. Détail Page personnalisée</h2>
-            
-            <div class="form-field">
-                <label class="form-label" for="customPageName">Nom souhaité de la page</label>
-                <input type="text" id="customPageName" class="form-input">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="customPageContent">Contenu prévu</label>
-                <textarea id="customPageContent" class="form-textarea" placeholder="Décrivez le contenu de cette page..."></textarea>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="customPageObjective">Objectif de cette page</label>
-                <input type="text" id="customPageObjective" class="form-input" placeholder="Ex: informative, conversion, différenciation...">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Éléments à inclure</label>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="customPageElements" value="images">
-                        Images / illustrations
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="customPageElements" value="cta">
-                        Appel à l'action
-                    </label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox-input" name="customPageElements" value="list">
-                        Liste à puces
-                    </label>
-                </div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="13">Précédent</button>
-                <button class="btn btn-next" data-next="15">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 15: Réseaux sociaux -->
-        <div class="form-screen" id="screen15">
-            <h2 class="screen-title">15. Réseaux sociaux & présence existante</h2>
-            
-            <div class="form-field">
-                <label class="form-label" for="facebookUrl">Facebook</label>
-                <input type="url" id="facebookUrl" class="form-input" placeholder="https://facebook.com/...">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="instagramUrl">Instagram</label>
-                <input type="url" id="instagramUrl" class="form-input" placeholder="https://instagram.com/...">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="linkedinUrl">LinkedIn</label>
-                <input type="url" id="linkedinUrl" class="form-input" placeholder="https://linkedin.com/in/...">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="otherSocialUrl">Autre réseau social</label>
-                <input type="url" id="otherSocialUrl" class="form-input" placeholder="URL du réseau social">
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Avez-vous un site existant ?</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="hasWebsite" value="yes" class="radio-input" id="hasWebsiteYes">
-                        Oui
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="hasWebsite" value="no" class="radio-input" checked>
-                        Non
-                    </label>
-                </div>
-                
-                <div class="conditional-field" id="websiteUrlField">
-                    <input type="url" class="form-input" placeholder="URL de votre site existant">
-                </div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="14">Précédent</button>
-                <button class="btn btn-next" data-next="16">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 16: Autres demandes -->
-        <div class="form-screen" id="screen16">
-            <h2 class="screen-title">16. Autres demandes / précisions</h2>
-            
-            <div class="form-field">
-                <label class="form-label" for="otherRequests">Zone libre pour tous les éléments à ne pas oublier</label>
-                <textarea id="otherRequests" class="form-textarea" placeholder="Ex: mettre formulaire de rappel, ajouter un CV téléchargeable, etc."></textarea>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="15">Précédent</button>
-                <button class="btn btn-next" data-next="17">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 17: Récapitulatif -->
-        <div class="form-screen" id="screen17">
-            <h2 class="screen-title">17. Récapitulatif complet</h2>
-            
-            <p style="margin-bottom: 20px;">Vérifiez les informations saisies. Vous pouvez modifier n'importe quelle section en cliquant sur "Modifier".</p>
-            
-            <!-- Récap Identité -->
-            <div class="recap-section">
-                <div class="recap-section-title">
-                    <span>Identité de l'entreprise</span>
-                    <button type="button" class="recap-edit-btn" data-section="1">Modifier</button>
-                </div>
-                <div class="recap-content">
-                    <div class="recap-item">
-                        <div class="recap-label">Nom de l'entreprise</div>
-                        <div class="recap-value" id="recap-companyName">-</div>
-                    </div>
-                    <div class="recap-item">
-                        <div class="recap-label">Activité principale</div>
-                        <div class="recap-value" id="recap-mainActivity">-</div>
-                    </div>
-                    <div class="recap-item">
-                        <div class="recap-label">Secteur d'activité</div>
-                        <div class="recap-value" id="recap-sector">-</div>
-                    </div>
-                    <div class="recap-item">
-                        <div class="recap-label">Zone géographique</div>
-                        <div class="recap-value" id="recap-location">-</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Récap Logo -->
-            <div class="recap-section">
-                <div class="recap-section-title">
-                    <span>Logo et identité visuelle</span>
-                    <button type="button" class="recap-edit-btn" data-section="2">Modifier</button>
-                </div>
-                <div class="recap-content">
-                    <div class="recap-item">
-                        <div class="recap-label">Logo existant</div>
-                        <div class="recap-value" id="recap-hasLogo">-</div>
-                    </div>
-                    <div class="recap-item">
-                        <div class="recap-label">Charte graphique</div>
-                        <div class="recap-value" id="recap-hasCharte">-</div>
-                    </div>
-                    <div class="recap-item">
-                        <div class="recap-label">Polices sélectionnées</div>
-                        <div class="recap-value" id="recap-fonts">-</div>
-                    </div>
-                    <div class="recap-item">
-                        <div class="recap-label">Couleurs</div>
-                        <div class="recap-value" id="recap-colors">-</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Récap Pages -->
-            <div class="recap-section">
-                <div class="recap-section-title">
-                    <span>Pages du site</span>
-                    <button type="button" class="recap-edit-btn" data-section="8">Modifier</button>
-                </div>
-                <div class="recap-content">
-                    <div class="recap-item">
-                        <div class="recap-label">Pages sélectionnées</div>
-                        <div class="recap-value" id="recap-pages">-</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Récap Contact -->
-            <div class="recap-section">
-                <div class="recap-section-title">
-                    <span>Informations de contact</span>
-                    <button type="button" class="recap-edit-btn" data-section="5">Modifier</button>
-                </div>
-                <div class="recap-content">
-                    <div class="recap-item">
-                        <div class="recap-label">Téléphone</div>
-                        <div class="recap-value" id="recap-phone">-</div>
-                    </div>
-                    <div class="recap-item">
-                        <div class="recap-label">Email</div>
-                        <div class="recap-value" id="recap-email">-</div>
-                    </div>
-                    <div class="recap-item">
-                        <div class="recap-label">Adresse</div>
-                        <div class="recap-value" id="recap-address">-</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Autres récaps (vous pouvez ajouter d'autres sections au besoin) -->
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="16">Précédent</button>
-                <button class="btn btn-next" data-next="18">Suivant</button>
-            </div>
-        </div>
-        
-        <!-- Screen 18: Coordonnées & RDV -->
-        <div class="form-screen" id="screen18">
-            <h2 class="screen-title">18. Coordonnées & RDV</h2>
-            
-            <div class="form-field">
-                <label class="form-label" for="clientName">Nom, prénom</label>
-                <input type="text" id="clientName" class="form-input" required autocomplete="name">
-                <div class="error-message">Veuillez renseigner votre nom</div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="clientEmail">Email</label>
-                <input type="email" id="clientEmail" class="form-input" required autocomplete="email">
-                <div class="error-message">Veuillez renseigner une adresse email valide</div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label" for="clientPhone">Téléphone</label>
-                <input type="tel" id="clientPhone" class="form-input" required autocomplete="tel">
-                <div class="error-message">Veuillez renseigner un numéro de téléphone valide</div>
-            </div>
-            
-            <div class="form-field">
-                <label class="form-label">Préférence de contact</label>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="contactPreference" value="visio" class="radio-input" id="visioPreference" checked>
-                        Visio <span class="recommended-choice">Choix recommandé</span>
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="contactPreference" value="phone" class="radio-input">
-                        Téléphone
-                    </label>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="contactPreference" value="email" class="radio-input">
-                        Email
-                    </label>
-                </div>
-            </div>
-            
-            <!-- Calendrier pour prise de RDV (visible par défaut car Visio sélectionné) -->
-            <div class="conditional-field visible" id="rdvField">
-                <label class="form-label">Choisissez une date et un horaire pour votre rendez-vous</label>
-                
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <button type="button" class="calendar-nav" id="prevMonth">&laquo;</button>
-                        <div class="calendar-month" id="currentMonth">Mars 2025</div>
-                        <button type="button" class="calendar-nav" id="nextMonth">&raquo;</button>
-                    </div>
-                    
-                    <div class="calendar-grid" id="calendar">
-                        <!-- Jours de la semaine -->
-                        <div class="calendar-day-header">Lun</div>
-                        <div class="calendar-day-header">Mar</div>
-                        <div class="calendar-day-header">Mer</div>
-                        <div class="calendar-day-header">Jeu</div>
-                        <div class="calendar-day-header">Ven</div>
-                        <div class="calendar-day-header">Sam</div>
-                        <div class="calendar-day-header">Dim</div>
-                        
-                        <!-- Les jours seront générés dynamiquement par JavaScript -->
-                    </div>
-                    
-                    <div class="time-slots" id="timeSlots">
-                        <!-- Les créneaux horaires seront générés dynamiquement par JavaScript une fois une date sélectionnée -->
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-field">
-                <label class="checkbox-label">
-                    <input type="checkbox" class="checkbox-input" id="confirmTerms" required>
-                    J'accepte que mes informations soient traitées pour la création de mon site web
-                </label>
-                <div class="error-message" id="confirmTermsError">Veuillez accepter les conditions</div>
-            </div>
-            
-            <div class="navigation-buttons">
-                <button class="btn btn-prev" data-prev="17">Précédent</button>
-                <button class="btn btn-next" id="submitBtn">Envoyer</button>
-            </div>
-        </div>
+        <!-- Vous pouvez continuer à ajouter d'autres écrans selon votre besoin -->
     </div>
     
     <!-- Assistant IA discret -->
@@ -2046,9 +935,6 @@
             const progressDots = document.getElementById('progressDots');
             const saveDraftBtn = document.getElementById('saveDraft');
             const saveStatus = document.getElementById('saveStatus');
-            const nextButtons = document.querySelectorAll('.btn-next');
-            const prevButtons = document.querySelectorAll('.btn-prev');
-            const submitBtn = document.getElementById('submitBtn');
             const assistantBtn = document.getElementById('assistantBtn');
             const assistantChat = document.getElementById('assistantChat');
             const assistantInput = document.getElementById('assistantInput');
@@ -2079,181 +965,30 @@
                 progressDots.appendChild(dot);
             }
             
-            // Setup conditional fields
-            setupConditionalFields();
+            // Initialize functionality
+            initFunctionality();
             
-            // Setup file uploads
-            setupFileUploads();
-            
-            // Setup font options
-            setupFontOptions();
-            
-            // Setup color picker
-            setupColorPicker();
-            
-            // Setup calendar
-            setupCalendar();
-            
-            // Auto save
-            setupAutosave();
-            
-            // Next button click
-            nextButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const nextScreen = parseInt(this.getAttribute('data-next'));
-                    
-                    if (validateScreen(currentScreen)) {
-                        saveScreenData(currentScreen);
-                        goToScreen(nextScreen);
-                    }
-                });
-            });
-            
-            // Previous button click
-            prevButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const prevScreen = parseInt(this.getAttribute('data-prev'));
-                    saveScreenData(currentScreen);
-                    goToScreen(prevScreen);
-                });
-            });
-            
-            // Submit button click
-            if (submitBtn) {
-                submitBtn.addEventListener('click', function() {
-                    if (validateScreen(currentScreen)) {
-                        saveScreenData(currentScreen);
-                        submitForm();
-                    }
-                });
-            }
-            
-            // Assistant toggle
-            assistantBtn.addEventListener('click', function() {
-                assistantChat.style.display = assistantChat.style.display === 'flex' ? 'none' : 'flex';
-            });
-            
-            // Assistant send message
-            assistantSend.addEventListener('click', sendAssistantMessage);
-            assistantInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendAssistantMessage();
-                }
-            });
-            
-            // Recap edit buttons
-            document.querySelectorAll('.recap-edit-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const sectionNumber = parseInt(this.getAttribute('data-section'));
-                    goToScreen(sectionNumber);
-                });
-            });
-            
-            // Functions
-            
-            // Go to screen
-            function goToScreen(screenNumber) {
-                screens.forEach((screen, index) => {
-                    if (index + 1 === screenNumber) {
-                        screen.classList.add('active');
-                    } else {
-                        screen.classList.remove('active');
-                    }
-                });
-                
-                // Update dots
-                const dots = document.querySelectorAll('.dot');
-                dots.forEach((dot, index) => {
-                    if (index + 1 === screenNumber) {
-                        dot.classList.add('active');
-                    } else if (index + 1 < screenNumber) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-                
-                currentScreen = screenNumber;
-                window.scrollTo(0, 0);
-                
-                // If going to recap screen, update the recap
-                if (screenNumber === 17) {
-                    updateRecapScreen();
-                }
+            // Function to initialize all functionality
+            function initFunctionality() {
+                setupConditionalFields();
+                setupFileUploads();
+                setupFontOptions();
+                setupNavigation();
+                setupAutosave();
+                initColorSelector();
+                setupAssistant();
             }
             
             // Setup conditional fields
             function setupConditionalFields() {
-                // Logo et charte graphique
-                const hasLogoYes = document.getElementById('hasLogoYes');
-                const hasLogoNo = document.getElementById('hasLogoNo');
-                const logoUploadField = document.getElementById('logoUploadField');
-                const logoPreferencesField = document.getElementById('logoPreferencesField');
-                
-                if (hasLogoYes && hasLogoNo && logoUploadField && logoPreferencesField) {
-                    hasLogoYes.addEventListener('change', function() {
-                        if (this.checked) {
-                            logoUploadField.classList.add('visible');
-                            logoPreferencesField.classList.remove('visible');
-                        }
-                    });
-                    
-                    hasLogoNo.addEventListener('change', function() {
-                        if (this.checked) {
-                            logoUploadField.classList.remove('visible');
-                            logoPreferencesField.classList.add('visible');
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (hasLogoYes.checked) {
-                        logoUploadField.classList.add('visible');
-                    } else if (hasLogoNo.checked) {
-                        logoPreferencesField.classList.add('visible');
-                    }
-                }
-                
-                // Charte graphique
-                const hasCharteYes = document.getElementById('hasCharteYes');
-                const hasCharteNo = document.getElementById('hasCharteNo');
-                const charteDetailsField = document.getElementById('charteDetailsField');
-                
-                if (hasCharteYes && hasCharteNo && charteDetailsField) {
-                    hasCharteYes.addEventListener('change', function() {
-                        if (this.checked) {
-                            charteDetailsField.classList.add('visible');
-                        }
-                    });
-                    
-                    hasCharteNo.addEventListener('change', function() {
-                        if (this.checked) {
-                            charteDetailsField.classList.remove('visible');
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (hasCharteYes.checked) {
-                        charteDetailsField.classList.add('visible');
-                    }
-                }
-                
                 // Other objective
                 const otherObjective = document.getElementById('otherObjective');
                 const otherObjectiveField = document.getElementById('otherObjectiveField');
                 
                 if (otherObjective && otherObjectiveField) {
                     otherObjective.addEventListener('change', function() {
-                        if (this.checked) {
-                            otherObjectiveField.classList.add('visible');
-                        } else {
-                            otherObjectiveField.classList.remove('visible');
-                        }
+                        otherObjectiveField.style.display = this.checked ? 'block' : 'none';
                     });
-                    
-                    // Trigger initial state
-                    if (otherObjective.checked) {
-                        otherObjectiveField.classList.add('visible');
-                    }
                 }
                 
                 // Other service option
@@ -2262,191 +997,20 @@
                 
                 if (otherServiceOption && otherServiceField) {
                     otherServiceOption.addEventListener('change', function() {
-                        if (this.checked) {
-                            otherServiceField.classList.add('visible');
-                        } else {
-                            otherServiceField.classList.remove('visible');
-                        }
+                        otherServiceField.style.display = this.checked ? 'block' : 'none';
                     });
-                    
-                    // Trigger initial state
-                    if (otherServiceOption.checked) {
-                        otherServiceField.classList.add('visible');
-                    }
                 }
                 
-                // Other tone
-                const otherTone = document.getElementById('otherTone');
-                const otherToneField = document.getElementById('otherToneField');
+                // Has charte
+                const hasCharteYes = document.getElementById('hasCharteYes');
+                const charteUploadField = document.getElementById('charteUploadField');
                 
-                if (otherTone && otherToneField) {
-                    otherTone.addEventListener('change', function() {
-                        if (this.checked) {
-                            otherToneField.classList.add('visible');
-                        } else {
-                            otherToneField.classList.remove('visible');
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (otherTone.checked) {
-                        otherToneField.classList.add('visible');
-                    }
-                }
-                
-                // Custom page
-                const customPage = document.getElementById('customPage');
-                const customPageField = document.getElementById('customPageField');
-                
-                if (customPage && customPageField) {
-                    customPage.addEventListener('change', function() {
-                        if (this.checked) {
-                            customPageField.classList.add('visible');
-                        } else {
-                            customPageField.classList.remove('visible');
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (customPage.checked) {
-                        customPageField.classList.add('visible');
-                    }
-                }
-                
-                // Other CTA
-                const otherCTA = document.getElementById('otherCTA');
-                const otherCTAField = document.getElementById('otherCTAField');
-                
-                if (otherCTA && otherCTAField) {
-                    otherCTA.addEventListener('change', function() {
-                        if (this.checked) {
-                            otherCTAField.classList.add('visible');
-                        } else {
-                            otherCTAField.classList.remove('visible');
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (otherCTA.checked) {
-                        otherCTAField.classList.add('visible');
-                    }
-                }
-                
-                // Other home visual
-                const otherHomeVisual = document.getElementById('otherHomeVisual');
-                const otherHomeVisualField = document.getElementById('otherHomeVisualField');
-                
-                if (otherHomeVisual && otherHomeVisualField) {
-                    otherHomeVisual.addEventListener('change', function() {
-                        if (this.checked) {
-                            otherHomeVisualField.classList.add('visible');
-                        } else {
-                            otherHomeVisualField.classList.remove('visible');
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (otherHomeVisual.checked) {
-                        otherHomeVisualField.classList.add('visible');
-                    }
-                }
-                
-                // Custom form
-                const customForm = document.getElementById('customForm');
-                const customFormField = document.getElementById('customFormField');
-                
-                if (customForm && customFormField) {
-                    customForm.addEventListener('change', function() {
-                        if (this.checked) {
-                            customFormField.classList.add('visible');
-                        } else {
-                            customFormField.classList.remove('visible');
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (customForm.checked) {
-                        customFormField.classList.add('visible');
-                    }
-                }
-                
-                // Has testimonials
-                const hasTestimonialsYes = document.getElementById('hasTestimonialsYes');
-                const testimonialsField = document.getElementById('testimonialsField');
-                
-                if (hasTestimonialsYes && testimonialsField) {
-                    hasTestimonialsYes.addEventListener('change', function() {
-                        if (this.checked) {
-                            testimonialsField.classList.add('visible');
-                        } else {
-                            testimonialsField.classList.remove('visible');
-                        }
-                    });
-                    
-                    document.querySelectorAll('input[name="hasTestimonials"]').forEach(radio => {
-                        if (radio.value === 'no') {
-                            radio.addEventListener('change', function() {
-                                if (this.checked) {
-                                    testimonialsField.classList.remove('visible');
-                                }
-                            });
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (hasTestimonialsYes.checked) {
-                        testimonialsField.classList.add('visible');
-                    }
-                }
-                
-                // Website URL
-                const hasWebsiteYes = document.getElementById('hasWebsiteYes');
-                const websiteUrlField = document.getElementById('websiteUrlField');
-                
-                if (hasWebsiteYes && websiteUrlField) {
-                    hasWebsiteYes.addEventListener('change', function() {
-                        if (this.checked) {
-                            websiteUrlField.classList.add('visible');
-                        } else {
-                            websiteUrlField.classList.remove('visible');
-                        }
-                    });
-                    
-                    document.querySelectorAll('input[name="hasWebsite"]').forEach(radio => {
-                        if (radio.value === 'no') {
-                            radio.addEventListener('change', function() {
-                                if (this.checked) {
-                                    websiteUrlField.classList.remove('visible');
-                                }
-                            });
-                        }
-                    });
-                    
-                    // Trigger initial state
-                    if (hasWebsiteYes.checked) {
-                        websiteUrlField.classList.add('visible');
-                    }
-                }
-                
-                // RDV visio/téléphone
-                const visioPreference = document.getElementById('visioPreference');
-                const rdvField = document.getElementById('rdvField');
-                
-                if (visioPreference && rdvField) {
-                    document.querySelectorAll('input[name="contactPreference"]').forEach(radio => {
+                if (hasCharteYes && charteUploadField) {
+                    document.querySelectorAll('input[name="hasCharte"]').forEach(radio => {
                         radio.addEventListener('change', function() {
-                            if (this.value === 'visio' || this.value === 'phone') {
-                                rdvField.classList.add('visible');
-                            } else {
-                                rdvField.classList.remove('visible');
-                            }
+                            charteUploadField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
                         });
                     });
-                    
-                    // Trigger initial state
-                    if (visioPreference.checked) {
-                        rdvField.classList.add('visible');
-                    }
                 }
             }
             
@@ -2487,473 +1051,103 @@
                 });
             }
             
-            // Setup font options with pagination
+            // Setup font options
             function setupFontOptions() {
-                const fontOptions = document.getElementById('fontOptions');
-                const fontPagination = document.getElementById('fontPagination');
-                const fontSearch = document.getElementById('fontSearch');
-                const fontCategoryTabs = document.getElementById('fontCategoryTabs');
+                const fontOptions = document.querySelectorAll('.font-option');
                 const selectedFontsInput = document.getElementById('selectedFonts');
-                
-                // Liste des polices par catégorie
-                const fonts = {
-                    serif: [
-                        "Playfair Display", "Merriweather", "Georgia", "Times New Roman", "Garamond", 
-                        "Baskerville", "Cambria", "Didot", "Caslon", "EB Garamond", "Cormorant Garamond",
-                        "Libre Baskerville", "Lora", "Source Serif Pro", "Crimson Text", "Noto Serif", 
-                        "PT Serif", "Spectral", "Vollkorn", "Yrsa"
-                    ],
-                    "sans-serif": [
-                        "Poppins", "Roboto", "Open Sans", "Lato", "Montserrat", "Raleway", "Source Sans Pro", 
-                        "Ubuntu", "Nunito", "Work Sans", "Inter", "Quicksand", "Fira Sans", "Karla", 
-                        "Cabin", "Archivo", "Barlow", "DM Sans", "PT Sans", "Rubik", "Mulish", "Public Sans",
-                        "Manrope", "Jost", "Outfit", "Plus Jakarta Sans", "Be Vietnam Pro", "Space Grotesk"
-                    ],
-                    display: [
-                        "Bebas Neue", "Abril Fatface", "Lobster", "Pacifico", "Comfortaa", "Righteous", 
-                        "Permanent Marker", "Fredoka One", "Anton", "Staatliches", "Bowlby One SC", 
-                        "Satisfy", "Bungee", "Concert One", "Alfa Slab One", "Lilita One", "Monoton",
-                        "Passion One", "Racing Sans One", "Changa One", "Secular One", "Fugaz One",
-                        "Black Ops One", "Carter One", "Rammetto One", "Kavoon", "Flavors", "Faster One"
-                    ],
-                    handwriting: [
-                        "Dancing Script", "Caveat", "Parisienne", "Sacramento", "Great Vibes", "Kaushan Script", 
-                        "Allura", "Yellowtail", "Alex Brush", "Pinyon Script", "Mr Dafoe", "Tangerine", 
-                        "Marck Script", "Satisfy", "Rouge Script", "Petit Formal Script", "Clicker Script",
-                        "Mrs Saint Delafield", "Monsieur La Doulaise", "Herr Von Muellerhoff", "Princess Sofia",
-                        "Miss Fajardose", "Mr De Haviland", "Seaweed Script", "Cedarville Cursive", "League Script"
-                    ]
-                };
-                
-                // Créer la liste complète
-                const allFonts = [];
-                for (const category in fonts) {
-                    fonts[category].forEach(font => {
-                        allFonts.push({
-                            name: font,
-                            category: category
-                        });
-                    });
-                }
-                
-                // Paramètres de pagination
-                const fontsPerPage = 24;
-                let currentPage = 1;
-                let currentCategory = 'all';
-                let filteredFonts = [...allFonts];
                 const selectedFonts = [];
                 
-                // Fonction pour afficher les polices
-                function renderFonts() {
-                    // Filtrer par catégorie
-                    if (currentCategory === 'all') {
-                        filteredFonts = [...allFonts];
-                    } else {
-                        filteredFonts = allFonts.filter(font => font.category === currentCategory);
-                    }
-                    
-                    // Filtrer par recherche
-                    const searchTerm = fontSearch.value.toLowerCase();
-                    if (searchTerm) {
-                        filteredFonts = filteredFonts.filter(font => 
-                            font.name.toLowerCase().includes(searchTerm)
-                        );
-                    }
-                    
-                    // Pagination
-                    const totalPages = Math.ceil(filteredFonts.length / fontsPerPage);
-                    if (currentPage > totalPages && totalPages > 0) {
-                        currentPage = totalPages;
-                    }
-                    
-                    const start = (currentPage - 1) * fontsPerPage;
-                    const end = Math.min(start + fontsPerPage, filteredFonts.length);
-                    const pageSlice = filteredFonts.slice(start, end);
-                    
-                    // Vider le conteneur
-                    fontOptions.innerHTML = '';
-                    
-                    // Ajouter les polices
-                    pageSlice.forEach(font => {
-                        const fontOption = document.createElement('div');
-                        fontOption.className = 'font-option';
-                        if (selectedFonts.includes(font.name)) {
-                            fontOption.classList.add('selected');
-                        }
-                        fontOption.setAttribute('data-font', font.name);
-                        fontOption.style.fontFamily = font.name;
-                        fontOption.textContent = font.name;
+                fontOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        const font = this.getAttribute('data-font');
+                        const maxFonts = 3;
                         
-                        fontOption.addEventListener('click', function() {
-                            const maxFonts = 3;
-                            const fontName = this.getAttribute('data-font');
-                            
-                            if (this.classList.contains('selected')) {
-                                // Remove selection
-                                this.classList.remove('selected');
-                                const index = selectedFonts.indexOf(fontName);
-                                if (index > -1) {
-                                    selectedFonts.splice(index, 1);
-                                }
+                        if (this.classList.contains('selected')) {
+                            // Remove selection
+                            this.classList.remove('selected');
+                            const index = selectedFonts.indexOf(font);
+                            if (index > -1) {
+                                selectedFonts.splice(index, 1);
+                            }
+                        } else {
+                            // Add selection (max 3)
+                            if (selectedFonts.length < maxFonts) {
+                                this.classList.add('selected');
+                                selectedFonts.push(font);
                             } else {
-                                // Add selection (max 3)
-                                if (selectedFonts.length < maxFonts) {
-                                    this.classList.add('selected');
-                                    selectedFonts.push(fontName);
-                                } else {
-                                    alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
-                                }
+                                alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
                             }
-                            
-                            // Update hidden input
-                            if (selectedFontsInput) {
-                                selectedFontsInput.value = selectedFonts.join(',');
-                            }
-                        });
+                        }
                         
-                        fontOptions.appendChild(fontOption);
+                        // Update hidden input
+                        if (selectedFontsInput) {
+                            selectedFontsInput.value = selectedFonts.join(',');
+                        }
                     });
-                    
-                    // Mettre à jour la pagination
-                    fontPagination.innerHTML = '';
-                    
-                    if (totalPages > 1) {
-                        // Bouton précédent
-                        if (currentPage > 1) {
-                            const prevBtn = document.createElement('button');
-                            prevBtn.textContent = '«';
-                            prevBtn.addEventListener('click', () => {
-                                currentPage--;
-                                renderFonts();
-                            });
-                            fontPagination.appendChild(prevBtn);
-                        }
-                        
-                        // Pages
-                        const maxPageButtons = 5;
-                        let startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
-                        let endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
-                        
-                        if (endPage - startPage + 1 < maxPageButtons) {
-                            startPage = Math.max(1, endPage - maxPageButtons + 1);
-                        }
-                        
-                        for (let i = startPage; i <= endPage; i++) {
-                            const pageBtn = document.createElement('button');
-                            pageBtn.textContent = i;
-                            if (i === currentPage) {
-                                pageBtn.classList.add('active');
-                            }
-                            pageBtn.addEventListener('click', () => {
-                                currentPage = i;
-                                renderFonts();
-                            });
-                            fontPagination.appendChild(pageBtn);
-                        }
-                        
-                        // Bouton suivant
-                        if (currentPage < totalPages) {
-                            const nextBtn = document.createElement('button');
-                            nextBtn.textContent = '»';
-                            nextBtn.addEventListener('click', () => {
-                                currentPage++;
-                                renderFonts();
-                            });
-                            fontPagination.appendChild(nextBtn);
-                        }
-                    }
-                }
-                
-                // Gérer les onglets de catégories
-                if (fontCategoryTabs) {
-                    fontCategoryTabs.querySelectorAll('.font-category-tab').forEach(tab => {
-                        tab.addEventListener('click', function() {
-                            fontCategoryTabs.querySelectorAll('.font-category-tab').forEach(t => t.classList.remove('active'));
-                            this.classList.add('active');
-                            currentCategory = this.getAttribute('data-category');
-                            currentPage = 1;
-                            renderFonts();
-                        });
-                    });
-                }
-                
-                // Gérer la recherche
-                if (fontSearch) {
-                    fontSearch.addEventListener('input', function() {
-                        currentPage = 1;
-                        renderFonts();
-                    });
-                }
-                
-                // Initialiser l'affichage
-                if (fontOptions && fontPagination) {
-                    renderFonts();
-                }
+                });
             }
             
-            // Setup color picker
-            function setupColorPicker() {
-                const colorPicker = document.getElementById('colorPicker');
-                const customColorInput = document.getElementById('customColor');
-                const addCustomColorBtn = document.getElementById('addCustomColor');
-                
-                if (!colorPicker) return;
-                
-                // Liste de couleurs prédéfinies
-                const predefinedColors = [
-                    '#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE', '#448AFF', 
-                    '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE', '#B2FF59', '#EEFF41', 
-                    '#FFFF00', '#FFD740', '#FFAB40', '#FF6E40', '#FFFFFF', '#EEEEEE', 
-                    '#BDBDBD', '#757575', '#424242', '#212121', '#3F51B5', '#2196F3', 
-                    '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', 
-                    '#FFEB3B', '#FFC107', '#FF9800', '#FF5722', '#795548', '#607D8B'
-                ];
-                
-                // Créer les échantillons de couleur
-                predefinedColors.forEach(color => {
-                    const colorSwatch = document.createElement('div');
-                    colorSwatch.className = 'color-swatch';
-                    colorSwatch.style.backgroundColor = color;
-                    colorSwatch.setAttribute('data-color', color);
-                    colorSwatch.title = color;
-                    
-                    colorSwatch.addEventListener('click', function() {
-                        const selectedColor = this.getAttribute('data-color');
-                        selectColor(selectedColor, this);
-                    });
-                    
-                    colorPicker.appendChild(colorSwatch);
-                });
-                
-                // Gérer l'ajout de couleur personnalisée
-                if (addCustomColorBtn && customColorInput) {
-                    addCustomColorBtn.addEventListener('click', function() {
-                        const customColor = customColorInput.value.trim();
-                        if (customColor && isValidColor(customColor)) {
-                            // Créer un nouvel échantillon
-                            const colorSwatch = document.createElement('div');
-                            colorSwatch.className = 'color-swatch';
-                            colorSwatch.style.backgroundColor = customColor;
-                            colorSwatch.setAttribute('data-color', customColor);
-                            colorSwatch.title = customColor;
-                            
-                            colorSwatch.addEventListener('click', function() {
-                                const selectedColor = this.getAttribute('data-color');
-                                selectColor(selectedColor, this);
-                            });
-                            
-                            colorPicker.appendChild(colorSwatch);
-                            
-                            // Sélectionner la nouvelle couleur
-                            selectColor(customColor, colorSwatch);
-                            
-                            // Vider le champ
-                            customColorInput.value = '';
-                        } else {
-                            alert('Veuillez entrer une couleur valide (ex: #FF5500)');
+            // Setup navigation
+            function setupNavigation() {
+                // Next button click
+                document.querySelectorAll('.btn-next').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const nextScreen = parseInt(this.getAttribute('data-next'));
+                        
+                        if (nextScreen && validateScreen(currentScreen)) {
+                            saveScreenData(currentScreen);
+                            goToScreen(nextScreen);
                         }
                     });
-                }
+                });
                 
-                // Fonction pour sélectionner une couleur
-                function selectColor(color, element) {
-                    const maxColors = 3;
-                    const selectedColors = getSelectedColors();
-                    
-                    if (element.classList.contains('selected')) {
-                        // Désélectionner
-                        element.classList.remove('selected');
+                // Previous button click
+                document.querySelectorAll('.btn-prev').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const prevScreen = parseInt(this.getAttribute('data-prev'));
+                        
+                        if (prevScreen) {
+                            saveScreenData(currentScreen);
+                            goToScreen(prevScreen);
+                        }
+                    });
+                });
+            }
+            
+            // Go to screen
+            function goToScreen(screenNumber) {
+                // Convertir en nombre si c'est une chaîne
+                screenNumber = parseInt(screenNumber);
+                
+                // Masquer tous les écrans et afficher celui demandé
+                document.querySelectorAll('.form-screen').forEach((screen, index) => {
+                    if (index + 1 === screenNumber) {
+                        screen.classList.add('active');
                     } else {
-                        // Sélectionner (maximum 3)
-                        if (selectedColors.length < maxColors) {
-                            element.classList.add('selected');
-                        } else {
-                            alert(`Vous pouvez sélectionner jusqu'à ${maxColors} couleurs. Désélectionnez-en une d'abord.`);
-                        }
+                        screen.classList.remove('active');
                     }
-                    
-                    // Stocker dans formData
-                    formData.selectedColors = getSelectedColors();
-                }
-                
-                // Obtenir les couleurs sélectionnées
-                function getSelectedColors() {
-                    const swatches = colorPicker.querySelectorAll('.color-swatch.selected');
-                    return Array.from(swatches).map(swatch => swatch.getAttribute('data-color'));
-                }
-                
-                // Vérifier si la couleur est valide
-                function isValidColor(color) {
-                    const s = new Option().style;
-                    s.color = color;
-                    return s.color !== '';
-                }
-            }
-            
-            // Setup calendar
-            function setupCalendar() {
-                const calendar = document.getElementById('calendar');
-                const currentMonthElement = document.getElementById('currentMonth');
-                const prevMonthBtn = document.getElementById('prevMonth');
-                const nextMonthBtn = document.getElementById('nextMonth');
-                const timeSlotsContainer = document.getElementById('timeSlots');
-                
-                if (!calendar || !currentMonthElement || !prevMonthBtn || !nextMonthBtn || !timeSlotsContainer) return;
-                
-                // Variables
-                let currentDate = new Date();
-                let selectedDate = null;
-                
-                // Set minimum date to tomorrow
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                
-                // Render calendar
-                renderCalendar();
-                
-                // Event listeners for month navigation
-                prevMonthBtn.addEventListener('click', function() {
-                    currentDate.setMonth(currentDate.getMonth() - 1);
-                    renderCalendar();
                 });
                 
-                nextMonthBtn.addEventListener('click', function() {
-                    currentDate.setMonth(currentDate.getMonth() + 1);
-                    renderCalendar();
+                // Mettre à jour les indicateurs de progression
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    if (index + 1 === screenNumber) {
+                        dot.classList.add('active');
+                    } else if (index + 1 < screenNumber) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
                 });
                 
-                function renderCalendar() {
-                    const year = currentDate.getFullYear();
-                    const month = currentDate.getMonth();
-                    
-                    // Set month name
-                    const monthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-                    currentMonthElement.textContent = `${monthNames[month]} ${year}`;
-                    
-                    // Clear calendar days
-                    const headerCells = calendar.querySelectorAll('.calendar-day-header');
-                    if (headerCells.length === 0) {
-                        // Add day headers if not present
-                        const dayNames = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
-                        dayNames.forEach(day => {
-                            const dayHeader = document.createElement('div');
-                            dayHeader.className = 'calendar-day-header';
-                            dayHeader.textContent = day;
-                            calendar.appendChild(dayHeader);
-                        });
-                    }
-                    
-                    // Remove previous days (but keep headers)
-                    const dayCells = calendar.querySelectorAll('.calendar-day');
-                    dayCells.forEach(cell => cell.remove());
-                    
-                    // Get first day of month
-                    const firstDay = new Date(year, month, 1);
-                    let firstDayIndex = firstDay.getDay() - 1;
-                    if (firstDayIndex < 0) firstDayIndex = 6; // Sunday is 0, adjust to 6
-                    
-                    // Get last day of month
-                    const lastDay = new Date(year, month + 1, 0);
-                    const daysInMonth = lastDay.getDate();
-                    
-                    // Add empty cells for days before first day of month
-                    for (let i = 0; i < firstDayIndex; i++) {
-                        const emptyDay = document.createElement('div');
-                        emptyDay.className = 'calendar-day empty';
-                        calendar.appendChild(emptyDay);
-                    }
-                    
-                    // Add days of month
-                    for (let i = 1; i <= daysInMonth; i++) {
-                        const day = document.createElement('div');
-                        day.className = 'calendar-day';
-                        day.textContent = i;
-                        
-                        const dayDate = new Date(year, month, i);
-                        day.setAttribute('data-date', formatDate(dayDate));
-                        
-                        // Disable past dates and weekends
-                        if (dayDate < tomorrow || dayDate.getDay() === 0 || dayDate.getDay() === 6) {
-                            day.classList.add('disabled');
-                        } else {
-                            day.addEventListener('click', function() {
-                                if (!this.classList.contains('disabled')) {
-                                    // Remove selected class from all days
-                                    calendar.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
-                                    
-                                    // Add selected class to clicked day
-                                    this.classList.add('selected');
-                                    
-                                    // Store selected date
-                                    selectedDate = this.getAttribute('data-date');
-                                    
-                                    // Show time slots
-                                    renderTimeSlots(selectedDate);
-                                }
-                            });
-                        }
-                        
-                        calendar.appendChild(day);
-                    }
-                    
-                    // Add empty cells for days after last day of month if needed
-                    const totalCells = firstDayIndex + daysInMonth;
-                    const rowsNeeded = Math.ceil(totalCells / 7);
-                    const totalCellsNeeded = rowsNeeded * 7;
-                    
-                    for (let i = totalCells; i < totalCellsNeeded; i++) {
-                        const emptyDay = document.createElement('div');
-                        emptyDay.className = 'calendar-day empty';
-                        calendar.appendChild(emptyDay);
-                    }
-                }
+                // Mettre à jour la variable currentScreen
+                currentScreen = screenNumber;
                 
-                function renderTimeSlots(date) {
-                    timeSlotsContainer.innerHTML = '';
-                    
-                    // Generate time slots from 9:00 to 17:00
-                    const slots = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
-                    
-                    slots.forEach(slot => {
-                        const timeSlot = document.createElement('div');
-                        timeSlot.className = 'time-slot';
-                        timeSlot.textContent = slot;
-                        timeSlot.setAttribute('data-time', slot);
-                        
-                        // Randomly disable some slots to simulate availability
-                        if (Math.random() > 0.7) {
-                            timeSlot.classList.add('disabled');
-                        } else {
-                            timeSlot.addEventListener('click', function() {
-                                if (!this.classList.contains('disabled')) {
-                                    // Remove selected class from all time slots
-                                    timeSlotsContainer.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-                                    
-                                    // Add selected class to clicked time slot
-                                    this.classList.add('selected');
-                                    
-                                    // Store selected time in formData
-                                    formData.selectedDateTime = {
-                                        date: selectedDate,
-                                        time: this.getAttribute('data-time')
-                                    };
-                                }
-                            });
-                        }
-                        
-                        timeSlotsContainer.appendChild(timeSlot);
-                    });
-                }
-                
-                function formatDate(date) {
-                    const year = date.getFullYear();
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
-                    return `${year}-${month}-${day}`;
-                }
+                // Faire défiler vers le haut
+                window.scrollTo(0, 0);
             }
             
-            // Auto save
+            // Setup autosave
             function setupAutosave() {
                 // Save on draft button click
                 saveDraftBtn.addEventListener('click', function() {
@@ -2999,19 +1193,20 @@
                     }
                 });
                 
-                // Save checkbox groups (for multi-select)
-                const checkboxGroups = {};
-                screen.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
-                    const name = checkbox.name;
-                    if (!checkboxGroups[name]) {
-                        checkboxGroups[name] = [];
-                    }
-                    checkboxGroups[name].push(checkbox.value);
-                });
-                
-                // Add checkbox groups to formData
-                for (const groupName in checkboxGroups) {
-                    formData[groupName] = checkboxGroups[groupName];
+                // Save font selections
+                if (screenNum === 2) {
+                    const selectedFonts = [];
+                    screen.querySelectorAll('.font-option.selected').forEach(option => {
+                        selectedFonts.push(option.getAttribute('data-font'));
+                    });
+                    formData.fonts = selectedFonts;
+                    
+                    // Save color selections
+                    const selectedColors = [];
+                    screen.querySelectorAll('.color-chip-value').forEach(chip => {
+                        selectedColors.push(chip.textContent);
+                    });
+                    formData.colors = selectedColors;
                 }
             }
             
@@ -3021,67 +1216,29 @@
                 document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
                     if (element.id && formData[element.id]) {
                         element.value = formData[element.id];
+                    } else if (element.name && formData[element.name] === element.value) {
+                        element.checked = true;
                     }
                 });
                 
-                // Load radio buttons
-                for (const key in formData) {
-                    const radioButton = document.querySelector(`input[type="radio"][name="${key}"][value="${formData[key]}"]`);
-                    if (radioButton) {
-                        radioButton.checked = true;
-                    }
+                // Load font selections
+                if (formData.fonts) {
+                    formData.fonts
+formData.fonts.forEach(font => {
+                        const option = document.querySelector(`.font-option[data-font="${font}"]`);
+                        if (option) option.classList.add('selected');
+                    });
                 }
                 
-                // Load checkboxes
-                for (const key in formData) {
-                    if (Array.isArray(formData[key])) {
-                        formData[key].forEach(value => {
-                            const checkbox = document.querySelector(`input[type="checkbox"][name="${key}"][value="${value}"]`);
-                            if (checkbox) {
-                                checkbox.checked = true;
-                            }
-                        });
-                    }
+                // Load color selections
+                if (formData.colors) {
+                    formData.colors.forEach(color => {
+                        addColor(color);
+                    });
                 }
                 
                 // Refresh conditional fields
                 setupConditionalFields();
-            }
-            
-            // Update recap screen
-            function updateRecapScreen() {
-                // Récap Identité
-                document.getElementById('recap-companyName').textContent = formData.companyName || '-';
-                document.getElementById('recap-mainActivity').textContent = formData.mainActivity || '-';
-                document.getElementById('recap-sector').textContent = formData.sector || '-';
-                document.getElementById('recap-location').textContent = formData.location || '-';
-                
-                // Récap Logo
-                document.getElementById('recap-hasLogo').textContent = formData.hasLogo === 'yes' ? 'Oui' : 'Non';
-                document.getElementById('recap-hasCharte').textContent = formData.hasCharte === 'yes' ? 'Oui' : 'Non';
-                document.getElementById('recap-fonts').textContent = formData.selectedFonts ? formData.selectedFonts : '-';
-                document.getElementById('recap-colors').textContent = formData.selectedColors ? formData.selectedColors.join(', ') : '-';
-                
-                // Récap Pages
-                const pagesMap = {
-                    'home': 'Accueil',
-                    'services': 'Prestations / Services',
-                    'about': 'À propos',
-                    'contact': 'Contact',
-                    'testimonials': 'Témoignages / Avis',
-                    'custom': 'Page personnalisée'
-                };
-                
-                let pagesText = '';
-                if (formData.pages && Array.isArray(formData.pages)) {
-                    pagesText = formData.pages.map(page => pagesMap[page] || page).join(', ');
-                }
-                document.getElementById('recap-pages').textContent = pagesText || '-';
-                
-                // Récap Contact
-                document.getElementById('recap-phone').textContent = formData.phone || '-';
-                document.getElementById('recap-email').textContent = formData.email || '-';
-                document.getElementById('recap-address').textContent = formData.address || '-';
             }
             
             // Validate current screen
@@ -3118,124 +1275,215 @@
                     }
                 });
                 
-                // Check terms on last screen
-                if (screenNum === totalScreens) {
-                    const termsCheckbox = document.getElementById('confirmTerms');
-                    if (termsCheckbox && !termsCheckbox.checked) {
-                        document.getElementById('confirmTermsError').style.display = 'block';
-                        isValid = false;
-                    } else if (termsCheckbox) {
-                        document.getElementById('confirmTermsError').style.display = 'none';
-                    }
-                }
-                
                 return isValid;
             }
             
-            // Submit form
-            function submitForm() {
-                // In a real app, you would send the data to a server
-                // For this demo, we'll just show a success message
+            // Initialize color selector
+            function initColorSelector() {
+                // Éléments du DOM
+                const colorWheel = document.getElementById('colorWheel');
+                const colorInput = document.getElementById('colorInput');
+                const colorPreview = document.getElementById('colorPreview');
+                const addColorBtn = document.getElementById('addColorBtn');
+                const selectedColors = document.getElementById('selectedColors');
+                const predefinedColors = document.getElementById('predefinedColors');
+                const selectedColorsInput = document.getElementById('selectedColorsInput');
                 
-                const successHtml = `
-                    <div style="text-align: center; padding: 40px 20px;">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="${getComputedStyle(document.documentElement).getPropertyValue('--secondary')}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                        <h2 style="color: ${getComputedStyle(document.documentElement).getPropertyValue('--secondary')}; margin: 20px 0;">Formulaire envoyé avec succès !</h2>
-                        <p style="margin-bottom: 30px;">Merci pour ces informations. Nous allons maintenant créer votre site "Site Bien Fait".</p>
-                        <p>Un email de confirmation vous a été envoyé à <strong>${formData.clientEmail || 'votre adresse email'}</strong>.</p>
-                        <p style="margin-top: 30px;">Notre équipe vous contactera très prochainement pour planifier l'entretien d'onboarding.</p>
-                    </div>
-                `;
+                if (!colorWheel || !colorInput || !colorPreview || !addColorBtn || !selectedColors || !predefinedColors) {
+                    return; // Éléments manquants, on sort de la fonction
+                }
                 
-                // Replace form with success message
-                document.querySelector('.form-container').innerHTML = successHtml;
+                // Limite de couleurs sélectionnables
+                const MAX_COLORS = 3;
                 
-                // Hide progress dots
-                document.querySelector('.progress-container').style.display = 'none';
+                // Liste de couleurs prédéfinies
+                const colorList = [
+                    '#503D59', '#F3A884', '#AE5753', // Les couleurs de ta charte
+                    '#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE', 
+                    '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE', 
+                    '#B2FF59', '#EEFF41', '#FFEB3B', '#FFD740', '#FFAB40', 
+                    '#FF6E40', '#FFFFFF', '#EEEEEE', '#BDBDBD', '#757575'
+                ];
                 
-                // Hide assistant
-                document.getElementById('assistantBtn').style.display = 'none';
-                document.getElementById('assistantChat').style.display = 'none';
+                // Générer les couleurs prédéfinies
+                colorList.forEach(color => {
+                    const colorSwatch = document.createElement('div');
+                    colorSwatch.className = 'color-swatch';
+                    colorSwatch.style.backgroundColor = color;
+                    colorSwatch.setAttribute('data-color', color);
+                    colorSwatch.title = color;
+                    
+                    colorSwatch.addEventListener('click', function() {
+                        addColor(color);
+                    });
+                    
+                    predefinedColors.appendChild(colorSwatch);
+                });
+                
+                // Synchroniser la roue de couleur et le champ de texte
+                colorWheel.addEventListener('input', function() {
+                    colorInput.value = this.value;
+                    colorPreview.style.backgroundColor = this.value;
+                });
+                
+                colorInput.addEventListener('input', function() {
+                    if (isValidColor(this.value)) {
+                        colorPreview.style.backgroundColor = this.value;
+                        colorWheel.value = this.value;
+                    }
+                });
+                
+                // Ajouter une couleur via le bouton
+                addColorBtn.addEventListener('click', function() {
+                    const color = colorInput.value.trim();
+                    if (isValidColor(color)) {
+                        addColor(color);
+                    } else {
+                        alert('Veuillez entrer une couleur valide (ex: #FF5500)');
+                    }
+                });
+                
+                // Fonction pour ajouter une couleur à la sélection
+                window.addColor = function(color) {
+                    // Vérifier si la couleur existe déjà
+                    const existingChips = selectedColors.querySelectorAll('.color-chip');
+                    for (let chip of existingChips) {
+                        const chipColor = chip.querySelector('.color-chip-remove').getAttribute('data-color');
+                        if (chipColor.toLowerCase() === color.toLowerCase()) {
+                            return; // La couleur existe déjà
+                        }
+                    }
+                    
+                    // Vérifier la limite de couleurs
+                    if (existingChips.length >= MAX_COLORS) {
+                        alert(`Vous pouvez sélectionner au maximum ${MAX_COLORS} couleurs. Supprimez une couleur existante pour en ajouter une nouvelle.`);
+                        return;
+                    }
+                    
+                    // Créer la puce de couleur
+                    const colorChip = document.createElement('div');
+                    colorChip.className = 'color-chip';
+                    colorChip.innerHTML = `
+                        <div class="color-chip-preview" style="background-color: ${color};"></div>
+                        <div class="color-chip-value">${color}</div>
+                        <button class="color-chip-remove" data-color="${color}">×</button>
+                    `;
+                    
+                    // Ajouter la puce au conteneur
+                    selectedColors.appendChild(colorChip);
+                    
+                    // Ajouter l'événement de suppression
+                    const removeBtn = colorChip.querySelector('.color-chip-remove');
+                    removeBtn.addEventListener('click', function() {
+                        colorChip.remove();
+                        updateSelectedColorsInput();
+                    });
+                    
+                    // Mettre à jour l'input caché
+                    updateSelectedColorsInput();
+                }
+                
+                // Fonction pour mettre à jour l'input caché avec les couleurs sélectionnées
+                function updateSelectedColorsInput() {
+                    const colors = [];
+                    document.querySelectorAll('.color-chip-value').forEach(chip => {
+                        colors.push(chip.textContent);
+                    });
+                    selectedColorsInput.value = colors.join(',');
+                }
+                
+                // Vérifier si la couleur est valide
+                function isValidColor(color) {
+                    const s = new Option().style;
+                    s.color = color;
+                    return s.color !== '';
+                }
             }
             
-            // Send assistant message
-            function sendAssistantMessage() {
-                const input = document.getElementById('assistantInput');
-                const message = input.value.trim();
+            // Setup assistant chat
+            function setupAssistant() {
+                // Toggle assistant chat
+                assistantBtn.addEventListener('click', function() {
+                    assistantChat.style.display = assistantChat.style.display === 'flex' ? 'none' : 'flex';
+                });
                 
-                if (message) {
-                    // Add user message
-                    const userMessage = document.createElement('div');
-                    userMessage.classList.add('message', 'user');
-                    userMessage.textContent = message;
-                    assistantMessages.appendChild(userMessage);
+                // Send message on button click
+                assistantSend.addEventListener('click', sendAssistantMessage);
+                
+                // Send message on Enter key
+                assistantInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendAssistantMessage();
+                    }
+                });
+                
+                // Function to send message
+                function sendAssistantMessage() {
+                    const message = assistantInput.value.trim();
                     
-                    // Clear input
-                    input.value = '';
-                    
-                    // Scroll to bottom
-                    assistantMessages.scrollTop = assistantMessages.scrollHeight;
-                    
-                    // Simulate response (in a real implementation, you would call your AI API)
-                    setTimeout(() => {
-                        // Get response based on message content
-                        let response = getAssistantResponse(message);
+                    if (message) {
+                        // Add user message
+                        const userMessage = document.createElement('div');
+                        userMessage.classList.add('message', 'user');
+                        userMessage.textContent = message;
+                        assistantMessages.appendChild(userMessage);
                         
-                        // Add assistant message
-                        const assistantMessage = document.createElement('div');
-                        assistantMessage.classList.add('message', 'assistant');
-                        assistantMessage.textContent = response;
-                        assistantMessages.appendChild(assistantMessage);
+                        // Clear input
+                        assistantInput.value = '';
                         
                         // Scroll to bottom
                         assistantMessages.scrollTop = assistantMessages.scrollHeight;
-                    }, 1000);
+                        
+                        // Simulate response
+                        setTimeout(() => {
+                            const response = getAssistantResponse(message);
+                            
+                            const assistantMessage = document.createElement('div');
+                            assistantMessage.classList.add('message', 'assistant');
+                            assistantMessage.textContent = response;
+                            assistantMessages.appendChild(assistantMessage);
+                            
+                            // Scroll to bottom
+                            assistantMessages.scrollTop = assistantMessages.scrollHeight;
+                        }, 1000);
+                    }
+                }
+                
+                // Get assistant response based on message
+                function getAssistantResponse(message) {
+                    message = message.toLowerCase();
+                    
+                    // Check for specific keywords
+                    if (message.includes('logo')) {
+                        return "Pour votre logo, vous pouvez soit choisir un type de logo (lettrage, pictogramme, abstrait), soit nous laisser vous faire des propositions. Vous pouvez également nous partager des exemples de logos qui vous plaisent pour nous guider.";
+                    } else if (message.includes('police') || message.includes('font')) {
+                        return "Vous pouvez sélectionner jusqu'à 3 polices qui vous plaisent. Ces polices seront utilisées pour votre site web et votre identité visuelle. Cliquez simplement sur les options qui vous plaisent.";
+                    } else if (message.includes('couleur')) {
+                        return "Vous pouvez choisir jusqu'à 3 couleurs pour votre identité visuelle. Utilisez soit la roue de couleur, soit les couleurs prédéfinies en cliquant dessus. Ces couleurs seront utilisées pour votre site web et votre logo.";
+                    } else if (message.includes('délai') || message.includes('temps')) {
+                        return "La création de votre site prendra environ 15 jours ouvrés après validation de votre brief et l'entretien d'onboarding avec votre chargé de projet.";
+                    } else if (message.includes('prix') || message.includes('coût') || message.includes('tarif')) {
+                        return "Le Site Bien Fait est disponible à partir de 45€ HT/mois sur 48 mois. Ce tarif inclut la création du site, l'hébergement, le nom de domaine et les mises à jour.";
+                    } else if (message.includes('sauvegarde')) {
+                        return "Vos réponses sont automatiquement sauvegardées. Vous pouvez également cliquer sur 'Sauvegarder le brouillon' en haut du formulaire pour enregistrer manuellement vos données.";
+                    }
+                    
+                    // Default responses
+                    const defaultResponses = [
+                        "Je suis là pour vous aider à remplir ce formulaire. Que souhaitez-vous savoir ?",
+                        "N'hésitez pas à prendre votre temps pour remplir ce formulaire. Toutes ces informations nous aideront à créer un site qui vous ressemble.",
+                        "Vous pouvez naviguer entre les différentes sections à l'aide des boutons 'Précédent' et 'Suivant', ou en cliquant sur les points en haut du formulaire.",
+                        "Plus vous donnez de détails sur votre entreprise et vos besoins, plus votre site sera adapté à vos attentes."
+                    ];
+                    
+                    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
                 }
             }
             
-            // Get assistant response
-            function getAssistantResponse(message) {
-                message = message.toLowerCase();
-                
-                // Check for specific keywords
-                if (message.includes('logo')) {
-                    return "Pour votre logo, vous pouvez soit indiquer que vous en avez déjà un et le télécharger, soit nous laisser vous faire des propositions. Si vous n'avez pas de logo, vous pouvez nous donner des indications sur vos préférences pour nous guider.";
-                } else if (message.includes('police') || message.includes('font')) {
-                    return "Vous pouvez sélectionner jusqu'à 3 polices qui vous plaisent. Ces polices seront utilisées pour votre site web et votre identité visuelle. Cliquez simplement sur les options qui vous plaisent dans la grille.";
-                } else if (message.includes('couleur') || message.includes('color')) {
-                    return "Choisissez jusqu'à 3 couleurs pour votre site. Ces couleurs définiront l'identité visuelle de votre site. Vous pouvez également ajouter une couleur personnalisée en spécifiant son code hexadécimal.";
-                } else if (message.includes('page') || message.includes('accueil') || message.includes('service')) {
-                    return "Vous pouvez sélectionner jusqu'à 5 pages pour votre site. Les pages Accueil, Services, À propos et Contact sont recommandées. Pour chaque page sélectionnée, vous pourrez détailler son contenu à l'étape suivante.";
-                } else if (message.includes('délai') || message.includes('temps')) {
-                    return "La création de votre site prendra environ 15 jours ouvrés après validation de votre brief et l'entretien d'onboarding avec votre chargé de projet.";
-                } else if (message.includes('prix') || message.includes('coût') || message.includes('tarif')) {
-                    return "Le Site Bien Fait est disponible à partir de 45€ HT/mois sur 48 mois. Ce tarif inclut la création du site, l'hébergement, le nom de domaine et les mises à jour.";
-                } else if (message.includes('rdv') || message.includes('rendez-vous') || message.includes('visio')) {
-                    return "Vous pouvez planifier un rendez-vous à la fin du formulaire en sélectionnant une date et un créneau horaire disponible. Nous privilégions les rendez-vous en visioconférence pour plus d'efficacité.";
-                } else if (message.includes('sauvegarde')) {
-                    return "Vos réponses sont automatiquement sauvegardées. Vous pouvez également cliquer sur 'Sauvegarder le brouillon' en haut du formulaire pour enregistrer manuellement vos données et y revenir plus tard.";
-                }
-                
-                // Default responses
-                const defaultResponses = [
-                    "Je suis là pour vous aider à remplir ce formulaire. Que souhaitez-vous savoir ?",
-                    "N'hésitez pas à prendre votre temps pour remplir ce formulaire. Toutes ces informations nous aideront à créer un site qui vous ressemble.",
-                    "Vous pouvez naviguer entre les différentes sections à l'aide des boutons 'Précédent' et 'Suivant', ou en cliquant sur les points en haut du formulaire.",
-                    "Plus vous donnez de détails sur votre entreprise et vos besoins, plus votre site sera adapté à vos attentes."
-                ];
-                
-                return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-            }
-            
-            // Helper function to validate email
+            // Helper: Valid email check
             function isValidEmail(email) {
                 const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return re.test(email);
             }
         });
     </script>
-</body>
-</html>
