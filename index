@@ -1758,7 +1758,7 @@
     </div>
     
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+   document.addEventListener('DOMContentLoaded', function() {
     // Variables
     const screens = document.querySelectorAll('.form-screen');
     const saveDraftBtn = document.getElementById('saveDraft');
@@ -1779,148 +1779,101 @@
     let currentScreen = 1;
     const totalScreens = 12; // Nombre total d'écrans du formulaire
 
-    // Initialize functionality
-    initFunctionality();
-
-    // Gestion des champs conditionnels pour le logo
-const hasLogoYes = document.getElementById('hasLogoYes');
-const existingLogoField = document.getElementById('existingLogoField');
-const newLogoField = document.getElementById('newLogoField');
-
-if (hasLogoYes && existingLogoField && newLogoField) {
-    document.querySelectorAll('input[name="hasLogo"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            existingLogoField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
-            newLogoField.style.display = this.value === 'no' && this.checked ? 'block' : 'none';
-        });
-    });
-    
-    // Initialiser l'affichage
-    newLogoField.style.display = 'block';
-    existingLogoField.style.display = 'none';
-}
-    // Function to initialize all functionality
-    function initFunctionality() {
-        setupConditionalFields();
-        setupFileUploads();
-        setupFontOptions();
-        setupNavigation();
-        setupAutosave();
-        initColorSelector();
-        setupAssistant();
+    // Function to go to a specific screen
+    function goToScreen(screenNumber) {
+        // Convertir en nombre si c'est une chaîne
+        screenNumber = parseInt(screenNumber);
+        console.log('Navigation vers l\'écran', screenNumber);
         
-        // Mise à jour initiale de la progression
-        updateProgress(currentScreen);
-        
-        // Setup Submit Button
-        document.getElementById('submitBtn').addEventListener('click', function() {
-            if (validateScreen(currentScreen)) {
-                saveScreenData(currentScreen);
-                submitForm();
+        // Masquer tous les écrans et afficher celui demandé
+        document.querySelectorAll('.form-screen').forEach((screen, index) => {
+            if (index + 1 === screenNumber) {
+                screen.classList.add('active');
+            } else {
+                screen.classList.remove('active');
             }
         });
+        
+        // Mettre à jour la barre de progression
+        updateProgress(screenNumber);
+        
+        // Mettre à jour la variable currentScreen
+        currentScreen = screenNumber;
+        
+        // Faire défiler vers le haut
+        window.scrollTo(0, 0);
     }
-function initFunctionality() {
-    // ... autres initialisations
-    initRecapScreen();
-    // ... autres initialisations
-}
-    // Fonction pour initialiser l'écran de récapitulatif
-function initRecapScreen() {
-    // Mettre à jour le récapitulatif avec les données du formulaire
-    function updateRecap() {
-        // Identité de l'entreprise
-        document.getElementById('recap-companyName').textContent = formData.companyName || '-';
-        document.getElementById('recap-mainActivity').textContent = formData.mainActivity || '-';
+
+    // Update progress bar
+    function updateProgress(screenNumber) {
+        const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
+        progressBar.style.width = progressPercentage + '%';
+    }
+
+    // Setup navigation buttons
+    function setupNavigation() {
+        console.log('Configuration de la navigation');
         
-        // Récupérer le texte du secteur depuis le select
-        const sectorSelect = document.getElementById('sector');
-        let sectorText = '-';
-        if (sectorSelect && sectorSelect.selectedIndex > 0) {
-            sectorText = sectorSelect.options[sectorSelect.selectedIndex].text;
-        }
-        document.getElementById('recap-sector').textContent = sectorText;
-        document.getElementById('recap-location').textContent = formData.location || '-';
+        // Boutons "Suivant"
+        document.querySelectorAll('.btn-next').forEach(button => {
+            button.addEventListener('click', function() {
+                const nextScreen = parseInt(this.getAttribute('data-next'));
+                console.log('Bouton suivant cliqué, aller à l\'écran:', nextScreen);
+                
+                if (nextScreen) {
+                    if (validateScreen(currentScreen)) {
+                        saveScreenData(currentScreen);
+                        goToScreen(nextScreen);
+                    }
+                }
+            });
+        });
         
-        // Logo et identité visuelle
-        let logoTypeText = '-';
-        if (formData.logoType) {
-            switch(formData.logoType) {
-                case 'lettrage': logoTypeText = 'Lettrage (texte stylisé)'; break;
-                case 'pictogramme': logoTypeText = 'Pictogramme avec lettrage'; break;
-                case 'abstrait': logoTypeText = 'Logo abstrait'; break;
-                case 'none': logoTypeText = 'Pas de préférence'; break;
-            }
-        }
-        document.getElementById('recap-logoType').textContent = logoTypeText;
+        // Boutons "Précédent"
+        document.querySelectorAll('.btn-prev').forEach(button => {
+            button.addEventListener('click', function() {
+                const prevScreen = parseInt(this.getAttribute('data-prev'));
+                console.log('Bouton précédent cliqué, aller à l\'écran:', prevScreen);
+                
+                if (prevScreen) {
+                    saveScreenData(currentScreen);
+                    goToScreen(prevScreen);
+                }
+            });
+        });
         
-        // Couleurs (utiliser les valeurs sauvegardées dans formData.colors)
-        document.getElementById('recap-colors').textContent = formData.colors?.join(', ') || '-';
-        
-        // Polices (utiliser les valeurs sauvegardées dans formData.fonts)
-        document.getElementById('recap-fonts').textContent = formData.fonts?.join(', ') || '-';
-        
-        // Objectif principal
-        let objectiveText = '-';
-        if (formData.mainObjective) {
-            switch(formData.mainObjective) {
-                case 'services': objectiveText = 'Présenter mes services/produits'; break;
-                case 'seo': objectiveText = 'Être visible sur Google'; break;
-                case 'trust': objectiveText = 'Inspirer confiance'; break;
-                case 'branding': objectiveText = 'Valoriser mon image de marque'; break;
-                case 'other': objectiveText = formData.otherObjectiveText || 'Autre'; break;
-            }
-        }
-        document.getElementById('recap-mainObjective').textContent = objectiveText;
-        
-        // Services et options
-        document.getElementById('recap-services').textContent = formData.services || '-';
-        
-        // Récupérer les options de service cochées
-        const serviceOptions = Array.from(document.querySelectorAll('input[name="serviceOptions"]:checked')).map(checkbox => checkbox.parentElement.textContent.trim());
-        document.getElementById('recap-serviceOptions').textContent = serviceOptions.length > 0 ? serviceOptions.join(', ') : '-';
-        
-        // Coordonnées & RDV
-        document.getElementById('recap-clientName').textContent = formData.clientName || '-';
-        document.getElementById('recap-clientEmail').textContent = formData.clientEmail || '-';
-        document.getElementById('recap-clientPhone').textContent = formData.clientPhone || '-';
-        
-        // Préférence de contact
-        let preferenceText = '-';
-        if (formData.contactPreference) {
-            switch(formData.contactPreference) {
-                case 'email': preferenceText = 'Email'; break;
-                case 'phone': preferenceText = 'Téléphone'; break;
-                case 'visio': preferenceText = 'Visio'; break;
-            }
-        }
-        document.getElementById('recap-contactPreference').textContent = preferenceText;
-        
-        // Formater le rendez-vous s'il existe
-        if (formData.appointmentDate && formData.appointmentTime) {
-            const date = new Date(formData.appointmentDate);
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = date.toLocaleDateString('fr-FR', options);
-            document.getElementById('recap-appointment').textContent = `${formattedDate} à ${formData.appointmentTime}`;
-        } else {
-            document.getElementById('recap-appointment').textContent = 'Non programmé';
+        // Bouton "Envoyer"
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function() {
+                if (validateScreen(currentScreen)) {
+                    saveScreenData(currentScreen);
+                    submitForm();
+                }
+            });
         }
     }
-    
-    // Ajouter des événements de clic aux boutons "Modifier"
-    document.querySelectorAll('.edit-section-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const gotoScreen = parseInt(this.getAttribute('data-goto'));
-            goToScreen(gotoScreen);
 
-        });
-    });
-    
-    // Mettre à jour le récapitulatif chaque fois qu'on accède à l'écran 11
-    document.querySelector('.btn-next[data-next="11"]')?.addEventListener('click', function() {
-        updateRecap();
-    });
-}
+    // Logo fields conditional display
+    function setupLogoFields() {
+        const hasLogoYes = document.getElementById('hasLogoYes');
+        const existingLogoField = document.getElementById('existingLogoField');
+        const newLogoField = document.getElementById('newLogoField');
+        
+        if (hasLogoYes && existingLogoField && newLogoField) {
+            document.querySelectorAll('input[name="hasLogo"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    existingLogoField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
+                    newLogoField.style.display = this.value === 'no' && this.checked ? 'block' : 'none';
+                });
+            });
+            
+            // Initialiser l'affichage
+            newLogoField.style.display = 'block';
+            existingLogoField.style.display = 'none';
+        }
+    }
+
     // Setup conditional fields
     function setupConditionalFields() {
         // Other objective
@@ -1987,7 +1940,7 @@ function initRecapScreen() {
             });
         }
     }
-    
+
     // Setup file uploads
     function setupFileUploads() {
         document.querySelectorAll('input[type="file"]').forEach(input => {
@@ -2024,123 +1977,56 @@ function initRecapScreen() {
             });
         });
     }
-    
-    // Setup font options
-   function setupFontOptions() {
-    const fontOptions = document.querySelectorAll('.font-option');
-    const selectedFontsInput = document.getElementById('selectedFonts');
-    const selectedFontsDisplay = document.getElementById('selectedFontsDisplay');
-    const selectedFonts = [];
-    
-    fontOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            const font = this.getAttribute('data-font');
-            const fontDisplay = this.textContent.trim();
-            const maxFonts = 3;
-            
-            if (this.classList.contains('selected')) {
-                // Remove selection
-                this.classList.remove('selected');
-                const index = selectedFonts.indexOf(font);
-                if (index > -1) {
-                    selectedFonts.splice(index, 1);
-                }
-            } else {
-                // Add selection (max 3)
-                if (selectedFonts.length < maxFonts) {
-                    this.classList.add('selected');
-                    selectedFonts.push(font);
-                } else {
-                    alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
-                }
-            }
-            
-            // Update hidden input
-            if (selectedFontsInput) {
-                selectedFontsInput.value = selectedFonts.join(',');
-            }
-            
-            // Update display
-            if (selectedFontsDisplay) {
-                if (selectedFonts.length === 0) {
-                    selectedFontsDisplay.textContent = "Aucune";
-                } else {
-                    const selectedElements = document.querySelectorAll('.font-option.selected');
-                    const fontNames = Array.from(selectedElements).map(el => el.textContent.trim());
-                    selectedFontsDisplay.textContent = fontNames.join(', ');
-                }
-            }
-        });
-    });
-}
-    
-    // Setup navigation
-    function setupNavigation() {
-console.log('Boutons next trouvés:', document.querySelectorAll('.btn-next').length);
-document.querySelectorAll('.btn-next').forEach(btn => {
-    console.log('Bouton next:', btn, 'data-next:', btn.getAttribute('data-next'));
-});        
- // Boutons "Suivant"
-    document.querySelectorAll('.btn-next').forEach(button => {
-        button.addEventListener('click', function() {
-            const nextScreen = parseInt(this.getAttribute('data-next'));
-            console.log('Bouton suivant cliqué, aller à l\'écran:', nextScreen);
-            
-            if (nextScreen) {
-                if (validateScreen(currentScreen)) {
-                    saveScreenData(currentScreen);
-                    goToScreen(nextScreen);
-                }
-            }
-        });
-    });
-    
-    // Boutons "Précédent"
-    document.querySelectorAll('.btn-prev').forEach(button => {
-        button.addEventListener('click', function() {
-            const prevScreen = parseInt(this.getAttribute('data-prev'));
-            console.log('Bouton précédent cliqué, aller à l\'écran:', prevScreen);
-            
-            if (prevScreen) {
-                saveScreenData(currentScreen);
-                goToScreen(prevScreen);
-            }
-        });
-    });
-}
-    
-    // Update progress bar
-    function updateProgress(screenNumber) {
-        const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
-        progressBar.style.width = progressPercentage + '%';
-    }
-    
-    // Go to screen
-   function goToScreen(screenNumber) {
-    // Convertir en nombre si c'est une chaîne
-    screenNumber = parseInt(screenNumber);
-    console.log('Navigation vers l\'écran', screenNumber);
-    
-    // Masquer tous les écrans et afficher celui demandé
-    document.querySelectorAll('.form-screen').forEach((screen, index) => {
-        if (index + 1 === screenNumber) {
-            screen.classList.add('active');
-        } else {
-            screen.classList.remove('active');
-        }
-    });
-    
-    // Mettre à jour la barre de progression
-    updateProgress(screenNumber);
-    
-    // Mettre à jour la variable currentScreen
-    currentScreen = screenNumber;
-    
-    // Faire défiler vers le haut
-    window.scrollTo(0, 0);
 
+    // Setup font options
+    function setupFontOptions() {
+        const fontOptions = document.querySelectorAll('.font-option');
+        const selectedFontsInput = document.getElementById('selectedFonts');
+        const selectedFontsDisplay = document.getElementById('selectedFontsDisplay');
+        const selectedFonts = [];
+        
+        fontOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const font = this.getAttribute('data-font');
+                const fontDisplay = this.textContent.trim();
+                const maxFonts = 3;
+                
+                if (this.classList.contains('selected')) {
+                    // Remove selection
+                    this.classList.remove('selected');
+                    const index = selectedFonts.indexOf(font);
+                    if (index > -1) {
+                        selectedFonts.splice(index, 1);
+                    }
+                } else {
+                    // Add selection (max 3)
+                    if (selectedFonts.length < maxFonts) {
+                        this.classList.add('selected');
+                        selectedFonts.push(font);
+                    } else {
+                        alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
+                    }
+                }
+                
+                // Update hidden input
+                if (selectedFontsInput) {
+                    selectedFontsInput.value = selectedFonts.join(',');
+                }
+                
+                // Update display
+                if (selectedFontsDisplay) {
+                    if (selectedFonts.length === 0) {
+                        selectedFontsDisplay.textContent = "Aucune";
+                    } else {
+                        const selectedElements = document.querySelectorAll('.font-option.selected');
+                        const fontNames = Array.from(selectedElements).map(el => el.textContent.trim());
+                        selectedFontsDisplay.textContent = fontNames.join(', ');
+                    }
+                }
+            });
+        });
     }
-    
+
     // Setup autosave
     function setupAutosave() {
         // Save on draft button click
@@ -2164,128 +2050,7 @@ document.querySelectorAll('.btn-next').forEach(btn => {
             loadFormData();
         }
     }
-    
-    // Save all form data
-    function saveFormData() {
-        saveScreenData(currentScreen);
-        localStorage.setItem('siteBienFait_form', JSON.stringify(formData));
-    }
-    
-    // Save current screen data
-    function saveScreenData(screenNum) {
-        const screen = document.getElementById(`screen${screenNum}`);
-        if (!screen) return;
-        
-        // Save all inputs, selects, textareas
-        screen.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
-            if (element.type === 'checkbox' || element.type === 'radio') {
-                if (element.checked) {
-                    formData[element.name] = element.value;
-                }
-            } else {
-                formData[element.id] = element.value;
-            }
-        });
-        
-        // Save font selections
-        if (screenNum === 2) {
-            const selectedFonts = [];
-            screen.querySelectorAll('.font-option.selected').forEach(option => {
-                selectedFonts.push(option.getAttribute('data-font'));
-            });
-            formData.fonts = selectedFonts;
-            
-            // Save color selections
-            const selectedColors = [];
-            screen.querySelectorAll('.color-chip-value').forEach(chip => {
-                selectedColors.push(chip.textContent);
-            });
-            formData.colors = selectedColors;
-        }
-    }
-    
-    // Load form data
-    function loadFormData() {
-        // Load all inputs, selects, textareas
-        document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
-            if (element.id && formData[element.id]) {
-                element.value = formData[element.id];
-            } else if (element.name && formData[element.name] === element.value) {
-                element.checked = true;
-            }
-        });
-        
-        // Load font selections
-        if (formData.fonts) {
-            formData.fonts.forEach(font => {
-                const option = document.querySelector(`.font-option[data-font="${font}"]`);
-                if (option) option.classList.add('selected');
-            });
-        }
-        
-        // Load color selections
-        if (formData.colors) {
-            formData.colors.forEach(color => {
-                addColor(color);
-            });
-        }
-        
-        // Refresh conditional fields
-        setupConditionalFields();
-    }
-    
-    // Validate current screen
-    function validateScreen(screenNum) {
-        const screen = document.getElementById(`screen${screenNum}`);
-        if (!screen) return true;
-        
-        let isValid = true;
-        
-        // Check required fields
-        screen.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
-            if (!field.value.trim()) {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.add('error');
-                    isValid = false;
-                }
-            } else {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.remove('error');
-                }
-            }
-        });
-        
-        // Validate email fields
-        screen.querySelectorAll('input[type="email"]').forEach(field => {
-            if (field.value.trim() && !isValidEmail(field.value)) {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.add('error');
-                    isValid = false;
-                }
-            }
-        });
-        
-        return isValid;
-    }
-    
-    // Function to handle form submission
-    function submitForm() {
-        // Get the email for confirmation
-        const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
-        
-        // Update the confirmation email in the success screen
-        document.getElementById('confirmationEmail').textContent = clientEmail;
-        
-        // Go to the confirmation screen
-        goToScreen(12);
-        
-        // Optional: Simulate sending data to a server
-        console.log('Form data submitted:', formData);
-    }
-    
+
     // Initialize color selector
     function initColorSelector() {
         // Éléments du DOM
@@ -2389,7 +2154,7 @@ document.querySelectorAll('.btn-next').forEach(btn => {
             
             // Mettre à jour l'input caché
             updateSelectedColorsInput();
-        }
+        };
         
         // Fonction pour mettre à jour l'input caché avec les couleurs sélectionnées
         function updateSelectedColorsInput() {
@@ -2407,7 +2172,7 @@ document.querySelectorAll('.btn-next').forEach(btn => {
             return s.color !== '';
         }
     }
-    
+
     // Setup assistant chat
     function setupAssistant() {
         // Toggle assistant chat
@@ -2487,11 +2252,151 @@ document.querySelectorAll('.btn-next').forEach(btn => {
             return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
         }
     }
-    
+
+    // Validate current screen
+    function validateScreen(screenNum) {
+        const screen = document.getElementById(`screen${screenNum}`);
+        if (!screen) return true;
+        
+        let isValid = true;
+        
+        // Check required fields
+        screen.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+            if (!field.value.trim()) {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.add('error');
+                    isValid = false;
+                }
+            } else {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.remove('error');
+                }
+            }
+        });
+        
+        // Validate email fields
+        screen.querySelectorAll('input[type="email"]').forEach(field => {
+            if (field.value.trim() && !isValidEmail(field.value)) {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.add('error');
+                    isValid = false;
+                }
+            }
+        });
+        
+        return isValid;
+    }
+
+    // Save all form data
+    function saveFormData() {
+        saveScreenData(currentScreen);
+        localStorage.setItem('siteBienFait_form', JSON.stringify(formData));
+    }
+
+    // Save current screen data
+    function saveScreenData(screenNum) {
+        const screen = document.getElementById(`screen${screenNum}`);
+        if (!screen) return;
+        
+        // Save all inputs, selects, textareas
+        screen.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                if (element.checked) {
+                    formData[element.name] = element.value;
+                }
+            } else {
+                formData[element.id] = element.value;
+            }
+        });
+        
+        // Save font selections
+        if (screenNum === 2) {
+            const selectedFonts = [];
+            screen.querySelectorAll('.font-option.selected').forEach(option => {
+                selectedFonts.push(option.getAttribute('data-font'));
+            });
+            formData.fonts = selectedFonts;
+            
+            // Save color selections
+            const selectedColors = [];
+            screen.querySelectorAll('.color-chip-value').forEach(chip => {
+                selectedColors.push(chip.textContent);
+            });
+            formData.colors = selectedColors;
+        }
+    }
+
+    // Load form data
+    function loadFormData() {
+        // Load all inputs, selects, textareas
+        document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
+            if (element.id && formData[element.id]) {
+                element.value = formData[element.id];
+            } else if (element.name && formData[element.name] === element.value) {
+                element.checked = true;
+            }
+        });
+        
+        // Load font selections
+        if (formData.fonts) {
+            formData.fonts.forEach(font => {
+                const option = document.querySelector(`.font-option[data-font="${font}"]`);
+                if (option) option.classList.add('selected');
+            });
+        }
+        
+        // Load color selections
+        if (formData.colors && typeof addColor === 'function') {
+            formData.colors.forEach(color => {
+                addColor(color);
+            });
+        }
+        
+        // Refresh conditional fields
+        setupConditionalFields();
+    }
+
+    // Function to handle form submission
+    function submitForm() {
+        // Get the email for confirmation
+        const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
+        
+        // Update the confirmation email in the success screen
+        document.getElementById('confirmationEmail').textContent = clientEmail;
+        
+        // Go to the confirmation screen
+        goToScreen(12);
+        
+        // Optional: Simulate sending data to a server
+        console.log('Form data submitted:', formData);
+    }
+
     // Helper: Valid email check
     function isValidEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
+
+    // Initialize all functionality
+    function initFunctionality() {
+        console.log('Initialisation des fonctionnalités');
+        setupLogoFields();
+        setupConditionalFields();
+        setupFileUploads();
+        setupFontOptions();
+        setupNavigation();
+        setupAutosave();
+        initColorSelector();
+        setupAssistant();
+        
+        // Mise à jour initiale de la progression
+        updateProgress(currentScreen);
+    }
+
+    // Start initialization
+    initFunctionality();
 });
     </script>
