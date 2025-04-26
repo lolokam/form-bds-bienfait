@@ -11,6 +11,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,7 +34,42 @@
             --background: #42304A;
             --light-bg: rgba(255, 255, 255, 0.1);
         }
-        
+.file-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.file-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-size {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.file-error {
+    border-left: 3px solid #ff6b6b;
+}
+
+.file-error-message {
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    margin-left: auto;
+}
+        .field-description {
+    font-size: 0.85rem;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
         * {
             margin: 0;
             padding: 0;
@@ -1063,14 +1105,15 @@
     </div>
 </div>
             
-            <div class="form-field">
-                <label class="form-label">Choisissez les couleurs pour votre site/logo (max 3)</label>
-                
-                <div class="selected-colors" id="selectedColors">
-                    <!-- Les puces de couleurs sélectionnées apparaîtront ici -->
-                </div>
-                
-                <div class="color-selector-container">
+           <div class="form-field">
+    <label class="form-label">Choisissez les couleurs pour votre site/logo (max 4, par ordre d'importance)</label>
+    <p class="field-description">Les premières couleurs seront utilisées pour les éléments principaux de votre site.</p>
+    
+    <div class="selected-colors" id="selectedColors">
+        <!-- Les puces de couleurs sélectionnées apparaîtront ici -->
+    </div>
+    
+    <div class="color-selector-container">
                     <div class="color-wheel-container">
                         <div class="color-wheel-wrapper">
                             <input type="color" id="colorWheel" class="color-wheel" value="#503D59">
@@ -1092,7 +1135,7 @@
             </div>
             
             <div class="form-field">
-                <label class="form-label">Inspirations pour votre logo (optionnel)</label>
+                <label class="form-label">Inspirations pour votre logo (optionnel) <p class="field-description">Vous pouvez uploader autant de fichiers que vous le souhaitez (maximum 2 Go par fichier).</p></label>
                 <div class="file-upload">
                     <label class="file-upload-button">
                         <span class="file-upload-icon">
@@ -1102,7 +1145,7 @@
                         <input type="file" id="logoInspiration" accept=".jpg,.png,.svg,.pdf" multiple style="display: none;">
                     </label>
                 </div>
-                <div id="logoInspirationName" class="mt-2 text-sm"></div>
+               <div id="logoInspirationFiles" class="file-list"></div>
             </div>
             
             <div class="form-field">
@@ -1112,8 +1155,10 @@
             
            <div class="form-field">
     <label class="form-label">Polices d'écriture préférées pour votre logo/site (max 3)</label>
+    <p class="field-description">Cliquez pour sélectionner vos polices favorites.</p>
     
     <div class="font-categories">
+        <!-- Catégorie Sans-serif -->
         <div class="font-category">
             <h4 class="category-title">Sans-serif (modernes)</h4>
             <div class="font-options">
@@ -1132,12 +1177,19 @@
                 <div class="font-option" data-font="lato" style="font-family: 'Lato', sans-serif;">
                     Lato - Aa Bb Cc 123
                 </div>
-                <div class="font-option" data-font="sourcesans" style="font-family: 'Source Sans Pro', sans-serif;">
-                    Source Sans - Aa Bb Cc 123
+                <div class="font-option" data-font="raleway" style="font-family: 'Raleway', sans-serif;">
+                    Raleway - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="nunito" style="font-family: 'Nunito', sans-serif;">
+                    Nunito - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="worksans" style="font-family: 'Work Sans', sans-serif;">
+                    Work Sans - Aa Bb Cc 123
                 </div>
             </div>
         </div>
         
+        <!-- Catégorie Serif -->
         <div class="font-category">
             <h4 class="category-title">Serif (classiques)</h4>
             <div class="font-options">
@@ -1156,20 +1208,34 @@
             </div>
         </div>
         
+        <!-- Catégorie script -->
         <div class="font-category">
-            <h4 class="category-title">Display (créatives)</h4>
+            <h4 class="category-title">Script (manuscrites)</h4>
             <div class="font-options">
                 <div class="font-option" data-font="pacifico" style="font-family: 'Pacifico', cursive;">
                     Pacifico - Aa Bb Cc 123
                 </div>
-                <div class="font-option" data-font="comfortaa" style="font-family: 'Comfortaa', cursive;">
-                    Comfortaa - Aa Bb Cc 123
+                <div class="font-option" data-font="dancing" style="font-family: 'Dancing Script', cursive;">
+                    Dancing Script - Aa Bb Cc 123
                 </div>
-                <div class="font-option" data-font="righteous" style="font-family: 'Righteous', cursive;">
-                    Righteous - Aa Bb Cc 123
+                <div class="font-option" data-font="sacramento" style="font-family: 'Sacramento', cursive;">
+                    Sacramento - Aa Bb Cc 123
                 </div>
                 <div class="font-option" data-font="lobster" style="font-family: 'Lobster', cursive;">
                     Lobster - Aa Bb Cc 123
+                </div>
+            </div>
+        </div>
+        
+        <!-- Catégorie monospace -->
+        <div class="font-category">
+            <h4 class="category-title">Monospace (techniques)</h4>
+            <div class="font-options">
+                <div class="font-option" data-font="roboto-mono" style="font-family: 'Roboto Mono', monospace;">
+                    Roboto Mono - Aa Bb Cc 123
+                </div>
+                <div class="font-option" data-font="source-code" style="font-family: 'Source Code Pro', monospace;">
+                    Source Code - Aa Bb Cc 123
                 </div>
             </div>
         </div>
@@ -1178,6 +1244,9 @@
     <div class="selected-fonts-display">
         <p>Polices sélectionnées: <span id="selectedFontsDisplay">Aucune</span></p>
     </div>
+    
+    <input type="hidden" id="selectedFonts" value="">
+</div>
     
     <input type="hidden" id="selectedFonts" value="">
 </div>
@@ -1942,10 +2011,39 @@
     }
 
     // Setup file uploads
-    function setupFileUploads() {
-        document.querySelectorAll('input[type="file"]').forEach(input => {
-            input.addEventListener('change', function() {
-                if (this.files.length > 0) {
+   // Setup file uploads
+function setupFileUploads() {
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                const fileListElement = document.getElementById(this.id + 'Files');
+                
+                if (fileListElement) {
+                    fileListElement.innerHTML = '';
+                    
+                    Array.from(this.files).forEach((file, index) => {
+                        const fileItem = document.createElement('div');
+                        fileItem.className = 'file-item';
+                        
+                        // Vérifier la taille du fichier (2Go max)
+                        if (file.size > 2 * 1024 * 1024 * 1024) {
+                            fileItem.classList.add('file-error');
+                            fileItem.innerHTML = `
+                                <span class="file-name">${file.name}</span>
+                                <span class="file-size">(${formatFileSize(file.size)})</span>
+                                <span class="file-error-message">Ce fichier dépasse la limite de 2 Go</span>
+                            `;
+                        } else {
+                            fileItem.innerHTML = `
+                                <span class="file-name">${file.name}</span>
+                                <span class="file-size">(${formatFileSize(file.size)})</span>
+                            `;
+                        }
+                        
+                        fileListElement.appendChild(fileItem);
+                    });
+                } else {
+                    // Fallback pour les anciens éléments
                     const fileNameElement = document.getElementById(this.id + 'Name');
                     if (fileNameElement) {
                         if (this.files.length === 1) {
@@ -1954,18 +2052,42 @@
                             fileNameElement.textContent = `${this.files.length} fichiers sélectionnés`;
                         }
                     }
-                    
-                    // Store files in formData
-                    if (!formData.uploadedFiles[this.id]) {
-                        formData.uploadedFiles[this.id] = [];
-                    }
-                    
-                    Array.from(this.files).forEach(file => {
-                        formData.uploadedFiles[this.id].push(file.name);
-                    });
                 }
-            });
+                
+                // Store files in formData
+                if (!formData.uploadedFiles[this.id]) {
+                    formData.uploadedFiles[this.id] = [];
+                }
+                
+                formData.uploadedFiles[this.id] = [];
+                Array.from(this.files).forEach(file => {
+                    formData.uploadedFiles[this.id].push({
+                        name: file.name,
+                        size: file.size
+                    });
+                });
+            }
         });
+    });
+    
+    // Make file upload buttons work
+    document.querySelectorAll('.file-upload-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.querySelector('input[type="file"]');
+            if (input) {
+                input.click();
+            }
+        });
+    });
+}
+
+// Fonction utilitaire pour formater la taille des fichiers
+function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' o';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' Ko';
+    if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' Mo';
+    return (bytes / (1024 * 1024 * 1024)).toFixed(1) + ' Go';
+}
         
         // Make file upload buttons work
         document.querySelectorAll('.file-upload-button').forEach(button => {
@@ -2067,7 +2189,7 @@
         }
         
         // Limite de couleurs sélectionnables
-        const MAX_COLORS = 3;
+        const MAX_COLORS = 4;
         
         // Liste de couleurs prédéfinies
         const colorList = [
@@ -2133,18 +2255,39 @@
                 return;
             }
             
-            // Créer la puce de couleur
-            const colorChip = document.createElement('div');
-            colorChip.className = 'color-chip';
-            colorChip.innerHTML = `
-                <div class="color-chip-preview" style="background-color: ${color};"></div>
-                <div class="color-chip-value">${color}</div>
-                <button class="color-chip-remove" data-color="${color}">×</button>
+          // Créer la puce de couleur
+const colorChip = document.createElement('div');
+colorChip.className = 'color-chip';
+const priority = selectedColors.querySelectorAll('.color-chip').length + 1;
+colorChip.innerHTML = `
+    <span class="color-priority">${priority}</span>
+    <div class="color-chip-preview" style="background-color: ${color};"></div>
+    <div class="color-chip-value">${color}</div>
+    <button class="color-chip-remove" data-color="${color}">×</button>
+
             `;
             
             // Ajouter la puce au conteneur
             selectedColors.appendChild(colorChip);
-            
+            .field-description {
+    font-size: 0.85rem;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.color-priority {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    font-size: 0.8rem;
+    margin-right: 8px;
+}
             // Ajouter l'événement de suppression
             const removeBtn = colorChip.querySelector('.color-chip-remove');
             removeBtn.addEventListener('click', function() {
@@ -2379,7 +2522,13 @@
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
-
+// Fonction utilitaire pour formater la taille des fichiers
+function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' o';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' Ko';
+    if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' Mo';
+    return (bytes / (1024 * 1024 * 1024)).toFixed(1) + ' Go';
+}
     // Initialize all functionality
     function initFunctionality() {
         console.log('Initialisation des fonctionnalités');
