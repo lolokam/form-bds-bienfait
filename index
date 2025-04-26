@@ -98,7 +98,135 @@
     transition: width 0.5s ease;
     border-radius: 3px;
 }
+/* Styles pour le calendrier et les RDV */
+.recommended-option .radio-label {
+    background-color: rgba(243, 168, 132, 0.2);
+    border: 1px solid var(--secondary);
+}
 
+.star-icon {
+    color: var(--secondary);
+    margin-left: 5px;
+}
+
+.calendar-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar-nav {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-nav:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.current-month {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    opacity: 0.7;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calendar-day:hover:not(.disabled) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.calendar-day.selected {
+    background-color: var(--secondary);
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.calendar-day.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    display: none;
+}
+
+.time-slot {
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.time-slot:hover:not(.disabled) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.time-slot.selected {
+    background-color: var(--secondary);
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.time-slot.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.selected-datetime {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
 /* Amélioration de la mise en page générale */
 .form-container {
     background-color: rgba(255, 255, 255, 0.05);
@@ -1692,7 +1820,106 @@ if (hasLogoYes && existingLogoField && newLogoField) {
             }
         });
     }
+function initFunctionality() {
+    // ... autres initialisations
+    initRecapScreen();
+    // ... autres initialisations
+}
+    // Fonction pour initialiser l'écran de récapitulatif
+function initRecapScreen() {
+    // Mettre à jour le récapitulatif avec les données du formulaire
+    function updateRecap() {
+        // Identité de l'entreprise
+        document.getElementById('recap-companyName').textContent = formData.companyName || '-';
+        document.getElementById('recap-mainActivity').textContent = formData.mainActivity || '-';
+        
+        // Récupérer le texte du secteur depuis le select
+        const sectorSelect = document.getElementById('sector');
+        let sectorText = '-';
+        if (sectorSelect && sectorSelect.selectedIndex > 0) {
+            sectorText = sectorSelect.options[sectorSelect.selectedIndex].text;
+        }
+        document.getElementById('recap-sector').textContent = sectorText;
+        document.getElementById('recap-location').textContent = formData.location || '-';
+        
+        // Logo et identité visuelle
+        let logoTypeText = '-';
+        if (formData.logoType) {
+            switch(formData.logoType) {
+                case 'lettrage': logoTypeText = 'Lettrage (texte stylisé)'; break;
+                case 'pictogramme': logoTypeText = 'Pictogramme avec lettrage'; break;
+                case 'abstrait': logoTypeText = 'Logo abstrait'; break;
+                case 'none': logoTypeText = 'Pas de préférence'; break;
+            }
+        }
+        document.getElementById('recap-logoType').textContent = logoTypeText;
+        
+        // Couleurs (utiliser les valeurs sauvegardées dans formData.colors)
+        document.getElementById('recap-colors').textContent = formData.colors?.join(', ') || '-';
+        
+        // Polices (utiliser les valeurs sauvegardées dans formData.fonts)
+        document.getElementById('recap-fonts').textContent = formData.fonts?.join(', ') || '-';
+        
+        // Objectif principal
+        let objectiveText = '-';
+        if (formData.mainObjective) {
+            switch(formData.mainObjective) {
+                case 'services': objectiveText = 'Présenter mes services/produits'; break;
+                case 'seo': objectiveText = 'Être visible sur Google'; break;
+                case 'trust': objectiveText = 'Inspirer confiance'; break;
+                case 'branding': objectiveText = 'Valoriser mon image de marque'; break;
+                case 'other': objectiveText = formData.otherObjectiveText || 'Autre'; break;
+            }
+        }
+        document.getElementById('recap-mainObjective').textContent = objectiveText;
+        
+        // Services et options
+        document.getElementById('recap-services').textContent = formData.services || '-';
+        
+        // Récupérer les options de service cochées
+        const serviceOptions = Array.from(document.querySelectorAll('input[name="serviceOptions"]:checked')).map(checkbox => checkbox.parentElement.textContent.trim());
+        document.getElementById('recap-serviceOptions').textContent = serviceOptions.length > 0 ? serviceOptions.join(', ') : '-';
+        
+        // Coordonnées & RDV
+        document.getElementById('recap-clientName').textContent = formData.clientName || '-';
+        document.getElementById('recap-clientEmail').textContent = formData.clientEmail || '-';
+        document.getElementById('recap-clientPhone').textContent = formData.clientPhone || '-';
+        
+        // Préférence de contact
+        let preferenceText = '-';
+        if (formData.contactPreference) {
+            switch(formData.contactPreference) {
+                case 'email': preferenceText = 'Email'; break;
+                case 'phone': preferenceText = 'Téléphone'; break;
+                case 'visio': preferenceText = 'Visio'; break;
+            }
+        }
+        document.getElementById('recap-contactPreference').textContent = preferenceText;
+        
+        // Formater le rendez-vous s'il existe
+        if (formData.appointmentDate && formData.appointmentTime) {
+            const date = new Date(formData.appointmentDate);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = date.toLocaleDateString('fr-FR', options);
+            document.getElementById('recap-appointment').textContent = `${formattedDate} à ${formData.appointmentTime}`;
+        } else {
+            document.getElementById('recap-appointment').textContent = 'Non programmé';
+        }
+    }
     
+    // Ajouter des événements de clic aux boutons "Modifier"
+    document.querySelectorAll('.edit-section-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const gotoScreen = parseInt(this.getAttribute('data-goto'));
+            goToScreen(gotoScreen);
+        });
+    });
+    
+    // Mettre à jour le récapitulatif chaque fois qu'on accède à l'écran 11
+    document.querySelector('.btn-next[data-next="11"]')?.addEventListener('click', function() {
+        updateRecap();
+    });
+}
     // Setup conditional fields
     function setupConditionalFields() {
         // Other objective
