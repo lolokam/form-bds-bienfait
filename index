@@ -1758,6 +1758,57 @@
     </div>
     
     <script>
+ <script>
+    // Version corrigée du JavaScript original avec navigation fonctionnelle
+    document.addEventListener('DOMContentLoaded', function() {
+        // Variables originales
+        let currentScreen = 1;
+        const totalScreens = 12;
+        const progressBar = document.getElementById('progressBar');
+        const formData = { uploadedFiles: {} };
+
+        // Fonction de navigation CORRIGÉE
+        function goToScreen(screenNumber) {
+            screenNumber = parseInt(screenNumber);
+            
+            document.querySelectorAll('.form-screen').forEach((screen, index) => {
+                screen.classList.toggle('active', index + 1 === screenNumber);
+            });
+            
+            currentScreen = screenNumber;
+            updateProgress(screenNumber);
+            window.scrollTo(0, 0);
+        }
+
+        // Mise à jour progression CORRIGÉE
+        function updateProgress(screenNumber) {
+            const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
+            progressBar.style.width = progressPercentage + '%';
+        }
+
+        // Gestionnaires d'événements CORRIGÉS
+        function setupNavigation() {
+            document.querySelectorAll('.btn-next').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const nextScreen = parseInt(this.dataset.next);
+                    if(validateScreen(currentScreen)) {
+                        saveScreenData(currentScreen);
+                        goToScreen(nextScreen);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.btn-prev').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const prevScreen = parseInt(this.dataset.prev);
+                    saveScreenData(currentScreen);
+                    goToScreen(prevScreen);
+                });
+            });
+        }
+
       document.addEventListener('DOMContentLoaded', function() {
     // Variables
     const screens = document.querySelectorAll('.form-screen');
@@ -2487,6 +2538,22 @@ document.querySelectorAll('.btn-next').forEach(btn => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
+// Initialisation CORRIGÉE
+        function init() {
+            setupNavigation();
+            setupConditionalFields();
+            setupFileUploads();
+            setupFontOptions();
+            initColorSelector();
+            updateProgress(1);
+            
+            // Charger les données existantes
+            const savedData = localStorage.getItem('siteBienFait_form');
+            if(savedData) formData = JSON.parse(savedData);
+        }
+
+        init();
+    });
 });
 
     </script>
