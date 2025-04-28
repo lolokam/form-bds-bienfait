@@ -2488,4 +2488,34 @@ document.querySelectorAll('.btn-next').forEach(btn => {
         return re.test(email);
     }
 });
+<script>
+  // Sélectionner les éléments importants
+  const screens = document.querySelectorAll('.form-screen');
+  const nextButtons = document.querySelectorAll('.btn-next');
+  const progressBar = document.getElementById('progressBar');
+
+  let currentScreen = 0;
+
+  // Fonction pour passer à l'écran suivant
+  function goToNextScreen() {
+    if (currentScreen < screens.length - 1) {
+      screens[currentScreen].classList.remove('active');
+      currentScreen++;
+      screens[currentScreen].classList.add('active');
+      updateProgressBar();
+    }
+  }
+
+  // Fonction pour mettre à jour la barre de progression
+  function updateProgressBar() {
+    const progress = (currentScreen / (screens.length - 1)) * 100;
+    progressBar.style.width = progress + '%';
+  }
+
+  // Ajouter les écouteurs sur tous les boutons "Suivant"
+  nextButtons.forEach(button => {
+    button.addEventListener('click', goToNextScreen);
+  });
+</script>
+
     </script>
