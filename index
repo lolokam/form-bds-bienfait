@@ -11,13 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,42 +27,7 @@
             --background: #42304A;
             --light-bg: rgba(255, 255, 255, 0.1);
         }
-.file-list {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.file-item {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 8px 12px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.file-size {
-    font-size: 0.85rem;
-    opacity: 0.7;
-}
-
-.file-error {
-    border-left: 3px solid #ff6b6b;
-}
-
-.file-error-message {
-    color: #ff6b6b;
-    font-size: 0.85rem;
-    margin-left: auto;
-}
-        .field-description {
-    font-size: 0.85rem;
-    margin-top: -5px;
-    margin-bottom: 10px;
-    opacity: 0.8;
-}
+        
         * {
             margin: 0;
             padding: 0;
@@ -1032,7 +990,7 @@
             
             <div class="navigation-buttons">
                 <div></div> <!-- Empty div for spacing -->
-                <button class="btn btn-next" data-next="2">Suivant</button>
+                <button class="btn btn-next" data-next="2" onclick="goToScreen(2)">Suivant</button>
             </div>
         </div>
         
@@ -1105,15 +1063,14 @@
     </div>
 </div>
             
-           <div class="form-field">
-    <label class="form-label">Choisissez les couleurs pour votre site/logo (max 4, par ordre d'importance)</label>
-    <p class="field-description">Les premières couleurs seront utilisées pour les éléments principaux de votre site.</p>
-    
-    <div class="selected-colors" id="selectedColors">
-        <!-- Les puces de couleurs sélectionnées apparaîtront ici -->
-    </div>
-    
-    <div class="color-selector-container">
+            <div class="form-field">
+                <label class="form-label">Choisissez les couleurs pour votre site/logo (max 3)</label>
+                
+                <div class="selected-colors" id="selectedColors">
+                    <!-- Les puces de couleurs sélectionnées apparaîtront ici -->
+                </div>
+                
+                <div class="color-selector-container">
                     <div class="color-wheel-container">
                         <div class="color-wheel-wrapper">
                             <input type="color" id="colorWheel" class="color-wheel" value="#503D59">
@@ -1135,7 +1092,7 @@
             </div>
             
             <div class="form-field">
-                <label class="form-label">Inspirations pour votre logo (optionnel) <p class="field-description">Vous pouvez uploader autant de fichiers que vous le souhaitez (maximum 2 Go par fichier).</p></label>
+                <label class="form-label">Inspirations pour votre logo (optionnel)</label>
                 <div class="file-upload">
                     <label class="file-upload-button">
                         <span class="file-upload-icon">
@@ -1145,7 +1102,7 @@
                         <input type="file" id="logoInspiration" accept=".jpg,.png,.svg,.pdf" multiple style="display: none;">
                     </label>
                 </div>
-               <div id="logoInspirationFiles" class="file-list"></div>
+                <div id="logoInspirationName" class="mt-2 text-sm"></div>
             </div>
             
             <div class="form-field">
@@ -1155,10 +1112,8 @@
             
            <div class="form-field">
     <label class="form-label">Polices d'écriture préférées pour votre logo/site (max 3)</label>
-    <p class="field-description">Cliquez pour sélectionner vos polices favorites.</p>
     
     <div class="font-categories">
-        <!-- Catégorie Sans-serif -->
         <div class="font-category">
             <h4 class="category-title">Sans-serif (modernes)</h4>
             <div class="font-options">
@@ -1177,19 +1132,12 @@
                 <div class="font-option" data-font="lato" style="font-family: 'Lato', sans-serif;">
                     Lato - Aa Bb Cc 123
                 </div>
-                <div class="font-option" data-font="raleway" style="font-family: 'Raleway', sans-serif;">
-                    Raleway - Aa Bb Cc 123
-                </div>
-                <div class="font-option" data-font="nunito" style="font-family: 'Nunito', sans-serif;">
-                    Nunito - Aa Bb Cc 123
-                </div>
-                <div class="font-option" data-font="worksans" style="font-family: 'Work Sans', sans-serif;">
-                    Work Sans - Aa Bb Cc 123
+                <div class="font-option" data-font="sourcesans" style="font-family: 'Source Sans Pro', sans-serif;">
+                    Source Sans - Aa Bb Cc 123
                 </div>
             </div>
         </div>
         
-        <!-- Catégorie Serif -->
         <div class="font-category">
             <h4 class="category-title">Serif (classiques)</h4>
             <div class="font-options">
@@ -1208,34 +1156,20 @@
             </div>
         </div>
         
-        <!-- Catégorie script -->
         <div class="font-category">
-            <h4 class="category-title">Script (manuscrites)</h4>
+            <h4 class="category-title">Display (créatives)</h4>
             <div class="font-options">
                 <div class="font-option" data-font="pacifico" style="font-family: 'Pacifico', cursive;">
                     Pacifico - Aa Bb Cc 123
                 </div>
-                <div class="font-option" data-font="dancing" style="font-family: 'Dancing Script', cursive;">
-                    Dancing Script - Aa Bb Cc 123
+                <div class="font-option" data-font="comfortaa" style="font-family: 'Comfortaa', cursive;">
+                    Comfortaa - Aa Bb Cc 123
                 </div>
-                <div class="font-option" data-font="sacramento" style="font-family: 'Sacramento', cursive;">
-                    Sacramento - Aa Bb Cc 123
+                <div class="font-option" data-font="righteous" style="font-family: 'Righteous', cursive;">
+                    Righteous - Aa Bb Cc 123
                 </div>
                 <div class="font-option" data-font="lobster" style="font-family: 'Lobster', cursive;">
                     Lobster - Aa Bb Cc 123
-                </div>
-            </div>
-        </div>
-        
-        <!-- Catégorie monospace -->
-        <div class="font-category">
-            <h4 class="category-title">Monospace (techniques)</h4>
-            <div class="font-options">
-                <div class="font-option" data-font="roboto-mono" style="font-family: 'Roboto Mono', monospace;">
-                    Roboto Mono - Aa Bb Cc 123
-                </div>
-                <div class="font-option" data-font="source-code" style="font-family: 'Source Code Pro', monospace;">
-                    Source Code - Aa Bb Cc 123
                 </div>
             </div>
         </div>
@@ -1244,9 +1178,6 @@
     <div class="selected-fonts-display">
         <p>Polices sélectionnées: <span id="selectedFontsDisplay">Aucune</span></p>
     </div>
-    
-    <input type="hidden" id="selectedFonts" value="">
-</div>
     
     <input type="hidden" id="selectedFonts" value="">
 </div>
@@ -1827,7 +1758,7 @@
     </div>
     
     <script>
-   document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
     // Variables
     const screens = document.querySelectorAll('.form-screen');
     const saveDraftBtn = document.getElementById('saveDraft');
@@ -1848,101 +1779,148 @@
     let currentScreen = 1;
     const totalScreens = 12; // Nombre total d'écrans du formulaire
 
-    // Function to go to a specific screen
-    function goToScreen(screenNumber) {
-        // Convertir en nombre si c'est une chaîne
-        screenNumber = parseInt(screenNumber);
-        console.log('Navigation vers l\'écran', screenNumber);
+    // Initialize functionality
+    initFunctionality();
+
+    // Gestion des champs conditionnels pour le logo
+const hasLogoYes = document.getElementById('hasLogoYes');
+const existingLogoField = document.getElementById('existingLogoField');
+const newLogoField = document.getElementById('newLogoField');
+
+if (hasLogoYes && existingLogoField && newLogoField) {
+    document.querySelectorAll('input[name="hasLogo"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            existingLogoField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
+            newLogoField.style.display = this.value === 'no' && this.checked ? 'block' : 'none';
+        });
+    });
+    
+    // Initialiser l'affichage
+    newLogoField.style.display = 'block';
+    existingLogoField.style.display = 'none';
+}
+    // Function to initialize all functionality
+    function initFunctionality() {
+        setupConditionalFields();
+        setupFileUploads();
+        setupFontOptions();
+        setupNavigation();
+        setupAutosave();
+        initColorSelector();
+        setupAssistant();
         
-        // Masquer tous les écrans et afficher celui demandé
-        document.querySelectorAll('.form-screen').forEach((screen, index) => {
-            if (index + 1 === screenNumber) {
-                screen.classList.add('active');
-            } else {
-                screen.classList.remove('active');
+        // Mise à jour initiale de la progression
+        updateProgress(currentScreen);
+        
+        // Setup Submit Button
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            if (validateScreen(currentScreen)) {
+                saveScreenData(currentScreen);
+                submitForm();
             }
         });
-        
-        // Mettre à jour la barre de progression
-        updateProgress(screenNumber);
-        
-        // Mettre à jour la variable currentScreen
-        currentScreen = screenNumber;
-        
-        // Faire défiler vers le haut
-        window.scrollTo(0, 0);
     }
-
-    // Update progress bar
-    function updateProgress(screenNumber) {
-        const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
-        progressBar.style.width = progressPercentage + '%';
-    }
-
-    // Setup navigation buttons
-    function setupNavigation() {
-        console.log('Configuration de la navigation');
+function initFunctionality() {
+    // ... autres initialisations
+    initRecapScreen();
+    // ... autres initialisations
+}
+    // Fonction pour initialiser l'écran de récapitulatif
+function initRecapScreen() {
+    // Mettre à jour le récapitulatif avec les données du formulaire
+    function updateRecap() {
+        // Identité de l'entreprise
+        document.getElementById('recap-companyName').textContent = formData.companyName || '-';
+        document.getElementById('recap-mainActivity').textContent = formData.mainActivity || '-';
         
-        // Boutons "Suivant"
-        document.querySelectorAll('.btn-next').forEach(button => {
-            button.addEventListener('click', function() {
-                const nextScreen = parseInt(this.getAttribute('data-next'));
-                console.log('Bouton suivant cliqué, aller à l\'écran:', nextScreen);
-                
-                if (nextScreen) {
-                    if (validateScreen(currentScreen)) {
-                        saveScreenData(currentScreen);
-                        goToScreen(nextScreen);
-                    }
-                }
-            });
-        });
+        // Récupérer le texte du secteur depuis le select
+        const sectorSelect = document.getElementById('sector');
+        let sectorText = '-';
+        if (sectorSelect && sectorSelect.selectedIndex > 0) {
+            sectorText = sectorSelect.options[sectorSelect.selectedIndex].text;
+        }
+        document.getElementById('recap-sector').textContent = sectorText;
+        document.getElementById('recap-location').textContent = formData.location || '-';
         
-        // Boutons "Précédent"
-        document.querySelectorAll('.btn-prev').forEach(button => {
-            button.addEventListener('click', function() {
-                const prevScreen = parseInt(this.getAttribute('data-prev'));
-                console.log('Bouton précédent cliqué, aller à l\'écran:', prevScreen);
-                
-                if (prevScreen) {
-                    saveScreenData(currentScreen);
-                    goToScreen(prevScreen);
-                }
-            });
-        });
+        // Logo et identité visuelle
+        let logoTypeText = '-';
+        if (formData.logoType) {
+            switch(formData.logoType) {
+                case 'lettrage': logoTypeText = 'Lettrage (texte stylisé)'; break;
+                case 'pictogramme': logoTypeText = 'Pictogramme avec lettrage'; break;
+                case 'abstrait': logoTypeText = 'Logo abstrait'; break;
+                case 'none': logoTypeText = 'Pas de préférence'; break;
+            }
+        }
+        document.getElementById('recap-logoType').textContent = logoTypeText;
         
-        // Bouton "Envoyer"
-        const submitBtn = document.getElementById('submitBtn');
-        if (submitBtn) {
-            submitBtn.addEventListener('click', function() {
-                if (validateScreen(currentScreen)) {
-                    saveScreenData(currentScreen);
-                    submitForm();
-                }
-            });
+        // Couleurs (utiliser les valeurs sauvegardées dans formData.colors)
+        document.getElementById('recap-colors').textContent = formData.colors?.join(', ') || '-';
+        
+        // Polices (utiliser les valeurs sauvegardées dans formData.fonts)
+        document.getElementById('recap-fonts').textContent = formData.fonts?.join(', ') || '-';
+        
+        // Objectif principal
+        let objectiveText = '-';
+        if (formData.mainObjective) {
+            switch(formData.mainObjective) {
+                case 'services': objectiveText = 'Présenter mes services/produits'; break;
+                case 'seo': objectiveText = 'Être visible sur Google'; break;
+                case 'trust': objectiveText = 'Inspirer confiance'; break;
+                case 'branding': objectiveText = 'Valoriser mon image de marque'; break;
+                case 'other': objectiveText = formData.otherObjectiveText || 'Autre'; break;
+            }
+        }
+        document.getElementById('recap-mainObjective').textContent = objectiveText;
+        
+        // Services et options
+        document.getElementById('recap-services').textContent = formData.services || '-';
+        
+        // Récupérer les options de service cochées
+        const serviceOptions = Array.from(document.querySelectorAll('input[name="serviceOptions"]:checked')).map(checkbox => checkbox.parentElement.textContent.trim());
+        document.getElementById('recap-serviceOptions').textContent = serviceOptions.length > 0 ? serviceOptions.join(', ') : '-';
+        
+        // Coordonnées & RDV
+        document.getElementById('recap-clientName').textContent = formData.clientName || '-';
+        document.getElementById('recap-clientEmail').textContent = formData.clientEmail || '-';
+        document.getElementById('recap-clientPhone').textContent = formData.clientPhone || '-';
+        
+        // Préférence de contact
+        let preferenceText = '-';
+        if (formData.contactPreference) {
+            switch(formData.contactPreference) {
+                case 'email': preferenceText = 'Email'; break;
+                case 'phone': preferenceText = 'Téléphone'; break;
+                case 'visio': preferenceText = 'Visio'; break;
+            }
+        }
+        document.getElementById('recap-contactPreference').textContent = preferenceText;
+        
+        // Formater le rendez-vous s'il existe
+        if (formData.appointmentDate && formData.appointmentTime) {
+            const date = new Date(formData.appointmentDate);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = date.toLocaleDateString('fr-FR', options);
+            document.getElementById('recap-appointment').textContent = `${formattedDate} à ${formData.appointmentTime}`;
+        } else {
+            document.getElementById('recap-appointment').textContent = 'Non programmé';
         }
     }
+    
+    // Ajouter des événements de clic aux boutons "Modifier"
+    document.querySelectorAll('.edit-section-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const gotoScreen = parseInt(this.getAttribute('data-goto'));
+            goToScreen(gotoScreen);
 
-    // Logo fields conditional display
-    function setupLogoFields() {
-        const hasLogoYes = document.getElementById('hasLogoYes');
-        const existingLogoField = document.getElementById('existingLogoField');
-        const newLogoField = document.getElementById('newLogoField');
-        
-        if (hasLogoYes && existingLogoField && newLogoField) {
-            document.querySelectorAll('input[name="hasLogo"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    existingLogoField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
-                    newLogoField.style.display = this.value === 'no' && this.checked ? 'block' : 'none';
-                });
-            });
-            
-            // Initialiser l'affichage
-            newLogoField.style.display = 'block';
-            existingLogoField.style.display = 'none';
-        }
-    }
-
+        });
+    });
+    
+    // Mettre à jour le récapitulatif chaque fois qu'on accède à l'écran 11
+    document.querySelector('.btn-next[data-next="11"]')?.addEventListener('click', function() {
+        updateRecap();
+    });
+}
     // Setup conditional fields
     function setupConditionalFields() {
         // Other objective
@@ -2009,41 +1987,12 @@
             });
         }
     }
-
+    
     // Setup file uploads
-   // Setup file uploads
-function setupFileUploads() {
-    document.querySelectorAll('input[type="file"]').forEach(input => {
-        input.addEventListener('change', function() {
-            if (this.files.length > 0) {
-                const fileListElement = document.getElementById(this.id + 'Files');
-                
-                if (fileListElement) {
-                    fileListElement.innerHTML = '';
-                    
-                    Array.from(this.files).forEach((file, index) => {
-                        const fileItem = document.createElement('div');
-                        fileItem.className = 'file-item';
-                        
-                        // Vérifier la taille du fichier (2Go max)
-                        if (file.size > 2 * 1024 * 1024 * 1024) {
-                            fileItem.classList.add('file-error');
-                            fileItem.innerHTML = `
-                                <span class="file-name">${file.name}</span>
-                                <span class="file-size">(${formatFileSize(file.size)})</span>
-                                <span class="file-error-message">Ce fichier dépasse la limite de 2 Go</span>
-                            `;
-                        } else {
-                            fileItem.innerHTML = `
-                                <span class="file-name">${file.name}</span>
-                                <span class="file-size">(${formatFileSize(file.size)})</span>
-                            `;
-                        }
-                        
-                        fileListElement.appendChild(fileItem);
-                    });
-                } else {
-                    // Fallback pour les anciens éléments
+    function setupFileUploads() {
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.files.length > 0) {
                     const fileNameElement = document.getElementById(this.id + 'Name');
                     if (fileNameElement) {
                         if (this.files.length === 1) {
@@ -2052,42 +2001,18 @@ function setupFileUploads() {
                             fileNameElement.textContent = `${this.files.length} fichiers sélectionnés`;
                         }
                     }
-                }
-                
-                // Store files in formData
-                if (!formData.uploadedFiles[this.id]) {
-                    formData.uploadedFiles[this.id] = [];
-                }
-                
-                formData.uploadedFiles[this.id] = [];
-                Array.from(this.files).forEach(file => {
-                    formData.uploadedFiles[this.id].push({
-                        name: file.name,
-                        size: file.size
+                    
+                    // Store files in formData
+                    if (!formData.uploadedFiles[this.id]) {
+                        formData.uploadedFiles[this.id] = [];
+                    }
+                    
+                    Array.from(this.files).forEach(file => {
+                        formData.uploadedFiles[this.id].push(file.name);
                     });
-                });
-            }
+                }
+            });
         });
-    });
-    
-    // Make file upload buttons work
-    document.querySelectorAll('.file-upload-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const input = this.querySelector('input[type="file"]');
-            if (input) {
-                input.click();
-            }
-        });
-    });
-}
-
-// Fonction utilitaire pour formater la taille des fichiers
-function formatFileSize(bytes) {
-    if (bytes < 1024) return bytes + ' o';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' Ko';
-    if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' Mo';
-    return (bytes / (1024 * 1024 * 1024)).toFixed(1) + ' Go';
-}
         
         // Make file upload buttons work
         document.querySelectorAll('.file-upload-button').forEach(button => {
@@ -2099,56 +2024,117 @@ function formatFileSize(bytes) {
             });
         });
     }
-
+    
     // Setup font options
-    function setupFontOptions() {
-        const fontOptions = document.querySelectorAll('.font-option');
-        const selectedFontsInput = document.getElementById('selectedFonts');
-        const selectedFontsDisplay = document.getElementById('selectedFontsDisplay');
-        const selectedFonts = [];
-        
-        fontOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const font = this.getAttribute('data-font');
-                const fontDisplay = this.textContent.trim();
-                const maxFonts = 3;
-                
-                if (this.classList.contains('selected')) {
-                    // Remove selection
-                    this.classList.remove('selected');
-                    const index = selectedFonts.indexOf(font);
-                    if (index > -1) {
-                        selectedFonts.splice(index, 1);
-                    }
+   function setupFontOptions() {
+    const fontOptions = document.querySelectorAll('.font-option');
+    const selectedFontsInput = document.getElementById('selectedFonts');
+    const selectedFontsDisplay = document.getElementById('selectedFontsDisplay');
+    const selectedFonts = [];
+    
+    fontOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const font = this.getAttribute('data-font');
+            const fontDisplay = this.textContent.trim();
+            const maxFonts = 3;
+            
+            if (this.classList.contains('selected')) {
+                // Remove selection
+                this.classList.remove('selected');
+                const index = selectedFonts.indexOf(font);
+                if (index > -1) {
+                    selectedFonts.splice(index, 1);
+                }
+            } else {
+                // Add selection (max 3)
+                if (selectedFonts.length < maxFonts) {
+                    this.classList.add('selected');
+                    selectedFonts.push(font);
                 } else {
-                    // Add selection (max 3)
-                    if (selectedFonts.length < maxFonts) {
-                        this.classList.add('selected');
-                        selectedFonts.push(font);
-                    } else {
-                        alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
-                    }
+                    alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
                 }
-                
-                // Update hidden input
-                if (selectedFontsInput) {
-                    selectedFontsInput.value = selectedFonts.join(',');
+            }
+            
+            // Update hidden input
+            if (selectedFontsInput) {
+                selectedFontsInput.value = selectedFonts.join(',');
+            }
+            
+            // Update display
+            if (selectedFontsDisplay) {
+                if (selectedFonts.length === 0) {
+                    selectedFontsDisplay.textContent = "Aucune";
+                } else {
+                    const selectedElements = document.querySelectorAll('.font-option.selected');
+                    const fontNames = Array.from(selectedElements).map(el => el.textContent.trim());
+                    selectedFontsDisplay.textContent = fontNames.join(', ');
                 }
+            }
+        });
+    });
+}
+    
+    // Setup navigation
+    function setupNavigation() {
+console.log('Boutons next trouvés:', document.querySelectorAll('.btn-next').length);
+document.querySelectorAll('.btn-next').forEach(btn => {
+    console.log('Bouton next:', btn, 'data-next:', btn.getAttribute('data-next'));
+});        
+// Next button click
+        document.querySelectorAll('.btn-next').forEach(button => {
+            button.addEventListener('click', function() {
+                const nextScreen = parseInt(this.getAttribute('data-next'));
                 
-                // Update display
-                if (selectedFontsDisplay) {
-                    if (selectedFonts.length === 0) {
-                        selectedFontsDisplay.textContent = "Aucune";
-                    } else {
-                        const selectedElements = document.querySelectorAll('.font-option.selected');
-                        const fontNames = Array.from(selectedElements).map(el => el.textContent.trim());
-                        selectedFontsDisplay.textContent = fontNames.join(', ');
-                    }
+                if (nextScreen && validateScreen(currentScreen)) {
+                    saveScreenData(currentScreen);
+                    goToScreen(nextScreen);
+                }
+            });
+        });
+        
+        // Previous button click
+        document.querySelectorAll('.btn-prev').forEach(button => {
+            button.addEventListener('click', function() {
+                const prevScreen = parseInt(this.getAttribute('data-prev'));
+                
+                if (prevScreen) {
+                    saveScreenData(currentScreen);
+                    goToScreen(prevScreen);
                 }
             });
         });
     }
-
+    
+    // Update progress bar
+    function updateProgress(screenNumber) {
+        const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
+        progressBar.style.width = progressPercentage + '%';
+    }
+    
+    // Go to screen
+    function goToScreen(screenNumber) {
+        // Convertir en nombre si c'est une chaîne
+        screenNumber = parseInt(screenNumber);
+        
+        // Masquer tous les écrans et afficher celui demandé
+        document.querySelectorAll('.form-screen').forEach((screen, index) => {
+            if (index + 1 === screenNumber) {
+                screen.classList.add('active');
+            } else {
+                screen.classList.remove('active');
+            }
+        });
+        
+        // Mettre à jour la barre de progression
+        updateProgress(screenNumber);
+        
+        // Mettre à jour la variable currentScreen
+        currentScreen = screenNumber;
+        
+        // Faire défiler vers le haut
+        window.scrollTo(0, 0);
+    }
+    
     // Setup autosave
     function setupAutosave() {
         // Save on draft button click
@@ -2172,7 +2158,128 @@ function formatFileSize(bytes) {
             loadFormData();
         }
     }
-
+    
+    // Save all form data
+    function saveFormData() {
+        saveScreenData(currentScreen);
+        localStorage.setItem('siteBienFait_form', JSON.stringify(formData));
+    }
+    
+    // Save current screen data
+    function saveScreenData(screenNum) {
+        const screen = document.getElementById(`screen${screenNum}`);
+        if (!screen) return;
+        
+        // Save all inputs, selects, textareas
+        screen.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                if (element.checked) {
+                    formData[element.name] = element.value;
+                }
+            } else {
+                formData[element.id] = element.value;
+            }
+        });
+        
+        // Save font selections
+        if (screenNum === 2) {
+            const selectedFonts = [];
+            screen.querySelectorAll('.font-option.selected').forEach(option => {
+                selectedFonts.push(option.getAttribute('data-font'));
+            });
+            formData.fonts = selectedFonts;
+            
+            // Save color selections
+            const selectedColors = [];
+            screen.querySelectorAll('.color-chip-value').forEach(chip => {
+                selectedColors.push(chip.textContent);
+            });
+            formData.colors = selectedColors;
+        }
+    }
+    
+    // Load form data
+    function loadFormData() {
+        // Load all inputs, selects, textareas
+        document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
+            if (element.id && formData[element.id]) {
+                element.value = formData[element.id];
+            } else if (element.name && formData[element.name] === element.value) {
+                element.checked = true;
+            }
+        });
+        
+        // Load font selections
+        if (formData.fonts) {
+            formData.fonts.forEach(font => {
+                const option = document.querySelector(`.font-option[data-font="${font}"]`);
+                if (option) option.classList.add('selected');
+            });
+        }
+        
+        // Load color selections
+        if (formData.colors) {
+            formData.colors.forEach(color => {
+                addColor(color);
+            });
+        }
+        
+        // Refresh conditional fields
+        setupConditionalFields();
+    }
+    
+    // Validate current screen
+    function validateScreen(screenNum) {
+        const screen = document.getElementById(`screen${screenNum}`);
+        if (!screen) return true;
+        
+        let isValid = true;
+        
+        // Check required fields
+        screen.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+            if (!field.value.trim()) {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.add('error');
+                    isValid = false;
+                }
+            } else {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.remove('error');
+                }
+            }
+        });
+        
+        // Validate email fields
+        screen.querySelectorAll('input[type="email"]').forEach(field => {
+            if (field.value.trim() && !isValidEmail(field.value)) {
+                const formField = field.closest('.form-field');
+                if (formField) {
+                    formField.classList.add('error');
+                    isValid = false;
+                }
+            }
+        });
+        
+        return isValid;
+    }
+    
+    // Function to handle form submission
+    function submitForm() {
+        // Get the email for confirmation
+        const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
+        
+        // Update the confirmation email in the success screen
+        document.getElementById('confirmationEmail').textContent = clientEmail;
+        
+        // Go to the confirmation screen
+        goToScreen(12);
+        
+        // Optional: Simulate sending data to a server
+        console.log('Form data submitted:', formData);
+    }
+    
     // Initialize color selector
     function initColorSelector() {
         // Éléments du DOM
@@ -2189,7 +2296,7 @@ function formatFileSize(bytes) {
         }
         
         // Limite de couleurs sélectionnables
-        const MAX_COLORS = 4;
+        const MAX_COLORS = 3;
         
         // Liste de couleurs prédéfinies
         const colorList = [
@@ -2255,39 +2362,18 @@ function formatFileSize(bytes) {
                 return;
             }
             
-          // Créer la puce de couleur
-const colorChip = document.createElement('div');
-colorChip.className = 'color-chip';
-const priority = selectedColors.querySelectorAll('.color-chip').length + 1;
-colorChip.innerHTML = `
-    <span class="color-priority">${priority}</span>
-    <div class="color-chip-preview" style="background-color: ${color};"></div>
-    <div class="color-chip-value">${color}</div>
-    <button class="color-chip-remove" data-color="${color}">×</button>
-
+            // Créer la puce de couleur
+            const colorChip = document.createElement('div');
+            colorChip.className = 'color-chip';
+            colorChip.innerHTML = `
+                <div class="color-chip-preview" style="background-color: ${color};"></div>
+                <div class="color-chip-value">${color}</div>
+                <button class="color-chip-remove" data-color="${color}">×</button>
             `;
             
             // Ajouter la puce au conteneur
             selectedColors.appendChild(colorChip);
-            .field-description {
-    font-size: 0.85rem;
-    margin-top: -5px;
-    margin-bottom: 10px;
-    opacity: 0.8;
-}
-
-.color-priority {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: var(--primary);
-    color: white;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 20px;
-    font-size: 0.8rem;
-    margin-right: 8px;
-}
+            
             // Ajouter l'événement de suppression
             const removeBtn = colorChip.querySelector('.color-chip-remove');
             removeBtn.addEventListener('click', function() {
@@ -2297,7 +2383,7 @@ colorChip.innerHTML = `
             
             // Mettre à jour l'input caché
             updateSelectedColorsInput();
-        };
+        }
         
         // Fonction pour mettre à jour l'input caché avec les couleurs sélectionnées
         function updateSelectedColorsInput() {
@@ -2315,7 +2401,7 @@ colorChip.innerHTML = `
             return s.color !== '';
         }
     }
-
+    
     // Setup assistant chat
     function setupAssistant() {
         // Toggle assistant chat
@@ -2395,157 +2481,11 @@ colorChip.innerHTML = `
             return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
         }
     }
-
-    // Validate current screen
-    function validateScreen(screenNum) {
-        const screen = document.getElementById(`screen${screenNum}`);
-        if (!screen) return true;
-        
-        let isValid = true;
-        
-        // Check required fields
-        screen.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
-            if (!field.value.trim()) {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.add('error');
-                    isValid = false;
-                }
-            } else {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.remove('error');
-                }
-            }
-        });
-        
-        // Validate email fields
-        screen.querySelectorAll('input[type="email"]').forEach(field => {
-            if (field.value.trim() && !isValidEmail(field.value)) {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.add('error');
-                    isValid = false;
-                }
-            }
-        });
-        
-        return isValid;
-    }
-
-    // Save all form data
-    function saveFormData() {
-        saveScreenData(currentScreen);
-        localStorage.setItem('siteBienFait_form', JSON.stringify(formData));
-    }
-
-    // Save current screen data
-    function saveScreenData(screenNum) {
-        const screen = document.getElementById(`screen${screenNum}`);
-        if (!screen) return;
-        
-        // Save all inputs, selects, textareas
-        screen.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
-            if (element.type === 'checkbox' || element.type === 'radio') {
-                if (element.checked) {
-                    formData[element.name] = element.value;
-                }
-            } else {
-                formData[element.id] = element.value;
-            }
-        });
-        
-        // Save font selections
-        if (screenNum === 2) {
-            const selectedFonts = [];
-            screen.querySelectorAll('.font-option.selected').forEach(option => {
-                selectedFonts.push(option.getAttribute('data-font'));
-            });
-            formData.fonts = selectedFonts;
-            
-            // Save color selections
-            const selectedColors = [];
-            screen.querySelectorAll('.color-chip-value').forEach(chip => {
-                selectedColors.push(chip.textContent);
-            });
-            formData.colors = selectedColors;
-        }
-    }
-
-    // Load form data
-    function loadFormData() {
-        // Load all inputs, selects, textareas
-        document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
-            if (element.id && formData[element.id]) {
-                element.value = formData[element.id];
-            } else if (element.name && formData[element.name] === element.value) {
-                element.checked = true;
-            }
-        });
-        
-        // Load font selections
-        if (formData.fonts) {
-            formData.fonts.forEach(font => {
-                const option = document.querySelector(`.font-option[data-font="${font}"]`);
-                if (option) option.classList.add('selected');
-            });
-        }
-        
-        // Load color selections
-        if (formData.colors && typeof addColor === 'function') {
-            formData.colors.forEach(color => {
-                addColor(color);
-            });
-        }
-        
-        // Refresh conditional fields
-        setupConditionalFields();
-    }
-
-    // Function to handle form submission
-    function submitForm() {
-        // Get the email for confirmation
-        const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
-        
-        // Update the confirmation email in the success screen
-        document.getElementById('confirmationEmail').textContent = clientEmail;
-        
-        // Go to the confirmation screen
-        goToScreen(12);
-        
-        // Optional: Simulate sending data to a server
-        console.log('Form data submitted:', formData);
-    }
-
+    
     // Helper: Valid email check
     function isValidEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
-// Fonction utilitaire pour formater la taille des fichiers
-function formatFileSize(bytes) {
-    if (bytes < 1024) return bytes + ' o';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' Ko';
-    if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' Mo';
-    return (bytes / (1024 * 1024 * 1024)).toFixed(1) + ' Go';
-}
-    // Initialize all functionality
-    function initFunctionality() {
-        console.log('Initialisation des fonctionnalités');
-        setupLogoFields();
-        setupConditionalFields();
-        setupFileUploads();
-        setupFontOptions();
-        setupNavigation();
-        setupAutosave();
-        initColorSelector();
-        setupAssistant();
-        
-        // Mise à jour initiale de la progression
-        updateProgress(currentScreen);
-    }
-
-    // Start initialization
-    initFunctionality();
 });
     </script>
