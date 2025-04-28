@@ -1757,803 +1757,197 @@
         </div>
     </div>
     
-    <script>
- <script>
-    // Version corrigée du JavaScript original avec navigation fonctionnelle
-    document.addEventListener('DOMContentLoaded', function() {
-        // Variables originales
-        let currentScreen = 1;
-        const totalScreens = 12;
-        const progressBar = document.getElementById('progressBar');
-        const formData = { uploadedFiles: {} };
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Variables globales
+    let currentScreen = 1;
+    const totalScreens = 12;
+    const formData = {
+        uploadedFiles: {},
+        selectedColors: [],
+        selectedFonts: []
+    };
 
-        // Fonction de navigation CORRIGÉE
-        function goToScreen(screenNumber) {
-            screenNumber = parseInt(screenNumber);
-            
-            document.querySelectorAll('.form-screen').forEach((screen, index) => {
-                screen.classList.toggle('active', index + 1 === screenNumber);
-            });
-            
-            currentScreen = screenNumber;
-            updateProgress(screenNumber);
-            window.scrollTo(0, 0);
-        }
-
-        // Mise à jour progression CORRIGÉE
-        function updateProgress(screenNumber) {
-            const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
-            progressBar.style.width = progressPercentage + '%';
-        }
-
-        // Gestionnaires d'événements CORRIGÉS
-        function setupNavigation() {
-            document.querySelectorAll('.btn-next').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const nextScreen = parseInt(this.dataset.next);
-                    if(validateScreen(currentScreen)) {
-                        saveScreenData(currentScreen);
-                        goToScreen(nextScreen);
-                    }
-                });
-            });
-
-            document.querySelectorAll('.btn-prev').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const prevScreen = parseInt(this.dataset.prev);
-                    saveScreenData(currentScreen);
-                    goToScreen(prevScreen);
-                });
-            });
-        }
-
-      document.addEventListener('DOMContentLoaded', function() {
-    // Variables
-    const screens = document.querySelectorAll('.form-screen');
-    const saveDraftBtn = document.getElementById('saveDraft');
-    const saveStatus = document.getElementById('saveStatus');
+    // Éléments importants
+    const progressBar = document.getElementById('progressBar');
     const assistantBtn = document.getElementById('assistantBtn');
     const assistantChat = document.getElementById('assistantChat');
-    const assistantInput = document.getElementById('assistantInput');
-    const assistantSend = document.getElementById('assistantSend');
-    const assistantMessages = document.getElementById('assistantMessages');
-    const progressBar = document.getElementById('progressBar');
     
-    // Form data object
-    let formData = {
-        uploadedFiles: {}
-    };
-    
-    // Current screen
-    let currentScreen = 1;
-    const totalScreens = 12; // Nombre total d'écrans du formulaire
+    // --------------------------
+    // Fonctions de base
+    // --------------------------
 
-    // Initialize functionality
-    initFunctionality();
-
-    // Gestion des champs conditionnels pour le logo
-const hasLogoYes = document.getElementById('hasLogoYes');
-const existingLogoField = document.getElementById('existingLogoField');
-const newLogoField = document.getElementById('newLogoField');
-
-if (hasLogoYes && existingLogoField && newLogoField) {
-    document.querySelectorAll('input[name="hasLogo"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            existingLogoField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
-            newLogoField.style.display = this.value === 'no' && this.checked ? 'block' : 'none';
+    function goToScreen(screenNumber) {
+        // Masquer tous les écrans
+        document.querySelectorAll('.form-screen').forEach(screen => {
+            screen.classList.remove('active');
         });
-    });
-    
-    // Initialiser l'affichage
-    newLogoField.style.display = 'block';
-    existingLogoField.style.display = 'none';
-}
-    // Function to initialize all functionality
-    function initFunctionality() {
-        setupConditionalFields();
-        setupFileUploads();
-        setupFontOptions();
-        setupNavigation();
-        setupAutosave();
-        initColorSelector();
-        setupAssistant();
         
-        // Mise à jour initiale de la progression
-        updateProgress(currentScreen);
-        
-        // Setup Submit Button
-        document.getElementById('submitBtn').addEventListener('click', function() {
-            if (validateScreen(currentScreen)) {
-                saveScreenData(currentScreen);
-                submitForm();
-            }
-        });
-    }
-function initFunctionality() {
-    // ... autres initialisations
-    initRecapScreen();
-    // ... autres initialisations
-}
-    // Fonction pour initialiser l'écran de récapitulatif
-function initRecapScreen() {
-    // Mettre à jour le récapitulatif avec les données du formulaire
-    function updateRecap() {
-        // Identité de l'entreprise
-        document.getElementById('recap-companyName').textContent = formData.companyName || '-';
-        document.getElementById('recap-mainActivity').textContent = formData.mainActivity || '-';
-        
-        // Récupérer le texte du secteur depuis le select
-        const sectorSelect = document.getElementById('sector');
-        let sectorText = '-';
-        if (sectorSelect && sectorSelect.selectedIndex > 0) {
-            sectorText = sectorSelect.options[sectorSelect.selectedIndex].text;
-        }
-        document.getElementById('recap-sector').textContent = sectorText;
-        document.getElementById('recap-location').textContent = formData.location || '-';
-        
-        // Logo et identité visuelle
-        let logoTypeText = '-';
-        if (formData.logoType) {
-            switch(formData.logoType) {
-                case 'lettrage': logoTypeText = 'Lettrage (texte stylisé)'; break;
-                case 'pictogramme': logoTypeText = 'Pictogramme avec lettrage'; break;
-                case 'abstrait': logoTypeText = 'Logo abstrait'; break;
-                case 'none': logoTypeText = 'Pas de préférence'; break;
-            }
-        }
-        document.getElementById('recap-logoType').textContent = logoTypeText;
-        
-        // Couleurs (utiliser les valeurs sauvegardées dans formData.colors)
-        document.getElementById('recap-colors').textContent = formData.colors?.join(', ') || '-';
-        
-        // Polices (utiliser les valeurs sauvegardées dans formData.fonts)
-        document.getElementById('recap-fonts').textContent = formData.fonts?.join(', ') || '-';
-        
-        // Objectif principal
-        let objectiveText = '-';
-        if (formData.mainObjective) {
-            switch(formData.mainObjective) {
-                case 'services': objectiveText = 'Présenter mes services/produits'; break;
-                case 'seo': objectiveText = 'Être visible sur Google'; break;
-                case 'trust': objectiveText = 'Inspirer confiance'; break;
-                case 'branding': objectiveText = 'Valoriser mon image de marque'; break;
-                case 'other': objectiveText = formData.otherObjectiveText || 'Autre'; break;
-            }
-        }
-        document.getElementById('recap-mainObjective').textContent = objectiveText;
-        
-        // Services et options
-        document.getElementById('recap-services').textContent = formData.services || '-';
-        
-        // Récupérer les options de service cochées
-        const serviceOptions = Array.from(document.querySelectorAll('input[name="serviceOptions"]:checked')).map(checkbox => checkbox.parentElement.textContent.trim());
-        document.getElementById('recap-serviceOptions').textContent = serviceOptions.length > 0 ? serviceOptions.join(', ') : '-';
-        
-        // Coordonnées & RDV
-        document.getElementById('recap-clientName').textContent = formData.clientName || '-';
-        document.getElementById('recap-clientEmail').textContent = formData.clientEmail || '-';
-        document.getElementById('recap-clientPhone').textContent = formData.clientPhone || '-';
-        
-        // Préférence de contact
-        let preferenceText = '-';
-        if (formData.contactPreference) {
-            switch(formData.contactPreference) {
-                case 'email': preferenceText = 'Email'; break;
-                case 'phone': preferenceText = 'Téléphone'; break;
-                case 'visio': preferenceText = 'Visio'; break;
-            }
-        }
-        document.getElementById('recap-contactPreference').textContent = preferenceText;
-        
-        // Formater le rendez-vous s'il existe
-        if (formData.appointmentDate && formData.appointmentTime) {
-            const date = new Date(formData.appointmentDate);
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = date.toLocaleDateString('fr-FR', options);
-            document.getElementById('recap-appointment').textContent = `${formattedDate} à ${formData.appointmentTime}`;
-        } else {
-            document.getElementById('recap-appointment').textContent = 'Non programmé';
+        // Afficher l'écran demandé
+        const targetScreen = document.getElementById(`screen${screenNumber}`);
+        if(targetScreen) {
+            targetScreen.classList.add('active');
+            currentScreen = screenNumber;
+            updateProgress();
+            window.scrollTo(0, 0);
         }
     }
-    
-    // Ajouter des événements de clic aux boutons "Modifier"
-    document.querySelectorAll('.edit-section-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const gotoScreen = parseInt(this.getAttribute('data-goto'));
-            goToScreen(gotoScreen);
 
-        });
-    });
-    
-    // Mettre à jour le récapitulatif chaque fois qu'on accède à l'écran 11
-    document.querySelector('.btn-next[data-next="11"]')?.addEventListener('click', function() {
-        updateRecap();
-    });
-}
-    // Setup conditional fields
-    function setupConditionalFields() {
-        // Other objective
-        const otherObjective = document.getElementById('otherObjective');
-        const otherObjectiveField = document.getElementById('otherObjectiveField');
-        
-        if (otherObjective && otherObjectiveField) {
-            otherObjective.addEventListener('change', function() {
-                otherObjectiveField.style.display = this.checked ? 'block' : 'none';
-            });
-        }
-        
-        // Other service option
-        const otherServiceOption = document.getElementById('otherServiceOption');
-        const otherServiceField = document.getElementById('otherServiceField');
-        
-        if (otherServiceOption && otherServiceField) {
-            otherServiceOption.addEventListener('change', function() {
-                otherServiceField.style.display = this.checked ? 'block' : 'none';
-            });
-        }
-        
-        // Has charte
-        const hasCharteYes = document.getElementById('hasCharteYes');
-        const charteUploadField = document.getElementById('charteUploadField');
-        
-        if (hasCharteYes && charteUploadField) {
-            document.querySelectorAll('input[name="hasCharte"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    charteUploadField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
-                });
-            });
-        }
-        
-        // Other tone
-        const otherTone = document.getElementById('otherTone');
-        const otherToneField = document.getElementById('otherToneField');
-        
-        if (otherTone && otherToneField) {
-            otherTone.addEventListener('change', function() {
-                otherToneField.style.display = this.checked ? 'block' : 'none';
-            });
-        }
-        
-        // Custom page
-        const customPage = document.getElementById('customPage');
-        const customPageField = document.getElementById('customPageField');
-        
-        if (customPage && customPageField) {
-            customPage.addEventListener('change', function() {
-                customPageField.style.display = this.checked ? 'block' : 'none';
-            });
-        }
-        
-        // Has website
-        const hasWebsiteYes = document.getElementById('hasWebsiteYes');
-        const websiteUrlField = document.getElementById('websiteUrlField');
-        
-        if (hasWebsiteYes && websiteUrlField) {
-            document.querySelectorAll('input[name="hasWebsite"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    websiteUrlField.style.display = this.value === 'yes' && this.checked ? 'block' : 'none';
-                });
-            });
-        }
+    function updateProgress() {
+        const progress = ((currentScreen - 1) / (totalScreens - 1)) * 100;
+        progressBar.style.width = `${progress}%`;
     }
-    
-    // Setup file uploads
-    function setupFileUploads() {
-        document.querySelectorAll('input[type="file"]').forEach(input => {
-            input.addEventListener('change', function() {
-                if (this.files.length > 0) {
-                    const fileNameElement = document.getElementById(this.id + 'Name');
-                    if (fileNameElement) {
-                        if (this.files.length === 1) {
-                            fileNameElement.textContent = this.files[0].name;
-                        } else {
-                            fileNameElement.textContent = `${this.files.length} fichiers sélectionnés`;
-                        }
-                    }
-                    
-                    // Store files in formData
-                    if (!formData.uploadedFiles[this.id]) {
-                        formData.uploadedFiles[this.id] = [];
-                    }
-                    
-                    Array.from(this.files).forEach(file => {
-                        formData.uploadedFiles[this.id].push(file.name);
-                    });
-                }
-            });
-        });
+
+    function validateScreen() {
+        let isValid = true;
+        const currentScreenEl = document.getElementById(`screen${currentScreen}`);
         
-        // Make file upload buttons work
-        document.querySelectorAll('.file-upload-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const input = this.querySelector('input[type="file"]');
-                if (input) {
-                    input.click();
-                }
-            });
-        });
-    }
-    
-    // Setup font options
-   function setupFontOptions() {
-    const fontOptions = document.querySelectorAll('.font-option');
-    const selectedFontsInput = document.getElementById('selectedFonts');
-    const selectedFontsDisplay = document.getElementById('selectedFontsDisplay');
-    const selectedFonts = [];
-    
-    fontOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            const font = this.getAttribute('data-font');
-            const fontDisplay = this.textContent.trim();
-            const maxFonts = 3;
-            
-            if (this.classList.contains('selected')) {
-                // Remove selection
-                this.classList.remove('selected');
-                const index = selectedFonts.indexOf(font);
-                if (index > -1) {
-                    selectedFonts.splice(index, 1);
-                }
+        // Vérifier tous les champs requis
+        currentScreenEl.querySelectorAll('[required]').forEach(field => {
+            if(!field.value.trim()) {
+                isValid = false;
+                field.closest('.form-field').classList.add('error');
             } else {
-                // Add selection (max 3)
-                if (selectedFonts.length < maxFonts) {
-                    this.classList.add('selected');
-                    selectedFonts.push(font);
-                } else {
-                    alert(`Vous pouvez sélectionner jusqu'à ${maxFonts} polices. Désélectionnez-en une d'abord.`);
-                }
-            }
-            
-            // Update hidden input
-            if (selectedFontsInput) {
-                selectedFontsInput.value = selectedFonts.join(',');
-            }
-            
-            // Update display
-            if (selectedFontsDisplay) {
-                if (selectedFonts.length === 0) {
-                    selectedFontsDisplay.textContent = "Aucune";
-                } else {
-                    const selectedElements = document.querySelectorAll('.font-option.selected');
-                    const fontNames = Array.from(selectedElements).map(el => el.textContent.trim());
-                    selectedFontsDisplay.textContent = fontNames.join(', ');
-                }
+                field.closest('.form-field').classList.remove('error');
             }
         });
-    });
-}
-    
-    // Setup navigation
+
+        return isValid;
+    }
+
+    // --------------------------
+    // Gestion des interactions
+    // --------------------------
+
     function setupNavigation() {
-console.log('Boutons next trouvés:', document.querySelectorAll('.btn-next').length);
-document.querySelectorAll('.btn-next').forEach(btn => {
-    console.log('Bouton next:', btn, 'data-next:', btn.getAttribute('data-next'));
-});        
-// Next button click
+        // Bouton Suivant
         document.querySelectorAll('.btn-next').forEach(button => {
-            button.addEventListener('click', function() {
-                const nextScreen = parseInt(this.getAttribute('data-next'));
-                
-                if (nextScreen && validateScreen(currentScreen)) {
-                    saveScreenData(currentScreen);
+            button.addEventListener('click', e => {
+                e.preventDefault();
+                if(validateScreen()) {
+                    const nextScreen = parseInt(button.dataset.next);
                     goToScreen(nextScreen);
                 }
             });
         });
-        
-        // Previous button click
+
+        // Bouton Précédent
         document.querySelectorAll('.btn-prev').forEach(button => {
-            button.addEventListener('click', function() {
-                const prevScreen = parseInt(this.getAttribute('data-prev'));
+            button.addEventListener('click', e => {
+                e.preventDefault();
+                const prevScreen = parseInt(button.dataset.prev);
+                goToScreen(prevScreen);
+            });
+        });
+    }
+
+    function setupFileUploads() {
+        document.querySelectorAll('.file-upload input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const fileName = this.files[0]?.name || 'Aucun fichier sélectionné';
+                this.parentElement.querySelector('.file-upload-text').textContent = fileName;
+            });
+        });
+    }
+
+    function setupFontSelection() {
+        document.querySelectorAll('.font-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const maxSelection = 3;
+                const font = this.dataset.font;
                 
-                if (prevScreen) {
-                    saveScreenData(currentScreen);
-                    goToScreen(prevScreen);
+                if(this.classList.contains('selected')) {
+                    // Désélectionner
+                    this.classList.remove('selected');
+                    formData.selectedFonts = formData.selectedFonts.filter(f => f !== font);
+                } else {
+                    // Sélectionner
+                    if(formData.selectedFonts.length < maxSelection) {
+                        this.classList.add('selected');
+                        formData.selectedFonts.push(font);
+                    }
                 }
+                
+                // Mettre à jour l'affichage
+                document.getElementById('selectedFontsDisplay').textContent = 
+                    formData.selectedFonts.join(', ') || 'Aucune';
             });
         });
     }
-    
-    // Update progress bar
-    function updateProgress(screenNumber) {
-        const progressPercentage = ((screenNumber - 1) / (totalScreens - 1)) * 100;
-        progressBar.style.width = progressPercentage + '%';
-    }
-    
-    // Go to screen
-    function goToScreen(screenNumber) {
-        // Convertir en nombre si c'est une chaîne
-        screenNumber = parseInt(screenNumber);
-        
-        // Masquer tous les écrans et afficher celui demandé
-        document.querySelectorAll('.form-screen').forEach((screen, index) => {
-            if (index + 1 === screenNumber) {
-                screen.classList.add('active');
-            } else {
-                screen.classList.remove('active');
-            }
-        });
-        
-        // Mettre à jour la barre de progression
-        updateProgress(screenNumber);
-        
-        // Mettre à jour la variable currentScreen
-        currentScreen = screenNumber;
-        
-        // Faire défiler vers le haut
-        window.scrollTo(0, 0);
-    }
-    
-    // Setup autosave
-    function setupAutosave() {
-        // Save on draft button click
-        saveDraftBtn.addEventListener('click', function() {
-            saveFormData();
-            saveStatus.textContent = 'Sauvegardé à ' + new Date().toLocaleTimeString();
-            setTimeout(() => {
-                saveStatus.textContent = '';
-            }, 3000);
-        });
-        
-        // Auto save every 30 seconds
-        setInterval(function() {
-            saveFormData();
-        }, 30000);
-        
-        // Load saved data on page load
-        const savedData = localStorage.getItem('siteBienFait_form');
-        if (savedData) {
-            formData = JSON.parse(savedData);
-            loadFormData();
-        }
-    }
-    
-    // Save all form data
-    function saveFormData() {
-        saveScreenData(currentScreen);
-        localStorage.setItem('siteBienFait_form', JSON.stringify(formData));
-    }
-    
-    // Save current screen data
-    function saveScreenData(screenNum) {
-        const screen = document.getElementById(`screen${screenNum}`);
-        if (!screen) return;
-        
-        // Save all inputs, selects, textareas
-        screen.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
-            if (element.type === 'checkbox' || element.type === 'radio') {
-                if (element.checked) {
-                    formData[element.name] = element.value;
-                }
-            } else {
-                formData[element.id] = element.value;
-            }
-        });
-        
-        // Save font selections
-        if (screenNum === 2) {
-            const selectedFonts = [];
-            screen.querySelectorAll('.font-option.selected').forEach(option => {
-                selectedFonts.push(option.getAttribute('data-font'));
-            });
-            formData.fonts = selectedFonts;
-            
-            // Save color selections
-            const selectedColors = [];
-            screen.querySelectorAll('.color-chip-value').forEach(chip => {
-                selectedColors.push(chip.textContent);
-            });
-            formData.colors = selectedColors;
-        }
-    }
-    
-    // Load form data
-    function loadFormData() {
-        // Load all inputs, selects, textareas
-        document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(element => {
-            if (element.id && formData[element.id]) {
-                element.value = formData[element.id];
-            } else if (element.name && formData[element.name] === element.value) {
-                element.checked = true;
-            }
-        });
-        
-        // Load font selections
-        if (formData.fonts) {
-            formData.fonts.forEach(font => {
-                const option = document.querySelector(`.font-option[data-font="${font}"]`);
-                if (option) option.classList.add('selected');
-            });
-        }
-        
-        // Load color selections
-        if (formData.colors) {
-            formData.colors.forEach(color => {
-                addColor(color);
-            });
-        }
-        
-        // Refresh conditional fields
-        setupConditionalFields();
-    }
-    
-    // Validate current screen
-    function validateScreen(screenNum) {
-        const screen = document.getElementById(`screen${screenNum}`);
-        if (!screen) return true;
-        
-        let isValid = true;
-        
-        // Check required fields
-        screen.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
-            if (!field.value.trim()) {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.add('error');
-                    isValid = false;
-                }
-            } else {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.remove('error');
-                }
-            }
-        });
-        
-        // Validate email fields
-        screen.querySelectorAll('input[type="email"]').forEach(field => {
-            if (field.value.trim() && !isValidEmail(field.value)) {
-                const formField = field.closest('.form-field');
-                if (formField) {
-                    formField.classList.add('error');
-                    isValid = false;
-                }
-            }
-        });
-        
-        return isValid;
-    }
-    
-    // Function to handle form submission
-    function submitForm() {
-        // Get the email for confirmation
-        const clientEmail = document.getElementById('clientEmail').value || 'votre adresse email';
-        
-        // Update the confirmation email in the success screen
-        document.getElementById('confirmationEmail').textContent = clientEmail;
-        
-        // Go to the confirmation screen
-        goToScreen(12);
-        
-        // Optional: Simulate sending data to a server
-        console.log('Form data submitted:', formData);
-    }
-    
-    // Initialize color selector
-    function initColorSelector() {
-        // Éléments du DOM
+
+    function setupColorPicker() {
         const colorWheel = document.getElementById('colorWheel');
-        const colorInput = document.getElementById('colorInput');
-        const colorPreview = document.getElementById('colorPreview');
         const addColorBtn = document.getElementById('addColorBtn');
-        const selectedColors = document.getElementById('selectedColors');
-        const predefinedColors = document.getElementById('predefinedColors');
-        const selectedColorsInput = document.getElementById('selectedColorsInput');
         
-        if (!colorWheel || !colorInput || !colorPreview || !addColorBtn || !selectedColors || !predefinedColors) {
-            return; // Éléments manquants, on sort de la fonction
-        }
-        
-        // Limite de couleurs sélectionnables
-        const MAX_COLORS = 3;
-        
-        // Liste de couleurs prédéfinies
-        const colorList = [
-            '#503D59', '#F3A884', '#AE5753', // Les couleurs de ta charte
-            '#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE', 
-            '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE', 
-            '#B2FF59', '#EEFF41', '#FFEB3B', '#FFD740', '#FFAB40', 
-            '#FF6E40', '#FFFFFF', '#EEEEEE', '#BDBDBD', '#757575'
-        ];
-        
-        // Générer les couleurs prédéfinies
-        colorList.forEach(color => {
-            const colorSwatch = document.createElement('div');
-            colorSwatch.className = 'color-swatch';
-            colorSwatch.style.backgroundColor = color;
-            colorSwatch.setAttribute('data-color', color);
-            colorSwatch.title = color;
-            
-            colorSwatch.addEventListener('click', function() {
-                addColor(color);
-            });
-            
-            predefinedColors.appendChild(colorSwatch);
-        });
-        
-        // Synchroniser la roue de couleur et le champ de texte
-        colorWheel.addEventListener('input', function() {
-            colorInput.value = this.value;
-            colorPreview.style.backgroundColor = this.value;
-        });
-        
-        colorInput.addEventListener('input', function() {
-            if (isValidColor(this.value)) {
-                colorPreview.style.backgroundColor = this.value;
-                colorWheel.value = this.value;
+        addColorBtn.addEventListener('click', () => {
+            if(formData.selectedColors.length < 3) {
+                formData.selectedColors.push(colorWheel.value);
+                updateColorDisplay();
             }
         });
-        
-        // Ajouter une couleur via le bouton
-        addColorBtn.addEventListener('click', function() {
-            const color = colorInput.value.trim();
-            if (isValidColor(color)) {
-                addColor(color);
-            } else {
-                alert('Veuillez entrer une couleur valide (ex: #FF5500)');
-            }
-        });
-        
-        // Fonction pour ajouter une couleur à la sélection
-        window.addColor = function(color) {
-            // Vérifier si la couleur existe déjà
-            const existingChips = selectedColors.querySelectorAll('.color-chip');
-            for (let chip of existingChips) {
-                const chipColor = chip.querySelector('.color-chip-remove').getAttribute('data-color');
-                if (chipColor.toLowerCase() === color.toLowerCase()) {
-                    return; // La couleur existe déjà
-                }
-            }
-            
-            // Vérifier la limite de couleurs
-            if (existingChips.length >= MAX_COLORS) {
-                alert(`Vous pouvez sélectionner au maximum ${MAX_COLORS} couleurs. Supprimez une couleur existante pour en ajouter une nouvelle.`);
-                return;
-            }
-            
-            // Créer la puce de couleur
-            const colorChip = document.createElement('div');
-            colorChip.className = 'color-chip';
-            colorChip.innerHTML = `
-                <div class="color-chip-preview" style="background-color: ${color};"></div>
-                <div class="color-chip-value">${color}</div>
-                <button class="color-chip-remove" data-color="${color}">×</button>
-            `;
-            
-            // Ajouter la puce au conteneur
-            selectedColors.appendChild(colorChip);
-            
-            // Ajouter l'événement de suppression
-            const removeBtn = colorChip.querySelector('.color-chip-remove');
-            removeBtn.addEventListener('click', function() {
-                colorChip.remove();
-                updateSelectedColorsInput();
-            });
-            
-            // Mettre à jour l'input caché
-            updateSelectedColorsInput();
-        }
-        
-        // Fonction pour mettre à jour l'input caché avec les couleurs sélectionnées
-        function updateSelectedColorsInput() {
-            const colors = [];
-            document.querySelectorAll('.color-chip-value').forEach(chip => {
-                colors.push(chip.textContent);
-            });
-            selectedColorsInput.value = colors.join(',');
-        }
-        
-        // Vérifier si la couleur est valide
-        function isValidColor(color) {
-            const s = new Option().style;
-            s.color = color;
-            return s.color !== '';
-        }
     }
-    
-    // Setup assistant chat
+
+    function updateColorDisplay() {
+        const container = document.getElementById('selectedColors');
+        container.innerHTML = formData.selectedColors
+            .map(color => `<div class="color-chip" style="background: ${color}">${color}</div>`)
+            .join('');
+    }
+
+    // --------------------------
+    // Assistant IA
+    // --------------------------
+
     function setupAssistant() {
-        // Toggle assistant chat
-        assistantBtn.addEventListener('click', function() {
+        // Afficher/masquer le chat
+        assistantBtn.addEventListener('click', () => {
             assistantChat.style.display = assistantChat.style.display === 'flex' ? 'none' : 'flex';
         });
+
+        // Réponses prédéfinies
+        const responses = {
+            logo: "Pour le logo, vous pouvez télécharger votre fichier ou choisir un style dans les options.",
+            couleurs: "Sélectionnez jusqu'à 3 couleurs en utilisant la roue colorimétrique.",
+            polices: "Cliquez sur les polices que vous aimez (max 3)."
+        };
+
+        document.getElementById('assistantSend').addEventListener('click', () => {
+            const question = document.getElementById('assistantInput').value.toLowerCase();
+            let response = "Je peux vous aider avec : logo, couleurs, polices.";
+
+            if(question.includes('logo')) response = responses.logo;
+            if(question.includes('couleur')) response = responses.couleurs;
+            if(question.includes('police')) response = responses.polices;
+
+            assistantMessages.innerHTML += `
+                <div class="message user">${question}</div>
+                <div class="message assistant">${response}</div>
+            `;
+        });
+    }
+
+    // --------------------------
+    // Initialisation
+    // --------------------------
+
+    function init() {
+        setupNavigation();
+        setupFileUploads();
+        setupFontSelection();
+        setupColorPicker();
+        setupAssistant();
+        goToScreen(1); // Commencer au premier écran
         
-        // Send message on button click
-        assistantSend.addEventListener('click', sendAssistantMessage);
-        
-        // Send message on Enter key
-        assistantInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendAssistantMessage();
+        // Soumission finale
+        document.getElementById('submitBtn').addEventListener('click', e => {
+            e.preventDefault();
+            if(validateScreen()) {
+                goToScreen(12); // Écran de confirmation
             }
         });
-        
-        // Function to send message
-        function sendAssistantMessage() {
-            const message = assistantInput.value.trim();
-            
-            if (message) {
-                // Add user message
-                const userMessage = document.createElement('div');
-                userMessage.classList.add('message', 'user');
-                userMessage.textContent = message;
-                assistantMessages.appendChild(userMessage);
-                
-                // Clear input
-                assistantInput.value = '';
-                
-                // Scroll to bottom
-                assistantMessages.scrollTop = assistantMessages.scrollHeight;
-                
-                // Simulate response
-                setTimeout(() => {
-                    const response = getAssistantResponse(message);
-                    
-                    const assistantMessage = document.createElement('div');
-                    assistantMessage.classList.add('message', 'assistant');
-                    assistantMessage.textContent = response;
-                    assistantMessages.appendChild(assistantMessage);
-                    
-                    // Scroll to bottom
-                    assistantMessages.scrollTop = assistantMessages.scrollHeight;
-                }, 1000);
-            }
-        }
-        
-        // Get assistant response based on message
-        function getAssistantResponse(message) {
-            message = message.toLowerCase();
-            
-            // Check for specific keywords
-            if (message.includes('logo')) {
-                return "Pour votre logo, vous pouvez soit choisir un type de logo (lettrage, pictogramme, abstrait), soit nous laisser vous faire des propositions. Vous pouvez également nous partager des exemples de logos qui vous plaisent pour nous guider.";
-            } else if (message.includes('police') || message.includes('font')) {
-                return "Vous pouvez sélectionner jusqu'à 3 polices qui vous plaisent. Ces polices seront utilisées pour votre site web et votre identité visuelle. Cliquez simplement sur les options qui vous plaisent.";
-            } else if (message.includes('couleur')) {
-                return "Vous pouvez choisir jusqu'à 3 couleurs pour votre identité visuelle. Utilisez soit la roue de couleur, soit les couleurs prédéfinies en cliquant dessus. Ces couleurs seront utilisées pour votre site web et votre logo.";
-            } else if (message.includes('délai') || message.includes('temps')) {
-                return "La création de votre site prendra environ 15 jours ouvrés après validation de votre brief et l'entretien d'onboarding avec votre chargé de projet.";
-            } else if (message.includes('prix') || message.includes('coût') || message.includes('tarif')) {
-                return "Le Site Bien Fait est disponible à partir de 45€ HT/mois sur 48 mois. Ce tarif inclut la création du site, l'hébergement, le nom de domaine et les mises à jour.";
-            } else if (message.includes('sauvegarde')) {
-                return "Vos réponses sont automatiquement sauvegardées. Vous pouvez également cliquer sur 'Sauvegarder le brouillon' en haut du formulaire pour enregistrer manuellement vos données.";
-            }
-            
-            // Default responses
-            const defaultResponses = [
-                "Je suis là pour vous aider à remplir ce formulaire. Que souhaitez-vous savoir ?",
-                "N'hésitez pas à prendre votre temps pour remplir ce formulaire. Toutes ces informations nous aideront à créer un site qui vous ressemble.",
-                "Vous pouvez naviguer entre les différentes sections à l'aide des boutons 'Précédent' et 'Suivant'.",
-                "Plus vous donnez de détails sur votre entreprise et vos besoins, plus votre site sera adapté à vos attentes."
-            ];
-            
-            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-        }
     }
-    
-    // Helper: Valid email check
-    function isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-// Initialisation CORRIGÉE
-        function init() {
-            setupNavigation();
-            setupConditionalFields();
-            setupFileUploads();
-            setupFontOptions();
-            initColorSelector();
-            updateProgress(1);
-            
-            // Charger les données existantes
-            const savedData = localStorage.getItem('siteBienFait_form');
-            if(savedData) formData = JSON.parse(savedData);
-        }
 
-        init();
-    });
+    // Démarrer l'application
+    init();
 });
-
-    </script>
+</script>
